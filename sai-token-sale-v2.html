@@ -45,6 +45,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Supabase JS v2 — database logging -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<!-- Baseflow MCP data binding engine — populates data-mcp tags with live numbers -->
+<script src="js/baseflow-mcp.js"></script>
 
 <style>
 :root {
@@ -377,11 +379,15 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
 .mobile-cta-btn:hover { box-shadow: 0 4px 16px var(--amber-g); }
 
 /* ─── RESPONSIVE ─── */
+/* ─── ROI SECTION GRID ─── */
+#roi-section .alloc-grid { grid-template-columns: repeat(4, 1fr); }
+
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; }
   .buy-card { position: static; }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .alloc-grid { grid-template-columns: repeat(2, 1fr); }
+  #roi-section .alloc-grid { grid-template-columns: repeat(2, 1fr); }
   .token-metrics { grid-template-columns: repeat(3, 1fr); }
   .mobile-cta { display: block; }
   body { padding-bottom: 70px; }
@@ -389,11 +395,15 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
 @media (max-width: 520px) {
   .steps { grid-template-columns: 1fr; }
   .alloc-grid { grid-template-columns: 1fr; }
+  #roi-section .alloc-grid { grid-template-columns: 1fr; }
   .token-metrics { grid-template-columns: 1fr; }
   table { font-size: 0.75rem; }
   th, td { padding: 8px 10px; }
   .countdown-grid { gap: 8px; }
   .cd-val { font-size: 1.1rem; }
+  /* ROI calculation grid stacks on mobile */
+  #roi-section [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  #roi-section [style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
@@ -445,7 +455,7 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
           </div>
           <div style="text-align:right">
             <div class="raise-label">Raise Target</div>
-            <div class="raise-target">$600,000 USD</div>
+            <div class="raise-target"><span data-mcp="token.raise_target" data-mcp-format="currency">$600,000</span> USD</div>
           </div>
         </div>
         <div class="progress-track">
@@ -463,11 +473,11 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
         </div>
       </div>
 
-      <!-- Token metrics -->
+      <!-- Token metrics (data-mcp powered) -->
       <div class="token-metrics">
-        <div class="tm"><span class="tm-val">$0.10</span><span class="tm-lbl">Token Price</span></div>
-        <div class="tm"><span class="tm-val">100M</span><span class="tm-lbl">SAI For Sale</span></div>
-        <div class="tm"><span class="tm-val">1B</span><span class="tm-lbl">Max Supply</span></div>
+        <div class="tm"><span class="tm-val" data-mcp="token.price_phase1" data-mcp-format="price">$0.10</span><span class="tm-lbl">Token Price</span></div>
+        <div class="tm"><span class="tm-val" data-mcp="token.for_sale" data-mcp-format="number-m">100M</span><span class="tm-lbl">SAI For Sale</span></div>
+        <div class="tm"><span class="tm-val" data-mcp="token.total_supply" data-mcp-format="number-m">1B</span><span class="tm-lbl">Max Supply</span></div>
       </div>
 
       <div class="callout">
@@ -483,9 +493,9 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
         <div class="buy-phase">
           <div>
             <div class="phase-name">Phase 1 Presale Price</div>
-            <div class="phase-note">Phase 2 price: $0.15 · TGE price: $0.25</div>
+            <div class="phase-note">Phase 2 price: <span data-mcp="token.price_phase2" data-mcp-format="price">$0.15</span> · TGE price: <span data-mcp="token.price_tge" data-mcp-format="price">$0.25</span></div>
           </div>
-          <div class="phase-price">$0.10 / SAI</div>
+          <div class="phase-price"><span data-mcp="token.price_phase1" data-mcp-format="price">$0.10</span> / SAI</div>
         </div>
 
         <!-- Payment method tabs -->
@@ -649,6 +659,241 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
     </div>
   </section>
 
+  <!-- NODE ROI BREAKDOWN (data-mcp powered) -->
+  <section class="section" id="roi-section">
+    <div class="eyebrow-sm">Node Economics</div>
+    <div class="section-title">Baseflow Node ROI Breakdown</div>
+    <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:28px;max-width:680px">
+      Each Baseflow node combines solar panels, battery storage, and AI/crypto hardware into a self-sustaining compute unit. Here's the transparent economics behind our projected <strong style="color:var(--amber)"><span data-mcp="roi.target_pct" data-mcp-format="raw">27</span>% annual ROI</strong>.
+    </p>
+
+    <!-- Investment Breakdown -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--amber)">☀️</span> Step 1: Initial Investment
+      </h3>
+      <div class="alloc-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.solar_panels_min" data-mcp-format="currency-k" data-mcp-animate="true">$8K</div>
+          <div class="alloc-name">Solar Panels + Inverter</div>
+          <div class="alloc-desc">10kW system, <span data-mcp="investment.solar_panels_min" data-mcp-format="currency">$8,000</span>–<span data-mcp="investment.solar_panels_max" data-mcp-format="currency">$10,000</span>. Produces ~35–45kWh daily.</div>
+        </div>
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.battery_min" data-mcp-format="currency-k" data-mcp-animate="true">$4K</div>
+          <div class="alloc-name">Battery Storage</div>
+          <div class="alloc-desc">42kWh system, <span data-mcp="investment.battery_min" data-mcp-format="currency">$4,000</span>–<span data-mcp="investment.battery_max" data-mcp-format="currency">$6,500</span>. Enables 24/7 operation.</div>
+        </div>
+        <div class="alloc-item a3">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.hardware_min" data-mcp-format="currency-k" data-mcp-animate="true">$2K</div>
+          <div class="alloc-name">AI/Crypto Hardware</div>
+          <div class="alloc-desc">GPUs + ASIC, <span data-mcp="investment.hardware_min" data-mcp-format="currency">$2,000</span>–<span data-mcp="investment.hardware_max" data-mcp-format="currency">$5,000</span>. Dual RTX 5090 class.</div>
+        </div>
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.setup" data-mcp-format="currency-k" data-mcp-animate="true">$1K</div>
+          <div class="alloc-name">Setup & Wiring</div>
+          <div class="alloc-desc">Installation, ventilation, software integration, node monitoring.</div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em">Total Node Investment</span>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;color:var(--amber)" data-mcp="investment.total_mid" data-mcp-format="currency" data-mcp-animate="true">$20,000</div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Range</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="investment.total_min" data-mcp-format="currency">$15,000</span> – <span data-mcp="investment.total_max" data-mcp-format="currency">$25,000</span></div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--green)">With 30% subsidy</span>
+          <div style="font-size:0.88rem;color:var(--green);font-weight:500">$14,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Breakdown -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--green)">💰</span> Step 2: Annual Revenue Sources
+      </h3>
+      <div class="alloc-grid">
+        <div class="alloc-item a3">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="revenue.ai_compute_monthly_min" data-mcp-format="currency">$300</span>–<span data-mcp="revenue.ai_compute_monthly_max" data-mcp-format="currency">$600</span><span style="font-size:0.6rem;color:var(--muted)">/mo</span></div>
+          <div class="alloc-name">AI Compute Rentals</div>
+          <div class="alloc-desc">GPU rentals via OctaSpace/Salad at 70–90% utilization. Annual: <span data-mcp="revenue.ai_compute_min" data-mcp-format="currency">$3,600</span>–<span data-mcp="revenue.ai_compute_max" data-mcp-format="currency">$7,200</span></div>
+        </div>
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="revenue.crypto_monthly_min" data-mcp-format="currency">$100</span>–<span data-mcp="revenue.crypto_monthly_max" data-mcp-format="currency">$300</span><span style="font-size:0.6rem;color:var(--muted)">/mo</span></div>
+          <div class="alloc-name">Crypto Rewards / Mining</div>
+          <div class="alloc-desc">SAI staking + ASIC mining. Annual: <span data-mcp="revenue.crypto_min" data-mcp-format="currency">$1,200</span>–<span data-mcp="revenue.crypto_max" data-mcp-format="currency">$3,600</span></div>
+        </div>
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="revenue.energy_monthly_min" data-mcp-format="currency">$50</span>–<span data-mcp="revenue.energy_monthly_max" data-mcp-format="currency">$100</span><span style="font-size:0.6rem;color:var(--muted)">/mo</span></div>
+          <div class="alloc-name">Energy Sales / DeFi Yield</div>
+          <div class="alloc-desc">Grid sell-back + SAI staking at 5–13% APY. Annual: <span data-mcp="revenue.energy_min" data-mcp-format="currency">$600</span>–<span data-mcp="revenue.energy_max" data-mcp-format="currency">$1,200</span></div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px 20px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em">Total Annual Revenue</span>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;color:var(--green)" data-mcp="revenue.total_mid" data-mcp-format="currency" data-mcp-animate="true">$6,900</div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Range</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="revenue.total_min" data-mcp-format="currency">$5,400</span> – <span data-mcp="revenue.total_max" data-mcp-format="currency">$12,000</span></div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Monthly Benchmark</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="revenue.monthly_benchmark" data-mcp-format="currency">$575</span>/mo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Costs Breakdown -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--cyan)">⚡</span> Step 3: Annual Costs (Near-Zero with Solar)
+      </h3>
+      <div class="alloc-grid">
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem;color:var(--green)" data-mcp="costs.energy" data-mcp-format="currency">$0</div>
+          <div class="alloc-name">Energy Costs</div>
+          <div class="alloc-desc">Solar covers 100% with battery backup. Saves <span data-mcp="costs.grid_savings_min" data-mcp-format="currency">$1,200</span>–<span data-mcp="costs.grid_savings_max" data-mcp-format="currency">$1,800</span>/yr vs grid.</div>
+        </div>
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="costs.maintenance_min" data-mcp-format="currency">$200</span>–<span data-mcp="costs.maintenance_max" data-mcp-format="currency">$500</span></div>
+          <div class="alloc-name">Maintenance</div>
+          <div class="alloc-desc">Annual inspections, minor repairs. Batteries warrantied 10 years.</div>
+        </div>
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="costs.other" data-mcp-format="currency">$100</div>
+          <div class="alloc-name">Software & Internet</div>
+          <div class="alloc-desc">Node monitoring software, internet connectivity fees.</div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid rgba(6,182,212,0.2);border-radius:10px;padding:16px 20px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em">Total Annual Costs</span>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;color:var(--cyan)" data-mcp="costs.total_mid" data-mcp-format="currency" data-mcp-animate="true">$400</div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Range</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="costs.total_min" data-mcp-format="currency">$300</span> – <span data-mcp="costs.total_max" data-mcp-format="currency">$600</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI Calculation Result -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--amber)">📊</span> Step 4: ROI Calculation
+      </h3>
+      <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(6,182,212,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:28px;margin-bottom:16px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center">
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Net Annual Profit</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--green)" data-mcp="roi.moderate.net_profit" data-mcp-format="currency" data-mcp-animate="true">$5,120</div>
+          </div>
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Annual ROI</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--amber)" data-mcp="roi.moderate.roi_pct" data-mcp-format="percent" data-mcp-animate="true">25.6%</div>
+          </div>
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Payback Period</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--cyan)" data-mcp="roi.moderate.payback_years" data-mcp-format="years" data-mcp-animate="true">3.9 years</div>
+          </div>
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">20-Year Lifetime Profit</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--green)" data-mcp="roi.moderate.lifetime_profit_20yr" data-mcp-format="currency-k" data-mcp-animate="true">$82K</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;font-size:0.72rem;color:var(--muted)">
+          Formula: ROI = [(Annual Revenue − Annual Costs) / Initial Investment] × 100
+        </div>
+      </div>
+
+      <!-- Scenario comparison -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px">🐻 Conservative</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:rgba(238,242,255,0.6)" data-mcp="roi.conservative.roi_pct" data-mcp-format="percent">14.9%</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Payback: <span data-mcp="roi.conservative.payback_years" data-mcp-format="years">6.7 years</span></div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Investment: <span data-mcp="roi.conservative.investment" data-mcp-format="currency">$25,000</span></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:8px">⚖️ Moderate (Base)</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:var(--amber)" data-mcp="roi.moderate.roi_pct" data-mcp-format="percent">25.6%</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Payback: <span data-mcp="roi.moderate.payback_years" data-mcp-format="years">3.9 years</span></div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Investment: <span data-mcp="roi.moderate.investment" data-mcp-format="currency">$20,000</span></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:8px">🚀 Optimistic</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:var(--green)" data-mcp="roi.optimistic.roi_pct" data-mcp-format="percent">62%</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Payback: <span data-mcp="roi.optimistic.payback_years" data-mcp-format="years">1.6 years</span></div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Investment: <span data-mcp="roi.optimistic.investment" data-mcp-format="currency">$15,000</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Network Scaling Roadmap -->
+    <div style="margin-bottom:24px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--amber)">🌐</span> Network Scaling Roadmap
+      </h3>
+      <div class="purchases-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Timeline</th>
+              <th>Nodes</th>
+              <th>Infra Value</th>
+              <th>Annual Revenue</th>
+              <th>Annual Profit</th>
+              <th>Solar Capacity</th>
+              <th>CO₂ Offset</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Year 1</strong></td>
+              <td data-mcp="network.year1_100_nodes.node_count" data-mcp-format="number">100</td>
+              <td style="color:var(--amber)" data-mcp="network.year1_100_nodes.total_infrastructure_value" data-mcp-format="currency-m">$2M</td>
+              <td data-mcp="network.year1_100_nodes.annual_network_revenue" data-mcp-format="currency-k">$690K</td>
+              <td style="color:var(--green)" data-mcp="network.year1_100_nodes.annual_network_profit" data-mcp-format="currency-k">$650K</td>
+              <td><span data-mcp="network.year1_100_nodes.solar_capacity_kw" data-mcp-format="number">1,000</span> kW</td>
+              <td><span data-mcp="network.year1_100_nodes.co2_offset_tons_year" data-mcp-format="number">1,022</span> tons</td>
+            </tr>
+            <tr>
+              <td><strong>Year 3</strong></td>
+              <td data-mcp="network.year3_1000_nodes.node_count" data-mcp-format="number">1,000</td>
+              <td style="color:var(--amber)" data-mcp="network.year3_1000_nodes.total_infrastructure_value" data-mcp-format="currency-m">$20M</td>
+              <td data-mcp="network.year3_1000_nodes.annual_network_revenue" data-mcp-format="currency-m">$6.9M</td>
+              <td style="color:var(--green)" data-mcp="network.year3_1000_nodes.annual_network_profit" data-mcp-format="currency-m">$6.5M</td>
+              <td><span data-mcp="network.year3_1000_nodes.solar_capacity_kw" data-mcp-format="number">10,000</span> kW</td>
+              <td><span data-mcp="network.year3_1000_nodes.co2_offset_tons_year" data-mcp-format="number">10,220</span> tons</td>
+            </tr>
+            <tr>
+              <td><strong>Year 6</strong></td>
+              <td data-mcp="network.year6_5000_nodes.node_count" data-mcp-format="number">5,000</td>
+              <td style="color:var(--amber)" data-mcp="network.year6_5000_nodes.total_infrastructure_value" data-mcp-format="currency-m">$100M</td>
+              <td data-mcp="network.year6_5000_nodes.annual_network_revenue" data-mcp-format="currency-m">$34.5M</td>
+              <td style="color:var(--green)" data-mcp="network.year6_5000_nodes.annual_network_profit" data-mcp-format="currency-m">$32.5M</td>
+              <td><span data-mcp="network.year6_5000_nodes.solar_capacity_kw" data-mcp-format="number">50,000</span> kW</td>
+              <td><span data-mcp="network.year6_5000_nodes.co2_offset_tons_year" data-mcp-format="number">51,100</span> tons</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sensitivity & Risk -->
+    <div class="callout" style="margin-bottom:16px">
+      <strong>⚠️ Sensitivity:</strong> If crypto prices drop 50%, ROI halves to ~<span data-mcp="roi.conservative.roi_pct" data-mcp-format="raw">14.9</span>%. High solar uptime boosts ROI by 20–30%. With government subsidies (30–60%), payback drops to 1.8–2.5 years. All projections are hypothetical — validate with your local conditions.
+    </div>
+    <div class="callout blue">
+      <strong>🔍 Transparency:</strong> These numbers are derived from real-world solar AI/crypto node benchmarks. No public whitepaper or audit exists yet for Baseflow — these are hypothetical projections. We recommend investors model personal scenarios based on local electricity rates and sun hours. <em>Not financial advice.</em>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="section">
     <div class="eyebrow-sm">Questions</div>
@@ -695,6 +940,20 @@ footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; ju
           <span class="faq-arrow">▼</span>
         </div>
         <div class="faq-a">Phase 2 begins with a price increase to $0.15 per SAI. The TGE listing price is planned at $0.25. Early participants in Phase 1 get the best allocation rate. Unsold Phase 1 tokens roll into Phase 2.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How is the 27% ROI calculated?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">The projected ROI is based on a hypothetical node costing ~<span data-mcp="investment.total_mid" data-mcp-format="currency">$20,000</span>, generating ~<span data-mcp="revenue.total_mid" data-mcp-format="currency">$6,900</span>/year in revenue from AI compute rentals, crypto rewards, and energy sales, with ~<span data-mcp="costs.total_mid" data-mcp-format="currency">$400</span>/year in costs. This yields a net profit of ~<span data-mcp="roi.moderate.net_profit" data-mcp-format="currency">$5,120</span> and a payback period of ~<span data-mcp="roi.moderate.payback_years" data-mcp-format="years">3.9 years</span>. These are benchmarks from similar real-world solar AI/crypto setups — not guaranteed returns. See the <a href="#roi-section" style="color:var(--amber)">full ROI breakdown</a> for details.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What are the risks?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Key risks include crypto price volatility (a 50% drop halves ROI to ~<span data-mcp="roi.conservative.roi_pct" data-mcp-format="raw">14.9</span>%), fluctuating AI compute demand, solar uptime variability by location, and hardware depreciation over 5–7 years. Government subsidies (30–60%) can significantly reduce payback time. We recommend modeling your personal scenario based on local conditions.</div>
       </div>
     </div>
   </section>

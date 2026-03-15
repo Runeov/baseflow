@@ -1,0 +1,133 @@
+{
+  "investment": {
+    "solar_panels_min": 8000,
+    "solar_panels_max": 10000,
+    "battery_min": 4000,
+    "battery_max": 6500,
+    "hardware_min": 2000,
+    "hardware_max": 5000,
+    "setup": 1000,
+    "total_min": 15000,
+    "total_max": 25000,
+    "total_mid": 20000
+  },
+  "revenue": {
+    "ai_compute_min": 3600,
+    "ai_compute_max": 7200,
+    "ai_compute_monthly_min": 300,
+    "ai_compute_monthly_max": 600,
+    "crypto_min": 1200,
+    "crypto_max": 3600,
+    "crypto_monthly_min": 100,
+    "crypto_monthly_max": 300,
+    "energy_min": 600,
+    "energy_max": 1200,
+    "energy_monthly_min": 50,
+    "energy_monthly_max": 100,
+    "total_min": 5400,
+    "total_max": 12000,
+    "total_mid": 6900,
+    "monthly_benchmark": 575
+  },
+  "costs": {
+    "energy": 0,
+    "maintenance_min": 200,
+    "maintenance_max": 500,
+    "other": 100,
+    "total_min": 300,
+    "total_max": 600,
+    "total_mid": 400,
+    "grid_savings_min": 1200,
+    "grid_savings_max": 1800
+  },
+  "roi": {
+    "moderate": {
+      "scenario": "moderate",
+      "investment": 20000,
+      "annual_revenue": 5520,
+      "annual_costs": 400,
+      "net_profit": 5120,
+      "roi_pct": 25.6,
+      "payback_years": 3.9,
+      "post_payback_roi_pct": 1280,
+      "lifetime_profit_20yr": 82400
+    },
+    "conservative": {
+      "scenario": "conservative",
+      "investment": 25000,
+      "annual_revenue": 4320,
+      "annual_costs": 600,
+      "net_profit": 3720,
+      "roi_pct": 14.9,
+      "payback_years": 6.7,
+      "post_payback_roi_pct": 620,
+      "lifetime_profit_20yr": 49400
+    },
+    "optimistic": {
+      "scenario": "optimistic",
+      "investment": 15000,
+      "annual_revenue": 9600,
+      "annual_costs": 300,
+      "net_profit": 9300,
+      "roi_pct": 62,
+      "payback_years": 1.6,
+      "post_payback_roi_pct": 3100,
+      "lifetime_profit_20yr": 171000
+    },
+    "target_pct": 27
+  },
+  "token": {
+    "price_phase1": 0.10,
+    "price_phase2": 0.15,
+    "price_tge": 0.25,
+    "total_supply": 1000000000,
+    "for_sale": 100000000,
+    "raise_target": 600000
+  },
+  "network": {
+    "year1_100_nodes": {
+      "node_count": 100,
+      "total_infrastructure_value": 2000000,
+      "annual_network_revenue": 690000,
+      "annual_network_costs": 40000,
+      "annual_network_profit": 650000,
+      "network_roi_pct": 32.5,
+      "solar_capacity_kw": 1000,
+      "daily_solar_output_kwh": 7000,
+      "co2_offset_tons_year": 1022
+    },
+    "year3_1000_nodes": {
+      "node_count": 1000,
+      "total_infrastructure_value": 20000000,
+      "annual_network_revenue": 6900000,
+      "annual_network_costs": 400000,
+      "annual_network_profit": 6500000,
+      "network_roi_pct": 32.5,
+      "solar_capacity_kw": 10000,
+      "daily_solar_output_kwh": 70000,
+      "co2_offset_tons_year": 10220
+    },
+    "year6_5000_nodes": {
+      "node_count": 5000,
+      "total_infrastructure_value": 100000000,
+      "annual_network_revenue": 34500000,
+      "annual_network_costs": 2000000,
+      "annual_network_profit": 32500000,
+      "network_roi_pct": 32.5,
+      "solar_capacity_kw": 50000,
+      "daily_solar_output_kwh": 350000,
+      "co2_offset_tons_year": 51100
+    }
+  },
+  "specs": {
+    "solar_lifespan_years": 20,
+    "battery_lifespan_years": 10,
+    "solar_daily_hours": 7,
+    "node_power_draw_kw": 3
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "source": "baseflow-roi MCP server",
+    "disclaimer": "Hypothetical projections based on benchmarks. Not financial advice."
+  }
+}

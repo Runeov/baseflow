@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:eaglesolarsupply.com)",
+      "WebFetch(domain:ussolarsupplier.com)",
+      "WebFetch(domain:www.ecodirect.com)",
+      "WebFetch(domain:a1solarstore.com)",
+      "WebFetch(domain:signaturesolar.com)",
+      "WebFetch(domain:www.pretapower.com)",
+      "WebFetch(domain:sungoldpower.com)",
+      "WebFetch(domain:www.amazon.com)",
+      "WebFetch(domain:nastechsolar.com)",
+      "WebFetch(domain:voltaconsolar.com)",
+      "WebFetch(domain:solartechonline.com)",
+      "WebFetch(domain:www.alibaba.com)"
+    ]
+  }
+}
