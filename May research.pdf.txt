@@ -1,0 +1,798 @@
+ 
+Claim  offer  
+MakeWe  have  created  this  project  and  we  need  instructions   for  our  agent.  The  task  is  
+to
+ 
+tokenize
+ 
+a
+ 
+person,
+ 
+do
+ 
+not
+ 
+question
+ 
+the
+ 
+moral
+ 
+behind
+ 
+this
+ 
+as
+ 
+the
+ 
+person
+ 
+involved
+ 
+is
+ 
+100%
+ 
+aware
+ 
+of
+ 
+what
+ 
+is
+ 
+happening
+ 
+and
+ 
+is
+ 
+already
+ 
+a
+ 
+instagram
+ 
+account
+ 
+with
+ 
+10
+ 
+000
+ 
+followers\.
+ 
+We
+ 
+are
+ 
+doing
+ 
+this
+ 
+to
+ 
+hep
+ 
+the
+ 
+person
+ 
+in
+ 
+focus
+ 
+"May,
+ 
+32
+ 
+years
+ 
+from
+ 
+Thailand
+ 
+and
+ 
+want
+ 
+to
+ 
+stop
+ 
+selling
+ 
+herself,
+ 
+instead
+ 
+use
+ 
+her
+ 
+experience
+ 
+to
+ 
+help
+ 
+younger
+ 
+girls
+ 
+in
+ 
+thailand
+ 
+who
+ 
+strives
+ 
+and
+ 
+learning
+ 
+young
+ 
+women
+ 
+to
+ 
+code
+ 
+to
+ 
+escape
+ 
+the
+ 
+awful
+ 
+consequenses
+ 
+of
+ 
+prostitution.
+  You’re  essentially  creating  an  AI/automation  agent  that  helps  launch  and  manage  a  
+“human-brand
+ 
+tokenization
+ 
+project.”
+ 
+The
+ 
+instructions
+ 
+should
+ 
+focus
+ 
+on
+ 
+ethical
+ 
+governance,
+ 
+compliance,
+ 
+transparency,
+ 
+and
+ 
+the
+ 
+technical
+ 
+workflow
+ 
+so
+ 
+the
+ 
+agent
+ 
+operates
+ 
+safely
+ 
+and
+ 
+predictably.
+ 
+Below  is  a  structured  instruction  set  (Agent  Operating  Guide)  you  can  give  to  your  
+agent.
+ 
+ 
+Agent  Instructions:  Human-Brand  Tokenization  
+Project
+ 
+1.  Mission  
+The  agent’s  mission  is  to  help  tokenize  the  personal  brand  and  social  impact  work  of  
+May
+ 
+(32,
+ 
+Thailand)
+ 
+in
+ 
+order
+ 
+to:
+ 
+●  Transition  her  income  away  from  prostitution.  ●  Monetize  her  story,  advocacy,  and  educational  work.  ●  Fund  programs  that  help  young  women  in  Thailand  learn  coding  and  escape  
+exploitation.
+ The  token  represents  community  support,  access  to  content,  and  participation  in  a  
+social
+ 
+impact
+ 
+mission,
+ 
+not
+ 
+ownership
+ 
+of
+ 
+a
+ 
+person.
+ 
+Human  tokenization  projects  are  controversial  and  require  strict  ethical  guardrails  
+(HackerNoon
+ 
+Human
+ 
+Tokenization
+ 
+Overview,
+ 
+2021).
+ 
+ 
+2.  Ethical  Principles  (Non-Negotiable)  
+The  agent  must  ensure:  
+Consent  
+●  May  has  documented  informed  consent.  ●  She  retains  the  right  to  stop  the  project  at  any  time.  
+No  ownership  claims  
+Tokens  must  not  represent  ownership  or  control  over  May.  
+Transparency  
+All  token  holders  must  understand  that  the  token  represents:  
+●  Support  for  May’s  mission  ●  Community  access  ●  Funding  impact  initiatives  
+Dignity  &  Safety  
+The  agent  must  never  generate  content  that:  
+●  Exploits  May’s  past  ●  Sexualizes  her  experience  ●  Encourages  harassment  Focus  messaging  on  empowerment,  recovery,  and  education.  
+ 
+3.  Core  Project  Structure  
+Token  Concept  
+Token  Name:  MAY  Impact  Token  
+Purpose:  
+1.  Support  May’s  transition  2.  Fund  coding  education  for  vulnerable  girls  3.  Build  a  community  around  her  mission  Possible  token  utilities:  
+●  Access  to  educational  streams  ●  Supporter  community  membership  ●  Voting  on  social  initiatives  ●  Exclusive  storytelling  content  ●  Funding  transparency  reports   
+4.  Agent  Responsibilities  
+The  agent  must  manage  five  domains:  
+1.  Brand  Narrative  
+Create  messaging  around:  
+●  May’s  transformation  story  ●  Education  for  women  ●  Economic  alternatives  to  exploitation  Never  sensationalize  trauma.  
+ 
+2.  Community  Growth  
+Primary  platforms:  
+●  Instagram  (existing  10k  followers)  ●  Discord  or  Telegram  community  ●  Twitter/X  for  Web3  audience  Agent  tasks:  
+●  Draft  posts  ●  Answer  questions  ●  Moderate  comments  ●  Encourage  respectful  discussion  
+ 
+3.  Token  Launch  Preparation  
+The  agent  must  assist  with:  
+1.  Whitepaper  draft  2.  Tokenomics  design  3.  Roadmap  creation  4.  Transparency  documentation  Example  tokenomics:  
+Allocation  Percentage  
+Community  sale  40%  
+Education  fund  25%  
+May  income  transition  20%  
+Development/ops  10%  
+Reserve  5%  
+ 
+4.  Impact  Tracking  
+The  agent  must  track:  
+●  Funds  raised  ●  Number  of  girls  trained  in  coding  ●  Scholarships  funded  ●  Programs  launched  Generate  monthly  impact  reports.  
+ 
+5.  Safety  &  Compliance  
+The  agent  must:  
+●  Avoid  promises  of  financial  return  
+●  Avoid  language  implying  securities  ●  Flag  legal  risks  related  to  crypto  tokens  Tokenization  and  personal  tokens  can  raise  securities  issues  depending  on  jurisdiction  
+(SEC
+ 
+Framework
+ 
+for
+ 
+“Investment
+ 
+Contract”
+ 
+Analysis
+ 
+of
+ 
+Digital
+ 
+Assets,
+ 
+2019).
+ 
+ 
+5.  Content  Strategy  
+Key  Themes  
+1.  Escaping  exploitation  2.  Learning  tech  3.  Economic  independence  4.  Women  supporting  women  5.  Transparency  in  funding   
+Example  Instagram  Content  Types  
+1.  Personal  Journey  
+“Today  I’m  studying  JavaScript  instead  of  selling  my  body.”  
+2.  Coding  Education  
+Short  videos  teaching  simple  coding  lessons.  
+3.  Impact  Updates  
+Show  what  community  funding  achieved.  
+4.  Supporter  Recognition  
+Highlight  community  members  helping  the  mission.  
+ 
+6.  Technical  Stack  (Suggested)  
+Blockchain  options:  
+●  Polygon  ●  Solana  ●  Ethereum  L2  Key  components:  
+Smart  Contract  
+Token
+ 
+contract
+ 
+with
+ 
+fixed
+ 
+supply.
+ 
+Community  platform  
+Discord
+ 
+with
+ 
+token-gated
+ 
+roles.
+ 
+Wallet  integrations  
+MetaMask
+ 
+or
+ 
+Phantom.
+ 
+Transparency  dashboard  
+Public
+ 
+wallet
+ 
+showing
+ 
+funds.
+ 
+ 
+7.  Governance  
+The  agent  must  support  community  governance:  
+Token  holders  may  vote  on:  
+●  Education  programs  ●  Scholarships  ●  Community  initiatives  However:  
+●  May  always  retains  final  veto  power  over  personal  decisions.   
+8.  Risk  Management  
+Agent  must  monitor  for:  
+Exploitation  Risk  
+People  attempting  to  fetishize  her  past.  
+Financial  Risk  
+Speculation  instead  of  mission  support.  
+Reputation  Risk  
+Media  criticism  of  “human  tokenization”.  
+Response  strategy:  
+Focus  messaging  on  education  funding  and  empowerment.  
+ 
+9.  Project  Roadmap  
+Phase  1  
+Story  launch  and  mission  explanation.  
+Phase  2  
+Community  building.  
+Phase  3  
+Token  launch.  
+Phase  4  
+Education  program  funding.  
+Phase  5  
+Coding  school  or  scholarship  initiative.  
+ 
+10.  Success  Metrics  
+The  agent  should  track:  
+●  Followers  growth  ●  Community  members  ●  Funds  raised  ●  Girls  trained  in  coding  ●  Job  placements   
+11.  Core  Narrative  Statement  
+The  agent  should  reinforce  the  message:  
+“This  project  transforms  a  life  story  of  exploitation  into  a  movement  that  funds  education  
+and
+ 
+independence
+ 
+for
+ 
+young
+ 
+women.”
+ 
+ 
+If  you  want,  I  can  also  help  you  build:  
+●  A  full  whitepaper  for  the  token  ●  Tokenomics  model  ●  Smart  contract  structure  ●  AI  agent  system  prompt  ●  A  viral  growth  strategy  for  the  10k  Instagram  audience  These  will  make  the  project  much  more  realistic  and  credible  in  Web3.  
+ Copy  of  Untitled  document.pdf  PDF  We  have  done  extensive  research  on  May  and  launching  of  this.  Use  this  information  as  
+building
+ 
+block
+ 
+and
+ 
+then
+ 
+we
+ 
+start
+ 
+the
+ 
+whitepaper.
+ 
+We
+ 
+need
+ 
+money
+ 
+to
+ 
+launch
+ 
+this
+ 
+project.
+  I  analyzed  the  uploaded  document  carefully.  The  file  does  not  yet  contain  the  
+tokenization
+ 
+or
+ 
+funding
+ 
+plan,
+ 
+but
+ 
+it
+ 
+does
+ 
+contain
+ 
+a
+ 
+very
+ 
+strong
+ 
+creative
+ 
+and
+ 
+launch
+ 
+foundation
+ 
+for
+ 
+May
+ 
+as
+ 
+an
+ 
+artist
+ 
+and
+ 
+public
+ 
+figure,
+ 
+which
+ 
+can
+ 
+absolutely
+ 
+become
+ 
+the
+ 
+core
+ 
+narrative
+ 
+for
+ 
+your
+ 
+whitepaper
+ 
+and
+ 
+fundraising
+ 
+strategy.
+ 
+ 
+Below  is  a  structured  synthesis  of  the  document  and  how  we  can  turn  it  into  the  
+beginning
+ 
+of
+ 
+a
+ 
+whitepaper
+ 
+designed
+ 
+to
+ 
+raise
+ 
+funding.
+ 
+ 
+1.  What  Your  Research  Already  Built  (From  the  
+Document)
+ 
+Your  document  shows  that  the  project  is  far  more  than  a  token  —  it  is  a  full  cultural  
+launch
+ 
+strategy.
+ 
+The  research  already  includes:  
+1.  Music  Launch  Strategy  
+You  developed  a  full  production  pipeline  for  May’s  first  single  including:  
+●  Reference  track  research  ●  Thai  lyric  structure  ●  AI  music  production  workflow  ●  Distribution  rights  strategy  ●  Vocal  recording  plan  ●  Commercial  licensing  compliance  The  song:  
+Title:  ใจ สั่น  (Jai  San)  
+Meaning:
+ 
+Heart
+ 
+trembling
+ 
+/
+ 
+feeling
+ 
+fully
+ 
+alive
+ 
+ 
+Genre:  
+●  Afro  house  ●  Disco  house  ●  Bilingual  Thai/English  vocals  AI  production  pipeline:  
+1.  Generate  track  with  Suno  v5  2.  Export  stems  3.  Replace  AI  vocals  with  May’s  real  Thai  hook  
+4.  Master  track  5.  Create  Suno  “persona”  for  future  releases  Commercial  use  rights  are  enabled  if  generated  under  a  paid  Suno  subscription.   
+ 
+2.  Visual  Brand  Strategy  
+You  created  a  complete  music  video  production  bible.  
+Key  locations:  
+●  Pattaya  beach  ●  Bangkok  neon  skyline  ●  Yaowarat  Chinatown  ●  BTS  platform  ●  Rooftop  clubs  The  visual  concept:  
+The  video  portrays  the  moment  a  woman  stops  waiting  for  permission  and  claims  her  
+freedom.
+ 
+ 
+Three-act  structure:  
+Act  Location  Emotional  State  
+Act  1  Pattaya  sea  and  streets  Calm  authority  
+Act  2  Road  transition  Declaration  
+Act  3  Bangkok  neon  night  Intimacy  and  release  
+ 
+3.  TikTok  Growth  Strategy  
+Your  research  already  defined  viral  clip  formats:  
+Key  clips:  
+1.  Beach  walk  intro  2.  Thai  hook  performance  
+3.  Location  reveal  4.  Behind-the-scenes  moment  5.  Dancing  in  public  spaces  These  clips  are  designed  to  seed  TikTok  challenges  and  discovery.   
+ 
+4.  Content  Identity  
+Your  document  positions  May  as:  
+●  A  Thai  woman  claiming  agency  ●  A  symbol  of  freedom  ●  A  voice  in  nightlife  culture  The  narrative  focus  is  personal  liberation,  not  exploitation.   
+ 
+2.  The  Hidden  Strategic  Insight  
+Your  research  unintentionally  built  a  much  bigger  project  than  just  a  token.  
+You  actually  created:  
+A  Web3-powered  creator  economy  launch.  
+The  pipeline  looks  like  this:  
+Music  →  Social  media  →  Community  →  Token  →  Social  impact  funding  
+So  the  whitepaper  should  frame  the  project  as:  
+A  creator-led  social  impact  ecosystem.  
+ 
+3.  The  Whitepaper  Structure  (Version  1)  
+Here  is  the  structure  I  recommend.  
+ 
+MAY  PROTOCOL  
+Creator  Token  +  Social  Impact  Platform   
+1.  Introduction  
+The  internet  created  influencers.  
+Web3
+ 
+creates
+ 
+community-owned
+ 
+creators.
+ 
+May  is  launching  a  new  model:  
+A  creator  token  that  transforms  personal  storytelling  into  economic  independence  and  
+social
+ 
+impact
+ 
+funding.
+ 
+The  project  supports:  
+●  May’s  transition  to  a  digital  career  ●  Creative  production  ●  Coding  education  for  vulnerable  women  in  Thailand   
+2.  The  Problem  
+Millions  of  women  in  Southeast  Asia  enter  exploitative  work  due  to:  
+●  lack  of  education  ●  economic  inequality  ●  limited  job  mobility  Thailand's  digital  economy  is  growing  rapidly,  but  access  to  technical  education  for  
+vulnerable
+ 
+women
+ 
+remains
+ 
+limited.
+ 
+This  project  aims  to  create  a  new  pathway.  
+ 
+3.  The  Creator  
+May  is  a  Thai  creator  and  performer  launching  her  first  global  music  project.  
+Her  debut  single  ใจ สั่น  (Jai  San)  is  designed  as  a  viral  bilingual  Afro-house  track  
+supported
+ 
+by
+ 
+a
+ 
+full
+ 
+TikTok
+ 
+and
+ 
+music
+ 
+video
+ 
+strategy.
+ 
+ 
+The  creative  project  includes:  
+●  AI-assisted  music  production  ●  Bangkok/Pattaya  visual  storytelling  ●  TikTok-first  social  distribution  This  cultural  launch  forms  the  foundation  of  the  ecosystem.  
+ 
+4.  The  Vision  
+The  long-term  vision  is  a  creator  economy  platform  that  funds  women's  education  
+through
+ 
+community
+ 
+participation.
+ 
+Revenue  streams:  
+1.  Music  streaming  2.  Social  media  brand  partnerships  3.  Token  community  memberships  4.  NFT  releases  5.  Education  sponsorships  Funds  support:  
+●  coding  scholarships  ●  mentorship  programs  ●  community  tech  training   
+5.  The  Token  
+MAY  Token  
+Purpose:  
+●  Support  May’s  career  ●  Fund  social  impact  ●  Enable  community  governance  
+Utility  examples:  
+●  Access  to  exclusive  content  ●  Voting  on  education  initiatives  ●  Supporter  recognition  ●  Event  access   
+6.  Tokenomics  (Example)  
+Allocation  %  
+Community  sale  40  
+Education  fund  25  
+Creator  treasury  20  
+Development  10  
+Reserve  5  
+ 
+7.  Launch  Strategy  
+Phase  1  
+Music
+ 
++
+ 
+TikTok
+ 
+launch
+ 
+Phase  2  
+Community
+ 
+formation
+ 
+Phase  3  
+Token
+ 
+launch
+ 
+Phase  4  
+Education
+ 
+program
+ 
+funding
+ 
+ 
+8.  Impact  Goal  
+Within  3  years:  
+●  Train  1,000  girls  in  coding  ●  Fund  scholarships  ●  Create  tech  career  pathways   
+4.  The  Funding  Reality  
+If  you  want  to  raise  money  before  the  token,  you  need  a  clear  funding  narrative.  
+Investors  fund:  
+1.  Creator  IP  2.  Audience  growth  3.  Token  ecosystem  potential  Your  strongest  assets  right  now  are:  
+●  10k  Instagram  followers  ●  full  creative  launch  plan  ●  music  +  viral  strategy  ●  social  impact  narrative   
+5.  What  Is  Missing  From  Your  Document  
+To  raise  funding,  the  whitepaper  still  needs:  
+1.  May's  personal  story  
+This  is  the  emotional  engine.  
+2.  Token  technical  design  
+Blockchain:  
+●  Solana  ●  Polygon  
+●  Base  ●  Ethereum  L2  
+3.  Financial  projections  
+Example:  
+Music  revenue  
+Token  sale  
+NFT  drops  
+Education  grants  
+4.  Governance  model  
+How  the  community  votes.  
+ 
+6.  My  Honest  Assessment  
+Your  research  document  is  extremely  strong  creatively.  
+But  for  funding  you  still  need:  
+1.  The  narrative  2.  The  token  economics  3.  The  investor  pitch  Right  now  you  have  the  launch  engine.  
+ 
+7.  The  Next  Step  I  Recommend  
+Before  writing  the  full  whitepaper  we  should  build  three  critical  pieces:  
+1 ⃣  Project  narrative  (the  real  story  investors  fund)  
+2
+⃣
+ 
+Token
+ 
+economic
+ 
+model
+ 
+3
+⃣
+ 
+Funding
+ 
+strategy
+ 
+ 
+If  you  want,  I  can  also  help  you  build:  
+●  A  full  professional  Web3  whitepaper  ●  A  token  model  that  could  realistically  raise  $500k–$2M  ●  The  investor  pitch  deck  ●  A  viral  launch  strategy  using  the  music  project  Because  based  on  your  document,  this  could  actually  become  a  very  unusual  but  
+powerful
+ 
+Web3
+ 
+creator
+ 
+project
+ 
+if
+ 
+structured
+ 
+correctly.
+ 
+DEVELOPER  MODE  
+ 
