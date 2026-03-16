@@ -7,3 +7,20 @@ Desktop.ini
 .vscode/
 *.swp
 *.swo
+
+# Node
+node_modules/
+
+# PDFs and research docs (not needed for deployment)
+*.pdf
+*.pdf.txt
+*.pdf.txt.clean.txt
+
+# Python scripts
+*.py
+
+# Claude config
+.claude/
+
+# Vercel
+.vercel/

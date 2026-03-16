@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Battery Technology — Baseflow Energy Storage Thailand</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Technical, regulatory, and economic analysis of lithium-based Battery Energy Storage Systems (BESS) for Baseflow's solar validator node infrastructure in Thailand.">
+  <meta name="keywords" content="battery storage, BESS, Thailand, LFP, solar energy, Baseflow, energy storage, lithium battery">
+  <meta property="og:title" content="Battery Technology — Baseflow Energy Storage Thailand">
+  <meta property="og:description" content="Battery Energy Storage Systems analysis for solar validator nodes in Thailand. LFP chemistry, pricing, ROI, and supplier directory.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://baseflow.energy/battery.html">
+  <meta property="og:image" content="https://baseflow.energy/og-baseflow.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Battery Technology — Baseflow Energy Storage Thailand">
+  <meta name="twitter:description" content="BESS analysis for solar validator nodes in Thailand.">
+  <meta name="twitter:image" content="https://baseflow.energy/og-baseflow.png">
+  <link rel="canonical" href="https://baseflow.energy/battery.html">
+  <link rel="icon" type="image/png" href="img/logo_1200.png">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #080d18;
+      --bg2:     #0c1424;
+      --bg3:     #111c30;
+      --accent:  #e8920d;
+      --accent2: #ffc857;
+      --gold:    #f0a030;
+      --purple:  #c49a3c;
+      --orange:  #e8920d;
+      --red:     #d4603a;
+      --text:    #e8dcc8;
+      --muted:   #8a8070;
+      --border:  rgba(232,146,13,0.15);
+      --card:    rgba(12,20,36,0.9);
+      --radius:  12px;
+      --glow:    0 0 24px rgba(232,146,13,0.15);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(232,146,13,0.03) 1px,transparent 1px),
+                        linear-gradient(90deg,rgba(232,146,13,0.03) 1px,transparent 1px);
+      background-size: 48px 48px; pointer-events: none;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(8,13,20,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; text-decoration: none; }
+    .nav-logo:hover { text-decoration: none; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a { font-size: 0.82rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .nav-back { background: rgba(232,146,13,0.08); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; color: var(--accent) !important; }
+
+    /* LAYOUT */
+    section { position: relative; z-index: 1; padding: 90px 5%; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem; }
+    h2.section-title { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 0.8rem; }
+    .section-desc { max-width: 720px; color: var(--muted); font-size: 1rem; }
+
+    /* HERO */
+    #hero {
+      min-height: 65vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; padding-top: 130px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,200,87,0.08) 0%, transparent 70%);
+    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,200,87,0.08); border: 1px solid rgba(255,200,87,0.2); border-radius: 999px; padding: 6px 18px; font-size: 0.75rem; letter-spacing: 2px; color: var(--accent2); text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 8px var(--accent2); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    h1.hero-title { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; }
+    h1.hero-title .a1 { color: var(--accent2); }
+    h1.hero-title .a2 { color: var(--gold); }
+    .hero-sub { max-width: 660px; margin: 1.2rem auto 2.5rem; color: var(--muted); font-size: 1.05rem; }
+    .hero-stats { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.9rem; font-weight: 800; color: var(--accent2); }
+    .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+    /* CARDS */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; transition: border-color 0.2s, box-shadow 0.2s; }
+    .card:hover { border-color: var(--accent2); box-shadow: var(--glow); }
+    .card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .card h3 { font-size: 1rem; color: #fff; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.88rem; color: var(--muted); }
+    .card ul { padding-left: 1.1rem; margin-top: 0.4rem; }
+    .card ul li { font-size: 0.86rem; color: var(--muted); margin-bottom: 0.25rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th { background: var(--bg3); color: var(--accent); text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--border); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    td { padding: 11px 16px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+    tr:hover td { background: rgba(232,146,13,0.03); }
+    .hl  { color: var(--accent2) !important; font-weight: 600; }
+    .hla { color: var(--accent)  !important; font-weight: 600; }
+    .hlg { color: var(--gold)    !important; font-weight: 600; }
+    .hlp { color: var(--purple)  !important; font-weight: 600; }
+    .hlo { color: var(--orange)  !important; font-weight: 600; }
+    .hlr { color: var(--red)     !important; }
+    .badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
+    .bg { background: rgba(255,200,87,0.12); color: var(--accent2); }
+    .bb { background: rgba(232,146,13,0.12); color: var(--accent); }
+    .by { background: rgba(240,192,64,0.12); color: var(--gold); }
+    .bp { background: rgba(196,154,60,0.12); color: var(--purple); }
+    .bo { background: rgba(232,146,13,0.12); color: var(--orange); }
+    .br { background: rgba(255,92,92,0.12); color: var(--red); }
+
+    /* CHEMISTRY COMPARISON */
+    .chem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .chem-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; position: relative; overflow: hidden; transition: all 0.2s; }
+    .chem-card:hover { transform: translateY(-2px); }
+    .chem-card.recommended { border-color: var(--accent2); box-shadow: 0 0 20px rgba(255,200,87,0.12); }
+    .chem-badge { position: absolute; top: 12px; right: 12px; }
+    .chem-name { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .chem-formula { font-size: 0.78rem; color: var(--muted); font-family: monospace; margin-bottom: 1rem; }
+    .chem-stat { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.82rem; }
+    .chem-stat:last-child { border-bottom: none; }
+    .chem-stat .cs-label { color: var(--muted); }
+    .chem-stat .cs-val { font-weight: 600; color: var(--text); }
+
+    /* THERMAL BAR */
+    .thermal-wrap { margin-top: 1rem; }
+    .thermal-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .thermal-bar { height: 8px; border-radius: 4px; }
+
+    /* MANUFACTURER CARDS */
+    .mfr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .mfr-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: border-color 0.2s; }
+    .mfr-card:hover { border-color: var(--accent); }
+    .mfr-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .mfr-sub { font-size: 0.8rem; color: var(--accent2); margin-bottom: 1rem; letter-spacing: 0.5px; }
+    .mfr-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .mfr-specs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .mfr-contact { border-top: 1px solid var(--border); padding-top: 1rem; font-size: 0.82rem; }
+    .mfr-contact div { color: var(--muted); padding: 3px 0; }
+    .mfr-contact strong { color: var(--text); margin-right: 6px; }
+
+    /* PRICING TIERS */
+    .price-section { background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(240,192,64,0.04) 0%, transparent 70%); }
+    .price-tier { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.25rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; transition: border-color 0.2s; }
+    .price-tier:hover { border-color: var(--gold); }
+    .pt-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    .pt-name { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .pt-desc { font-size: 0.87rem; color: var(--muted); max-width: 520px; }
+    .pt-examples { margin-top: 0.75rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pt-price { text-align: right; }
+    .price-thb { font-size: 1.5rem; font-weight: 800; color: var(--gold); line-height: 1; }
+    .price-usd { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+    /* ROI */
+    .roi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .roi-card h3 { font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
+    .roi-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.88rem; }
+    .roi-row:last-child { border-bottom: none; }
+    .roi-row .r-label { color: var(--muted); }
+    .roi-row .r-val { font-weight: 600; color: #fff; }
+
+    /* REGULATORY */
+    .reg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .reg-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .reg-card h4 { font-size: 0.8rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .reg-card p { font-size: 0.87rem; color: var(--muted); }
+    .reg-num { font-size: 1.6rem; font-weight: 800; color: var(--accent2); margin-bottom: 4px; }
+
+    /* ROADMAP STEPS */
+    .steps { margin-top: 2.5rem; }
+    .step { display: flex; gap: 1.5rem; margin-bottom: 2rem; }
+    .step-num { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; border: 2px solid var(--accent2); color: var(--accent2); background: var(--bg); z-index: 1; }
+    .step-body { flex: 1; }
+    .step-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.87rem; color: var(--muted); }
+    .step-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+
+    /* FUTURE TECH */
+    .future-section { background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(196,154,60,0.05) 0%, transparent 70%); }
+    .future-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .future-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; transition: all 0.2s; }
+    .future-card:hover { border-color: var(--purple); box-shadow: 0 0 20px rgba(196,154,60,0.1); }
+    .future-year { font-size: 0.72rem; color: var(--purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .future-name { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .future-desc { font-size: 0.87rem; color: var(--muted); }
+    .future-stat { margin-top: 1rem; padding: 0.75rem; background: rgba(196,154,60,0.07); border-radius: 8px; font-size: 0.83rem; color: var(--purple); font-weight: 600; }
+
+    /* DIRECTORY */
+    .dir-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .dir-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s; }
+    .dir-card:hover { border-color: var(--accent); }
+    .dir-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .dir-spec { font-size: 0.78rem; color: var(--accent2); margin-bottom: 0.75rem; }
+    .dir-info { font-size: 0.82rem; color: var(--muted); }
+    .dir-info div { padding: 3px 0; }
+    .dir-info strong { color: var(--text); }
+
+    /* BASEFLOW TIE-IN */
+    .tiein { background: linear-gradient(135deg, rgba(232,146,13,0.06), rgba(255,200,87,0.06)); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.5rem; margin-top: 3rem; }
+    .tiein h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .tiein p { font-size: 0.92rem; color: var(--muted); max-width: 700px; }
+    .tiein ul { margin-top: 1rem; padding-left: 1.2rem; }
+    .tiein ul li { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .tiein ul li strong { color: var(--accent2); }
+
+    /* FOOTER */
+    footer { position: relative; z-index: 1; background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 5% 2rem; }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand .nav-logo { font-size: 1.3rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.85rem; max-width: 300px; margin-top: 0.5rem; }
+    .footer-links h4 { color: var(--text); font-size: 0.82rem; margin-bottom: 0.8rem; letter-spacing: 1px; }
+    .footer-links a { display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .footer-links a:hover { color: var(--accent); text-decoration: none; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.78rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* MOBILE NAV */
+    .nav-toggle { display: none; background: none; border: none; color: var(--accent); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+    @media(max-width:768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; background: rgba(8,13,20,0.98);
+        padding: 1rem 5%; gap: 1rem; border-bottom: 1px solid var(--border);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      section { padding: 70px 5%; }
+      .price-tier { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span> <span style="color:var(--muted);font-weight:400;font-size:0.85rem">/ Battery Tech</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html" class="nav-back">← Overview</a>
+    <a href="#chemistry">Chemistry</a>
+    <a href="#manufacturers">Manufacturers</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#regulatory">Incentives</a>
+    <a href="#roi">ROI</a>
+    <a href="#future">Future Tech</a>
+    <a href="#directory">Directory</a>
+    <a href="presale.html" style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);border-radius:6px;padding:6px 14px;color:#f59e0b;font-size:0.8rem;font-weight:600;">🔥 Buy SAI →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">Thailand BESS Market · 2025–2026</div>
+  <h1 class="hero-title">
+    <span class="a1">Battery Storage</span><br/>
+    Technology for<br/>
+    <span class="a2">Solar-Powered</span> Nodes
+  </h1>
+  <p class="hero-sub">
+    A technical, regulatory, and economic analysis of lithium-based Battery Energy Storage Systems
+    (BESS) for Baseflow's solar validator node infrastructure in Thailand — sourced from the
+    Thailand Solar Battery Power Research 2025–2026 report.
+  </p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">$2.97B</div><div class="stat-label">Thailand BESS Market</div></div>
+    <div class="stat"><div class="stat-num">$108</div><div class="stat-label">USD/kWh Global Avg (2025)</div></div>
+    <div class="stat"><div class="stat-num">10–15yr</div><div class="stat-label">LFP Operational Life</div></div>
+    <div class="stat"><div class="stat-num">95–98%</div><div class="stat-label">LFP Round-Trip Efficiency</div></div>
+    <div class="stat"><div class="stat-num">3–5yr</div><div class="stat-label">Industrial Payback Period</div></div>
+    <div class="stat"><div class="stat-num">40%</div><div class="stat-label">YoY BESS Price Drop (2024)</div></div>
+  </div>
+</section>
+
+<!-- THAILAND CONTEXT -->
+<section id="context">
+  <div class="section-tag">Thai Energy Landscape</div>
+  <h2 class="section-title">Why Thailand Needs Battery Storage</h2>
+  <p class="section-desc">Thailand's Power Development Plan (PDP) 2024 targets 51% renewables by 2037, growing solar capacity from 3,193 MW to 33,269 MW. That 10× expansion makes battery storage essential — not optional.</p>
+
+  <div class="card-grid" style="margin-top:2.5rem;">
+    <div class="card">
+      <div class="card-icon">🌞</div>
+      <h3>The Duck Curve Problem</h3>
+      <p>Peak solar generation hits at midday. Peak demand surges in the early evening as industrial activity continues and residential cooling loads peak. Without BESS, EGAT must fire expensive gas "peaker" plants every evening — raising costs and carbon emissions.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">âš¡</div>
+      <h3>Sub-Second Grid Response</h3>
+      <p>Lithium BESS responds within 1 second for frequency regulation — orders of magnitude faster than any fossil-fuel plant. This is critical when clouds cause sudden solar output drops across Thailand's distributed PV network.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌡️</div>
+      <h3>Tropical Climate Challenge</h3>
+      <p>Thailand's average temperatures regularly exceed 30°C. Battery degradation follows the Arrhenius principle — capacity loss doubles with every 10°C rise. Chemistry selection and thermal management are critical for the Thai market.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏗️</div>
+      <h3>Virtual Power Plants</h3>
+      <p>THB 10 billion ($320M) in smart grid investment is aggregating thousands of residential batteries into Virtual Power Plants (VPPs) that support the national grid during peak stress — creating a new revenue stream for node operators.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>BESS Function</th><th>Technical Mechanism</th><th>Benefit to Thai Grid</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:#fff">Frequency Regulation</strong></td><td>Rapid charge/discharge within 1 second</td><td class="hl">Mitigates imbalances from clouds or sudden solar drops</td></tr>
+        <tr><td><strong style="color:#fff">Peak Shaving</strong></td><td>Discharging stored energy during peak hours</td><td class="hl">Eliminates need for expensive "peaker" gas plants</td></tr>
+        <tr><td><strong style="color:#fff">Voltage Support</strong></td><td>Reactive power compensation via inverters</td><td class="hla">Maintains grid health in remote and industrial zones</td></tr>
+        <tr><td><strong style="color:#fff">Energy Arbitrage</strong></td><td>Charging during off-peak/midday solar peak</td><td class="hlg">Optimises economic value of generated solar power</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- BATTERY CHEMISTRY -->
+<section id="chemistry">
+  <div class="section-tag">Technology Selection</div>
+  <h2 class="section-title">Battery Chemistry Comparison</h2>
+  <p class="section-desc">For stationary storage in Thailand's tropical climate, <strong style="color:var(--accent2)">Lithium Iron Phosphate (LFP)</strong> has emerged as the gold standard — exceptional thermal stability, 6,000–10,000+ cycle life, and 95–98% round-trip efficiency.</p>
+
+  <div class="chem-grid">
+
+    <div class="chem-card recommended">
+      <div class="chem-badge"><span class="badge bg">Recommended</span></div>
+      <div class="chem-name">LFP</div>
+      <div class="chem-formula">LiFePOâ'"</div>
+      <div class="chem-stat"><span class="cs-label">Cycle Life</span><span class="cs-val" style="color:var(--accent2)">6,000–10,000+</span></div>
+      <div class="chem-stat"><span class="cs-label">Depth of Discharge</span><span class="cs-val">80–100%</span></div>
+      <div class="chem-stat"><span class="cs-label">Round-Trip Efficiency</span><span class="cs-val" style="color:var(--accent2)">95–98%</span></div>
+      <div class="chem-stat"><span class="cs-label">Thermal Stability</span><span class="cs-val" style="color:var(--accent2)">Excellent</span></div>
+      <div class="chem-stat"><span class="cs-label">Operational Life (TH)</span><span class="cs-val">10–15 years</span></div>
+      <div class="chem-stat"><span class="cs-label">Best Use in Thailand</span><span class="cs-val">Residential &amp; C&amp;I Solar</span></div>
+      <div class="thermal-wrap">
+        <div class="thermal-label">Thermal Runaway Risk</div>
+        <div class="thermal-bar" style="width:15%;background:var(--accent2);"></div>
+      </div>
+    </div>
+
+    <div class="chem-card">
+      <div class="chem-name">NMC</div>
+      <div class="chem-formula">LiNiMnCoOâ''</div>
+      <div class="chem-stat"><span class="cs-label">Cycle Life</span><span class="cs-val">1,500–3,000</span></div>
+      <div class="chem-stat"><span class="cs-label">Depth of Discharge</span><span class="cs-val">80–90%</span></div>
+      <div class="chem-stat"><span class="cs-label">Round-Trip Efficiency</span><span class="cs-val">90–95%</span></div>
+      <div class="chem-stat"><span class="cs-label">Thermal Stability</span><span class="cs-val" style="color:var(--orange)">Good/Moderate</span></div>
+      <div class="chem-stat"><span class="cs-label">Operational Life (TH)</span><span class="cs-val">5–8 years</span></div>
+      <div class="chem-stat"><span class="cs-label">Best Use in Thailand</span><span class="cs-val">Mobile power / High-density EVs</span></div>
+      <div class="thermal-wrap">
+        <div class="thermal-label">Thermal Runaway Risk</div>
+        <div class="thermal-bar" style="width:55%;background:var(--orange);"></div>
+      </div>
+    </div>
+
+    <div class="chem-card">
+      <div class="chem-badge"><span class="badge bb">Grid-Scale</span></div>
+      <div class="chem-name">LTO</div>
+      <div class="chem-formula">Li₄Ti₅O₁₂</div>
+      <div class="chem-stat"><span class="cs-label">Cycle Life</span><span class="cs-val" style="color:var(--accent)">Up to 15,000</span></div>
+      <div class="chem-stat"><span class="cs-label">Depth of Discharge</span><span class="cs-val">80–90%</span></div>
+      <div class="chem-stat"><span class="cs-label">Round-Trip Efficiency</span><span class="cs-val">95–98%</span></div>
+      <div class="chem-stat"><span class="cs-label">Thermal Stability</span><span class="cs-val" style="color:var(--accent2)">Excellent</span></div>
+      <div class="chem-stat"><span class="cs-label">Operational Life (TH)</span><span class="cs-val">15–20 years</span></div>
+      <div class="chem-stat"><span class="cs-label">Best Use in Thailand</span><span class="cs-val">Grid stabilisation / Fast-charging</span></div>
+      <div class="thermal-wrap">
+        <div class="thermal-label">Thermal Runaway Risk</div>
+        <div class="thermal-bar" style="width:10%;background:var(--accent);"></div>
+      </div>
+    </div>
+
+    <div class="chem-card">
+      <div class="chem-name">NCA</div>
+      <div class="chem-formula">LiNiCoAlOâ''</div>
+      <div class="chem-stat"><span class="cs-label">Cycle Life</span><span class="cs-val" style="color:var(--red)">1,000–2,000</span></div>
+      <div class="chem-stat"><span class="cs-label">Depth of Discharge</span><span class="cs-val">80–90%</span></div>
+      <div class="chem-stat"><span class="cs-label">Round-Trip Efficiency</span><span class="cs-val">92–96%</span></div>
+      <div class="chem-stat"><span class="cs-label">Thermal Stability</span><span class="cs-val" style="color:var(--red)">Moderate</span></div>
+      <div class="chem-stat"><span class="cs-label">Operational Life (TH)</span><span class="cs-val">4–6 years</span></div>
+      <div class="chem-stat"><span class="cs-label">Best Use in Thailand</span><span class="cs-val">Specialised EV applications</span></div>
+      <div class="thermal-wrap">
+        <div class="thermal-label">Thermal Runaway Risk</div>
+        <div class="thermal-bar" style="width:70%;background:var(--red);"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:2.5rem;padding:1.25rem 1.75rem;background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.2);border-radius:var(--radius);font-size:0.9rem;color:var(--muted);">
+    <strong style="color:var(--accent2)">Why LFP wins in Thailand:</strong> Degradation follows the Arrhenius principle — capacity loss doubles every 10°C temperature rise. LFP's inherently stable olivine crystal structure prevents thermal runaway even at 30°C+ ambient temperatures. High-end systems like the Huawei LUNA2000 and GPSC G-Box maintain internal cell temperature at <strong style="color:#fff">25 ± 5°C</strong> using cell-level monitoring and air or liquid cooling.
+  </div>
+</section>
+
+<!-- THAI MANUFACTURERS -->
+<section id="manufacturers">
+  <div class="section-tag">Domestic Production</div>
+  <h2 class="section-title">Thai Battery Manufacturers</h2>
+  <p class="section-desc">Thailand is positioning itself as the "Detroit of Asia" for EVs and batteries. The BOI provides 8-year CIT exemptions for battery cell manufacturing — and the same cells power Baseflow's stationary BESS nodes.</p>
+
+  <div class="mfr-grid">
+
+    <div class="mfr-card" style="border-color:rgba(255,200,87,0.25);">
+      <div class="mfr-name">GPSC — Global Power Synergy</div>
+      <div class="mfr-sub">PTT Group · Map Ta Phut Industrial Estate · ASEAN's First SemiSolid Battery Plant</div>
+      <div class="mfr-desc">Produces LFP "G-Cells" using 24M SemiSolid technology — safer, more durable, and more recyclable than conventional lithium-ion. Operates the G-Box product line from 10kWh residential to 1.5MWh utility-scale systems.</div>
+      <div class="mfr-specs">
+        <span class="badge bg">SemiSolid LFP</span>
+        <span class="badge bb">10kWh–1.5MWh</span>
+        <span class="badge by">24M Technology</span>
+        <span class="badge bp">EV + Grid Storage</span>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <div style="font-size:0.82rem;color:var(--muted);margin-bottom:6px;font-weight:600;color:var(--text);">G-Box Product Range:</div>
+        <div style="font-size:0.82rem;color:var(--muted);">🏠 Residential/SME — modular from 10kWh</div>
+        <div style="font-size:0.82rem;color:var(--muted);">🏭 Industrial — 150kWh units at PTT EV stations</div>
+        <div style="font-size:0.82rem;color:var(--muted);">⚡ Utility — 1.5MWh at GC Rayong Innovation Centre</div>
+      </div>
+      <div class="mfr-contact">
+        <div><strong>Address:</strong> 555/2 Energy Complex Building B, 5th Floor, Bangkok 10900</div>
+        <div><strong>Tel:</strong> +66 2140 4600</div>
+        <div><strong>Web:</strong> <a href="https://www.gpscgroup.com" target="_blank">gpscgroup.com</a></div>
+        <div><strong>Email:</strong> sustainability@gpscgroup.com</div>
+      </div>
+    </div>
+
+    <div class="mfr-card">
+      <div class="mfr-name">Energy Absolute — Amita Technology</div>
+      <div class="mfr-sub">Chachoengsao · Largest Battery Plant in ASEAN · 1GWh → 4GWh</div>
+      <div class="mfr-desc">Operates a 1GWh NMC lithium-ion manufacturing facility — the largest in ASEAN — with planned expansion to 4GWh. Amita's NMC formulation offers 15-minute fast-charging capabilities for commercial transport and high-power grid support applications.</div>
+      <div class="mfr-specs">
+        <span class="badge bb">NMC Chemistry</span>
+        <span class="badge by">1GWh → 4GWh</span>
+        <span class="badge bo">15-min Fast Charge</span>
+        <span class="badge bp">E-buses · E-ferries</span>
+      </div>
+      <div class="mfr-contact">
+        <div><strong>Bangkok Office:</strong> 16th Floor, AIA Capital Center, 89 Ratchadaphisek Road</div>
+        <div><strong>Factory:</strong> 88/9 Village No.7, Khao Din, Bang Pakong, Chachoengsao</div>
+        <div><strong>Tel (Factory):</strong> +66 (0) 3305 0380</div>
+        <div><strong>Tel (HQ):</strong> +66 2248 2488</div>
+        <div><strong>Web:</strong> <a href="https://www.amitathailand.co.th" target="_blank">amitathailand.co.th</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="price-section">
+  <div class="section-tag">2025 Market Survey</div>
+  <h2 class="section-title">Battery System Pricing in Thailand</h2>
+  <p class="section-desc">2024 marked a "price revolution" — a 40% year-on-year decline in global BESS prices. By early 2025, global average battery pack prices hit USD 108/kWh. Here's what that means in the Thai market.</p>
+
+  <div style="margin-top:2.5rem;">
+    <h3 style="color:#fff;margin-bottom:1.25rem;font-size:1rem;">Residential &amp; Small Commercial</h3>
+
+    <div class="price-tier">
+      <div>
+        <div class="pt-label">Compact Residential</div>
+        <div class="pt-name">5 kWh System</div>
+        <div class="pt-desc">Compact home backup system with hybrid inverter and management software. Covers essential loads for 4–8 hours during outages.</div>
+        <div class="pt-examples">
+          <span class="badge bb">Huawei LUNA2000-5-E0 — THB 169,000</span>
+          <span class="badge by">Budget LFP (LVTopSun) — THB 40,000 battery only</span>
+        </div>
+      </div>
+      <div class="pt-price"><div class="price-thb">THB 130K–180K</div><div class="price-usd">~USD 3,700–5,100</div></div>
+    </div>
+
+    <div class="price-tier">
+      <div>
+        <div class="pt-label">Standard Home</div>
+        <div class="pt-name">10 kWh System</div>
+        <div class="pt-desc">The most popular configuration for Thai households. Provides 8–16 hours of essential backup power. Works with time-of-use optimisation.</div>
+        <div class="pt-examples">
+          <span class="badge bb">Huawei LUNA2000-10KW — THB 299,000</span>
+          <span class="badge bg">BYD Battery-Box Premium HVS — market rate</span>
+          <span class="badge by">LVTopSun 10.24kWh — THB 68,000 battery only</span>
+        </div>
+      </div>
+      <div class="pt-price"><div class="price-thb">THB 250K–320K</div><div class="price-usd">~USD 7,100–9,100</div></div>
+    </div>
+
+    <div class="price-tier">
+      <div>
+        <div class="pt-label">High-Capacity Home</div>
+        <div class="pt-name">15 kWh System</div>
+        <div class="pt-desc">Full-home backup including AC units. Premium segment commands higher price for sophisticated software and longer warranty.</div>
+        <div class="pt-examples">
+          <span class="badge bb">Huawei LUNA2000-15KW — THB 399,000</span>
+          <span class="badge bp">Tesla Powerwall 2/3 (installed) — from THB 699,000</span>
+          <span class="badge bg">Enphase IQ 10T</span>
+        </div>
+      </div>
+      <div class="pt-price"><div class="price-thb">THB 350K–450K</div><div class="price-usd">~USD 10,000–12,900</div></div>
+    </div>
+
+    <div class="price-tier">
+      <div>
+        <div class="pt-label">Budget / Value Segment</div>
+        <div class="pt-name">Deye Hybrid + LFP Systems</div>
+        <div class="pt-desc">Reliable hardware for budget-conscious node operators. Proven in Thailand. Lower warranty support than premium brands but strong community track record.</div>
+        <div class="pt-examples">
+          <span class="badge by">Deye 5kW + LFP — THB 62,595–97,370</span>
+          <span class="badge by">Deye 10kW + LFP — THB 95,230–130,540</span>
+        </div>
+      </div>
+      <div class="pt-price"><div class="price-thb">THB 63K–130K</div><div class="price-usd">~USD 1,800–3,700</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <h3 style="color:#fff;margin-bottom:1.25rem;font-size:1rem;">Industrial Scale (100kWh+) — Baseflow Node Farm Territory</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scale</th><th>Cost/kWh (USD)</th><th>Total System Cost (USD)</th><th>THB Equivalent</th><th>Configuration</th><th>Payback</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#fff">100 kWh</strong></td>
+            <td class="hlg">$250–$500</td>
+            <td>$25,000–$50,000</td>
+            <td>THB 875K–1.75M</td>
+            <td>Rack-mounted LFP</td>
+            <td class="hl">3–5 years</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff">500 kWh</strong></td>
+            <td class="hlg">$200–$350</td>
+            <td>$100,000–$175,000</td>
+            <td>THB 3.5M–6.1M</td>
+            <td>Containerized LFP</td>
+            <td class="hl">3–5 years</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff">1 MWh+</strong></td>
+            <td class="hl">$180–$300</td>
+            <td>$180,000+</td>
+            <td>THB 6.3M–10.5M</td>
+            <td>Utility-scale container</td>
+            <td class="hl">3–5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:1rem;padding:1rem 1.25rem;background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.15);border-radius:8px;font-size:0.85rem;color:var(--muted);">
+      💡 <strong style="color:var(--accent2)">EEC Advantage:</strong> Industrial systems in Thailand's Eastern Economic Corridor achieve payback in <strong style="color:#fff">3–5 years</strong> — driven by avoiding demand charges (20–30% of industrial electricity bills) and eliminating unplanned downtime costs.
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;">
+    <h3 style="color:#fff;margin-bottom:1rem;font-size:1rem;">Lithium vs Lead-Acid — 10-Year Economics</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th>Lithium-Ion (LFP)</th><th>Lead-Acid</th></tr></thead>
+        <tbody>
+          <tr><td>Initial Cost (small system)</td><td>THB 39,930</td><td class="hl">THB 17,010 (cheaper)</td></tr>
+          <tr><td>Cycle Life</td><td class="hl">6,000–10,000 cycles</td><td style="color:var(--red)">~500 cycles (50% DoD)</td></tr>
+          <tr><td>Replacement Frequency</td><td class="hl">Once in 10–15 years</td><td style="color:var(--red)">Every 2 years</td></tr>
+          <tr><td>Round-Trip Efficiency</td><td class="hl">95–98%</td><td style="color:var(--red)">75–85%</td></tr>
+          <tr><td>10-Year Net Present Value</td><td class="hl">64% higher SNPV</td><td style="color:var(--red)">Lower (replacement costs)</td></tr>
+          <tr><td>Usable Energy (same solar input)</td><td class="hl">10–15% more usable kWh</td><td style="color:var(--red)">Baseline</td></tr>
+          <tr><td>Verdict</td><td class="hl">Superior total cost of ownership</td><td style="color:var(--red)">False economy</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- REGULATORY & INCENTIVES -->
+<section id="regulatory">
+  <div class="section-tag">Government Support</div>
+  <h2 class="section-title">Thai Regulatory &amp; Tax Incentives</h2>
+  <p class="section-desc">The Thai government has deployed a comprehensive stack of incentives to accelerate BESS adoption — covering manufacturing, installation, feed-in tariffs, and corporate deductions.</p>
+
+  <div class="reg-grid">
+    <div class="reg-card">
+      <div class="reg-num">B.E. 2567</div>
+      <h4>Energy Storage Act (2024)</h4>
+      <p>Landmark legislation mandating that <strong style="color:#fff">all renewable energy projects exceeding 10 MW must integrate energy storage systems</strong>. Requires 70% capacity retention for grid-connected installations. Introduces a subsidy program for businesses and residential consumers.</p>
+    </div>
+    <div class="reg-card">
+      <div class="reg-num">8 yr</div>
+      <h4>BOI Corporate Income Tax Exemption</h4>
+      <p>Battery cell and solar cell manufacturers receive an <strong style="color:#fff">8-year CIT holiday</strong> plus import duty exemptions on machinery. Renewable energy generation projects receive 5–8 year CIT exemptions.</p>
+    </div>
+    <div class="reg-card">
+      <div class="reg-num">THB 200K</div>
+      <h4>Residential Solar Deduction</h4>
+      <p>Section 40 personal income tax deduction of up to <strong style="color:#fff">THB 200,000</strong> for individual homeowners installing on-grid rooftop solar (up to 10 kWp). Valid through <strong style="color:#fff">31 December 2027</strong>.</p>
+    </div>
+    <div class="reg-card">
+      <div class="reg-num">150%</div>
+      <h4>Corporate Equipment Deduction</h4>
+      <p>Businesses can claim a <strong style="color:#fff">150% tax deduction</strong> on the cost of certified energy-efficient equipment carrying the 5-star Energy Efficiency Label from DEDE. Applies to BESS qualifying systems.</p>
+    </div>
+    <div class="reg-card">
+      <div class="reg-num">THB 2.83</div>
+      <h4>Solar + Storage Feed-in Tariff</h4>
+      <p>The Energy Regulatory Commission guarantees a <strong style="color:#fff">25-year FiT of THB 2.8331/kWh</strong> for storage-integrated solar farms — vs THB 2.1679/kWh for solar-only projects. Storage premium reduces financial risk for Baseflow's node farm revenue model.</p>
+    </div>
+    <div class="reg-card">
+      <div class="reg-num">0%</div>
+      <h4>BOI Import Duty on Machinery</h4>
+      <p><strong style="color:#fff">Zero import duty</strong> on all machinery and equipment for BOI-promoted manufacturers. Combined with the ACFTA 0% tariff on Chinese cells, Baseflow's battery procurement cost is structurally lower than any Western market.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROI ANALYSIS -->
+<section id="roi">
+  <div class="section-tag">Financial Case</div>
+  <h2 class="section-title">ROI Analysis for Node Operators</h2>
+  <p class="section-desc">The financial case for BESS in Thailand considers Total Cost of Ownership (TCO) — not just sticker price. For industrial users, demand charges alone account for 20–30% of electricity bills.</p>
+
+  <div class="roi-grid">
+    <div class="roi-card" style="border-color:rgba(255,200,87,0.2);">
+      <h3>Industrial System — 1MW / 4MWh</h3>
+      <div class="roi-row"><div class="r-label">Initial Investment</div><div class="r-val" style="color:var(--gold)">~USD 1.0 Million</div></div>
+      <div class="roi-row"><div class="r-label">Annual Savings</div><div class="r-val" style="color:var(--accent2)">USD 150K–250K</div></div>
+      <div class="roi-row"><div class="r-label">Payback Period</div><div class="r-val" style="color:var(--accent2)">3–5 Years</div></div>
+      <div class="roi-row"><div class="r-label">Internal Rate of Return</div><div class="r-val" style="color:var(--accent2)">10–15%</div></div>
+      <div class="roi-row"><div class="r-label">Primary Driver</div><div class="r-val">Peak Shaving + UPS</div></div>
+    </div>
+    <div class="roi-card">
+      <h3>Residential System — 5kW / 10kWh</h3>
+      <div class="roi-row"><div class="r-label">Initial Investment</div><div class="r-val" style="color:var(--gold)">~THB 350,000</div></div>
+      <div class="roi-row"><div class="r-label">Annual Savings</div><div class="r-val" style="color:var(--accent)">THB 60,000–80,000</div></div>
+      <div class="roi-row"><div class="r-label">Payback Period</div><div class="r-val" style="color:var(--accent)">5–7 Years</div></div>
+      <div class="roi-row"><div class="r-label">Internal Rate of Return</div><div class="r-val" style="color:var(--accent)">8–12%</div></div>
+      <div class="roi-row"><div class="r-label">Primary Driver</div><div class="r-val">TOU Optimisation + Backup</div></div>
+    </div>
+    <div class="roi-card" style="border-color:rgba(196,154,60,0.2);">
+      <h3>Baseflow Node Operator — 50kW / 200kWh</h3>
+      <div class="roi-row"><div class="r-label">BESS Investment</div><div class="r-val" style="color:var(--gold)">~$40,000–70,000</div></div>
+      <div class="roi-row"><div class="r-label">PoGS Solar Bonus APY</div><div class="r-val" style="color:var(--accent2)">+3–8% on staking</div></div>
+      <div class="roi-row"><div class="r-label">Grid FiT Revenue</div><div class="r-val" style="color:var(--accent2)">THB 2.83/kWh sold</div></div>
+      <div class="roi-row"><div class="r-label">BOI Tax Exemption</div><div class="r-val" style="color:var(--accent2)">8-year CIT holiday</div></div>
+      <div class="roi-row"><div class="r-label">Combined Payback</div><div class="r-val" style="color:var(--purple)">~3 Years</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;padding:1.5rem 2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);">
+    <h3 style="color:#fff;font-size:1rem;margin-bottom:1rem;">Lithium vs Lead-Acid — Net Present Value (NPV) at 10 Years</h3>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:1rem;">A Naresuan University study found that despite lithium costing 2× more upfront, the Sustainable Net Present Value (SNPV) was <strong style="color:var(--accent2)">64% higher</strong> over the project life — due to 6-year lithium lifespan vs 2-year lead-acid at the time. With 2025 LFP batteries lasting 10–15 years, this advantage has improved dramatically.</p>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Lithium-Ion LFP (10yr NPV)</div>
+        <div style="background:rgba(255,255,255,0.05);border-radius:4px;height:18px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:4px;"></div>
+        </div>
+        <div style="font-size:0.82rem;color:var(--accent2);margin-top:4px;font-weight:700;">SNPV: 64% higher · Single replacement cycle</div>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Lead-Acid (10yr NPV)</div>
+        <div style="background:rgba(255,255,255,0.05);border-radius:4px;height:18px;overflow:hidden;">
+          <div style="width:38%;height:100%;background:var(--red);border-radius:4px;"></div>
+        </div>
+        <div style="font-size:0.82rem;color:var(--red);margin-top:4px;font-weight:700;">Baseline · 5+ replacement cycles needed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION STEPS -->
+<section id="implementation">
+  <div class="section-tag">Deployment Guide</div>
+  <h2 class="section-title">Implementation Strategy</h2>
+  <p class="section-desc">A phased approach for Baseflow node operators deploying solar + BESS infrastructure in Thailand — maximising performance and fiscal benefits.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Energy Profiling &amp; Sizing</div>
+        <div class="step-desc">Begin with high-resolution analysis of energy consumption patterns. In Thailand, peak loads are dominated by cooling systems (AC), which create high surge currents. Inverters must be sized to handle AC start-up current. High-voltage LFP systems (Huawei LUNA, BYD HVS) outperform low-voltage systems for AC loads.</div>
+        <div class="step-tags"><span class="badge bb">AC Surge Sizing</span><span class="badge bg">High-Voltage LFP</span></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Select Chemistry &amp; Vendor</div>
+        <div class="step-desc">LFP is the gold standard for stationary storage in Thailand's heat. Premium: Huawei, BYD, and Tesla offer sophisticated time-of-use software. Value: Deye and LVTopSun deliver reliable hardware at 30–50% lower cost. For large-scale node farms, GPSC G-Box (Thai-made) and direct import from JA Solar / LONGi via ACFTA 0% tariff are optimal.</div>
+        <div class="step-tags"><span class="badge bg">LFP Chemistry</span><span class="badge bb">GPSC G-Box</span><span class="badge by">Deye / LVTopSun</span></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Maximise Fiscal Benefits</div>
+        <div class="step-desc">Before purchase, secure DEDE certification for the 150% corporate deduction. Obtain a full VAT invoice. Coordinate with MEA or PEA for grid connection approval — prerequisite for the residential tax deduction and the FiT buyback program at THB 2.83/kWh. Apply for BOI Category A2 for the 8-year CIT exemption.</div>
+        <div class="step-tags"><span class="badge bp">BOI Category A2</span><span class="badge by">150% Deduction</span><span class="badge bg">FiT THB 2.83/kWh</span></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Long-Term Operation &amp; Maintenance</div>
+        <div class="step-desc">Install batteries in shaded, well-ventilated areas — or temperature-controlled enclosures for industrial sites. Configure the Energy Management System (EMS) to avoid 100% discharge, maintaining a buffer (typically 10–20% SOC floor) to prolong cell health. Cell-level monitoring is standard on Huawei LUNA2000 and GPSC G-Box.</div>
+        <div class="step-tags"><span class="badge bb">Thermal Control</span><span class="badge bg">SOC Management</span><span class="badge by">EMS Monitoring</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE TECHNOLOGY -->
+<section id="future" class="future-section">
+  <div class="section-tag">2027–2030 Outlook</div>
+  <h2 class="section-title">Next-Generation Battery Technologies</h2>
+  <p class="section-desc">Thailand's battery market is not static. Three emerging technologies will reshape solar storage economics by 2030 — and Baseflow's node infrastructure is positioned to adopt each as they mature.</p>
+
+  <div class="future-grid">
+    <div class="future-card">
+      <div class="future-year">Available Now · Growing Market</div>
+      <div class="future-name">Second-Life EV Batteries</div>
+      <div class="future-desc">Retired EV batteries that still possess 70–80% capacity are ideal for stationary solar storage. A 1.2 billion USD market growing rapidly. Offers 30–50% lower cost than new cells — ideal for budget-conscious Baseflow node operators who can accept slightly lower energy density.</div>
+      <div class="future-stat">$1.2B market · 70–80% retained capacity · 30–50% cost saving</div>
+    </div>
+    <div class="future-card" style="border-color:rgba(196,154,60,0.3);">
+      <div class="future-year">Commercial Scale: 2027–2028</div>
+      <div class="future-name">SemiSolid &amp; Solid-State Batteries</div>
+      <div class="future-desc">GPSC has pioneered SemiSolid technology in Southeast Asia. Full solid-state batteries are expected to reach commercial scale by 2027–2028, offering double the energy density (400–500 Wh/kg vs ~200 Wh/kg for current LFP) and higher safety standards. GPSC's Thailand plant is already building this supply chain domestically.</div>
+      <div class="future-stat" style="color:var(--purple)">400–500 Wh/kg · 2× energy density · GPSC Thailand (ASEAN first mover)</div>
+    </div>
+    <div class="future-card">
+      <div class="future-year">Industrial Deployment: 2028–2030</div>
+      <div class="future-name">Sodium-Ion Batteries</div>
+      <div class="future-desc">For large-scale grid storage where weight is not a concern, sodium-ion technology is projected for industrial deployment by 2028–2030. Sodium's abundance (vs lithium's scarcity) promises a significant reduction in $/kWh costs. Ideal for Baseflow's large-scale node farm BESS — where container-based systems already minimise weight concerns.</div>
+      <div class="future-stat">Abundant sodium = lowest $/kWh · Ideal for container node farms · 2028–2030</div>
+    </div>
+  </div>
+</section>
+
+<!-- BASEFLOW TIE-IN -->
+<section id="baseflow-link">
+  <div class="section-tag">Baseflow Integration</div>
+  <h2 class="section-title">How Battery Tech Powers Baseflow</h2>
+  <p class="section-desc">Every battery technology insight from this research directly informs Baseflow's validator node infrastructure strategy and PoGS consensus design.</p>
+
+  <div class="tiein">
+    <h3>Baseflow Node Battery Strategy</h3>
+    <p>Based on the Thailand Solar Battery Power Research, Baseflow's recommended battery stack for validator nodes is:</p>
+    <ul>
+      <li><strong>Phase 1 (Now):</strong> Deye Hybrid + LVTopSun LFP for budget-conscious node operators — THB 63K–130K per node, 3–5 year payback.</li>
+      <li><strong>Phase 2 (Scale):</strong> GPSC G-Box (Thai-made, 24M SemiSolid LFP) for BOI-qualified node farm operators — qualifies for 150% corporate deduction and 8-year CIT holiday.</li>
+      <li><strong>Phase 3 (Utility):</strong> Containerised 500kWh–1MWh LFP systems at $180–300/kWh for multi-megawatt node farm operations in the Eastern Economic Corridor.</li>
+      <li><strong>Proof of Green Stake (PoGS):</strong> Nodes with certified BESS systems (DEDE 5-star label) earn a higher AI Validation Score, receiving proportionally greater block rewards — incentivising quality battery infrastructure across the network.</li>
+      <li><strong>FiT Revenue Stream:</strong> Node operators with solar+BESS systems exceeding 1 kW can sell surplus power to the grid at THB 2.8331/kWh under the 25-year ERC FiT scheme — creating a secondary income stream that reduces effective node operating cost.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SUPPLIER DIRECTORY -->
+<section id="directory">
+  <div class="section-tag">Commercial Directory</div>
+  <h2 class="section-title">Thailand BESS Supplier Directory</h2>
+  <p class="section-desc">Primary distributors, installers, and service providers for energy storage procurement in Thailand.</p>
+
+  <div class="dir-grid">
+    <div class="dir-card">
+      <div class="dir-name">Solaris Green Energy Co., Ltd.</div>
+      <div class="dir-spec">Alpha ESS · Sungrow · High-End Residential &amp; Commercial</div>
+      <div class="dir-info">
+        <div><strong>Bangkok:</strong> Wasutha Group Building, New Rama 9 Road, Suanglung</div>
+        <div><strong>Krabi HQ:</strong> 654/1 Moo4, Tambon Saithai, Amphur Muang</div>
+        <div><strong>Tel:</strong> +66 (0) 84 852 4608 / +66 (0) 63 082 4197</div>
+        <div><strong>Email:</strong> sales@solaris.co.th</div>
+        <div><strong>Web:</strong> <a href="https://solaris.co.th" target="_blank">solaris.co.th</a></div>
+      </div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-name">Solar d</div>
+      <div class="dir-spec">Tesla Powerwall — Exclusive Certified Installer in Thailand</div>
+      <div class="dir-info">
+        <div><strong>Service:</strong> Full-home backup and smart energy management via Tesla ecosystem</div>
+        <div><strong>Web:</strong> <a href="https://www.solar-d.co.th" target="_blank">solar-d.co.th</a></div>
+        <div><strong>Price:</strong> Tesla Powerwall 2/3 from THB 699,000 installed</div>
+      </div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-name">High Solar Thailand</div>
+      <div class="dir-spec">Huawei LUNA2000 Specialist · 7+ Years Experience</div>
+      <div class="dir-info">
+        <div><strong>Address:</strong> 33/37 Thung Klom-Tan Man 9, Nong Prue, Pattaya</div>
+        <div><strong>Email:</strong> info@high-solar.com</div>
+        <div><strong>Web:</strong> <a href="https://high-solar.com" target="_blank">high-solar.com</a></div>
+        <div><strong>Speciality:</strong> LUNA2000 5KW THB 169K · 10KW THB 299K · 15KW THB 399K</div>
+      </div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-name">LithiumThai</div>
+      <div class="dir-spec">Custom Energy Storage · Industrial Rack Systems · RV Batteries</div>
+      <div class="dir-info">
+        <div><strong>Address:</strong> 688 M.3 Wangpong, Pranburi, Prachuapkhirikhan</div>
+        <div><strong>Tel:</strong> +66 83 235 5189 / +66 94 695 1965</div>
+        <div><strong>Email:</strong> service@lithiumthai.com</div>
+        <div><strong>Web:</strong> <a href="https://lithiumthai.com" target="_blank">lithiumthai.com</a></div>
+      </div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-name">ITL-Engineering &amp; Solution</div>
+      <div class="dir-spec">Industrial-Scale BESS · GPSC G-Box Distributor · Custom Engineering</div>
+      <div class="dir-info">
+        <div><strong>Address:</strong> H-Cape Biz Sector 22/28-29, Sukhapiban 2 Road, Prawet, Bangkok</div>
+        <div><strong>Tel:</strong> +66 2 002 4395-7</div>
+        <div><strong>Email:</strong> info@itl-engineering.com</div>
+        <div><strong>Web:</strong> <a href="https://www.itl-engineering.com" target="_blank">itl-engineering.com</a></div>
+      </div>
+    </div>
+    <div class="dir-card">
+      <div class="dir-name">GPSC (Direct)</div>
+      <div class="dir-spec">G-Box · G-Cells · ASEAN's First SemiSolid Battery · PTT Group</div>
+      <div class="dir-info">
+        <div><strong>Address:</strong> 555/2 Energy Complex Building B, 5th Floor, Bangkok 10900</div>
+        <div><strong>Tel:</strong> +66 2140 4600</div>
+        <div><strong>Email:</strong> sustainability@gpscgroup.com</div>
+        <div><strong>Web:</strong> <a href="https://www.gpscgroup.com" target="_blank">gpscgroup.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
+      <p>Southeast Asia's green grid of decentralized finance and communication. Headquartered in Thailand.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Battery Research</h4>
+      <a href="#chemistry">Chemistry Comparison</a>
+      <a href="#manufacturers">Thai Manufacturers</a>
+      <a href="#pricing">Pricing Guide</a>
+      <a href="#regulatory">Tax Incentives</a>
+      <a href="#roi">ROI Analysis</a>
+      <a href="#future">Future Tech</a>
+      <a href="#directory">Supplier Directory</a>
+    </div>
+    <div class="footer-links">
+      <h4>Project Pages</h4>
+      <a href="index.html">Project Overview</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="index.html#solar">Solar Research</a>
+      <a href="index.html#roadmap">Roadmap</a>
+      <a href="presale.html" style="color:var(--accent2)">SAI Presale →</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Baseflow. All rights reserved. Thailand HQ.</span>
+    <span>Research sourced from Thailand Solar Battery Power Research 2025–2026 report. This content does not constitute financial advice.</span>
+  </div>
+</footer>
+
+</body>
+</html>

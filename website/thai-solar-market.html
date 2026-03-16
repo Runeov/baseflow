@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thai Solar EPC Market Analysis — Baseflow Research</title>
+
+<!-- SEO & Open Graph -->
+<meta name="description" content="Comprehensive research on Thailand's commercial solar EPC market: crew costs, ROI projections, regulatory landscape, and strategic operational models for 2026.">
+<meta name="keywords" content="Thailand solar, EPC, solar installation, Bangkok, Pattaya, Eastern Economic Corridor, crew costs, ROI, Baseflow">
+<meta property="og:title" content="Thai Solar EPC Market Analysis — Baseflow Research">
+<meta property="og:description" content="Data-driven analysis of Thailand's commercial solar market: 5.55GW installed, 6.78% CAGR, and sub-4-year payback periods.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://baseflow.io/research/thai-solar-market">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thai Solar EPC Market Analysis — Baseflow Research">
+
+<link rel="canonical" href="https://baseflow.io/research/thai-solar-market">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   BASEFLOW DESIGN SYSTEM — Shared tokens
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --bg: #04060d;
+  --surface: #080e1c;
+  --s2: #0d1526;
+  --s3: #111d35;
+  --border: rgba(255,255,255,0.06);
+  --amber: #f59e0b;
+  --amber-d: rgba(245,158,11,0.12);
+  --amber-g: rgba(245,158,11,0.35);
+  --cyan: #06b6d4;
+  --cyan-d: rgba(6,182,212,0.1);
+  --green: #10b981;
+  --red: #ef4444;
+  --text: #eef2ff;
+  --muted: rgba(238,242,255,0.42);
+  --r: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  font-family: 'Epilogue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 0%, rgba(245,158,11,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 85% 90%, rgba(6,182,212,0.05) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ─── LAYOUT ─── */
+.wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── HEADER ─── */
+.page-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+}
+.logo { font-family: 'Unbounded', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--amber); letter-spacing: 0.06em; text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a {
+  font-size: 0.75rem; color: var(--muted); text-decoration: none;
+  transition: color 0.2s; letter-spacing: 0.02em;
+}
+.nav-links a:hover { color: var(--amber); }
+.nav-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 20px; padding: 5px 12px; font-size: 0.68rem; color: var(--amber);
+  text-decoration: none; transition: all 0.2s;
+}
+.nav-badge:hover { background: rgba(245,158,11,0.2); }
+
+/* ─── HERO ─── */
+.hero { padding: 64px 0 48px; max-width: 780px; }
+.hero-eyebrow {
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+}
+.hero-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--amber); }
+h1 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  font-weight: 900; line-height: 1.12; letter-spacing: -0.03em;
+  margin-bottom: 18px;
+}
+.hero-desc {
+  color: rgba(238,242,255,0.6); line-height: 1.85;
+  font-size: 0.95rem; font-weight: 300; max-width: 640px;
+}
+
+/* ─── KEY STATS BANNER ─── */
+.stats-banner {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px; text-align: center;
+}
+.stat-val {
+  font-family: 'Unbounded', sans-serif; font-size: 1.4rem;
+  font-weight: 700; color: var(--amber); display: block;
+}
+.stat-val.cyan { color: var(--cyan); }
+.stat-val.green { color: var(--green); }
+.stat-lbl {
+  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted); margin-top: 6px; line-height: 1.5;
+}
+
+/* ─── SECTIONS ─── */
+.section { padding: 48px 0; border-top: 1px solid var(--border); }
+.section-title {
+  font-family: 'Unbounded', sans-serif; font-size: 1.2rem;
+  font-weight: 700; margin-bottom: 20px;
+}
+.eyebrow-sm {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--amber); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.eyebrow-sm::before { content: ''; width: 14px; height: 1px; background: var(--amber); }
+.section-desc {
+  color: rgba(238,242,255,0.6); line-height: 1.8; font-size: 0.9rem;
+  max-width: 720px; margin-bottom: 28px;
+}
+
+/* ─── CARDS GRID ─── */
+.card-grid { display: grid; gap: 14px; }
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 22px;
+}
+.card-icon { font-size: 1.4rem; margin-bottom: 10px; }
+.card-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; }
+.card-val {
+  font-family: 'Unbounded', sans-serif; font-size: 1.1rem;
+  font-weight: 700; color: var(--amber);
+}
+.card-val.cyan { color: var(--cyan); }
+.card-val.green { color: var(--green); }
+.card-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.65; margin-top: 6px; }
+
+/* ─── DATA TABLE ─── */
+.table-wrap {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden; margin-bottom: 20px;
+}
+.table-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.table-title { font-family: 'Unbounded', sans-serif; font-size: 0.78rem; font-weight: 600; }
+.table-subtitle { font-size: 0.68rem; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th {
+  padding: 10px 16px; text-align: left; font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+  border-bottom: 1px solid var(--border); background: var(--s2);
+}
+td {
+  padding: 12px 16px; font-size: 0.82rem;
+  border-bottom: 1px solid var(--border); color: rgba(238,242,255,0.75);
+}
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--text); }
+
+/* ─── COMPARISON COLUMNS ─── */
+.compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.compare-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px; position: relative;
+}
+.compare-card.featured { border-color: rgba(245,158,11,0.3); }
+.compare-card.featured::before {
+  content: 'RECOMMENDED';
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--amber); color: #000; font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.1em; padding: 3px 12px; border-radius: 10px;
+}
+.compare-label {
+  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--muted); margin-bottom: 10px; text-align: center;
+}
+.compare-title {
+  font-family: 'Unbounded', sans-serif; font-size: 0.9rem;
+  font-weight: 700; text-align: center; margin-bottom: 16px;
+}
+.compare-list { list-style: none; }
+.compare-list li {
+  font-size: 0.78rem; color: rgba(238,242,255,0.65); line-height: 1.7;
+  padding: 6px 0; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+}
+.compare-list li:last-child { border-bottom: none; }
+.compare-list li span { color: var(--text); font-weight: 500; }
+
+/* ─── SUMMARY BOX ─── */
+.summary-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px 24px; margin-top: 16px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.summary-box .label {
+  font-size: 0.72rem; color: var(--muted); text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.summary-box .value {
+  font-family: 'Unbounded', sans-serif; font-size: 1.4rem;
+  font-weight: 700; color: var(--amber);
+}
+.summary-box .value.green { color: var(--green); }
+.summary-box .value.cyan { color: var(--cyan); }
+
+/* ─── CALLOUT ─── */
+.callout {
+  border-left: 2px solid var(--amber); background: var(--amber-d);
+  border-radius: 0 10px 10px 0; padding: 14px 18px;
+  font-size: 0.84rem; color: rgba(238,242,255,0.72); line-height: 1.65;
+  margin-bottom: 20px;
+}
+.callout.blue { border-color: var(--cyan); background: var(--cyan-d); }
+.callout.green { border-color: var(--green); background: rgba(16,185,129,0.08); }
+
+/* ─── TIMELINE ─── */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 10px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(180deg, var(--amber), var(--cyan), var(--green));
+}
+.timeline-item { position: relative; margin-bottom: 28px; }
+.timeline-dot {
+  position: absolute; left: -28px; top: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--amber); border: 2px solid var(--bg);
+}
+.timeline-item:nth-child(2) .timeline-dot { background: var(--cyan); }
+.timeline-item:nth-child(3) .timeline-dot { background: var(--green); }
+.timeline-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+.timeline-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 32px 0; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-logo { font-family: 'Unbounded', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--amber); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--amber); }
+.footer-disclaimer { font-size: 0.65rem; color: var(--muted); width: 100%; line-height: 1.65; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 860px) {
+  .stats-banner { grid-template-columns: repeat(2, 1fr); }
+  .card-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .compare-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .stats-banner { grid-template-columns: 1fr; }
+  .card-grid.cols-2, .card-grid.cols-3, .card-grid.cols-4 { grid-template-columns: 1fr; }
+  table { font-size: 0.75rem; }
+  th, td { padding: 8px 10px; }
+  .summary-box { flex-direction: column; text-align: center; }
+  .nav-links { gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="page-header">
+    <a href="../presale.html" class="logo">BASEFLOW</a>
+    <nav class="nav-links">
+      <a href="../presale.html">Token Sale</a>
+      <a href="#" style="color:var(--amber)">Research</a>
+      <a href="#" class="nav-badge">☀️ Buy SAI →</a>
+    </nav>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="hero-eyebrow">Baseflow Research · March 2026</div>
+    <h1>Thai <span style="color:var(--amber)">Solar EPC</span> Market:<br>Crew Costs, ROI &amp; Strategy</h1>
+    <p class="hero-desc">
+      A comprehensive, data-driven analysis of Thailand's commercial solar engineering, procurement, and construction landscape — covering macroeconomic catalysts, labor economics, operational models, and investor return projections for Bangkok and the Eastern Economic Corridor.
+    </p>
+  </div>
+
+  <!-- ═══ KEY STATS BANNER ═══ -->
+  <div class="stats-banner">
+    <div class="stat-card">
+      <span class="stat-val">5.55 GW</span>
+      <span class="stat-lbl">Installed Solar Capacity<br>Thailand 2026</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val cyan">6.78%</span>
+      <span class="stat-lbl">Compound Annual<br>Growth Rate</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val green">3.89 yr</span>
+      <span class="stat-lbl">Commercial System<br>Payback Period</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val">7.71 GW</span>
+      <span class="stat-lbl">Projected Capacity<br>by 2031</span>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 1: MACRO CATALYSTS ═══ -->
+  <section class="section" id="macro">
+    <div class="eyebrow-sm">Market Drivers</div>
+    <div class="section-title">Macroeconomic Catalysts &amp; Energy Pricing</div>
+    <p class="section-desc">
+      Thailand's commercial solar adoption is driven by volatile electricity tariffs tethered to global fossil fuel markets. Natural gas accounts for 57.5% of the national energy mix, with increasing reliance on imported LNG creating persistent pricing instability for commercial end-users.
+    </p>
+
+    <div class="card-grid cols-3">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">Retail Electricity Tariff</div>
+        <div class="card-val">฿3.88/kWh</div>
+        <div class="card-desc">Current rate (Jan–Apr 2026). Down from ฿4.15–4.18 in 2024, but structural deficit remains. EGAT accumulated ฿98B in losses.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-title">Projected Tariff Hikes</div>
+        <div class="card-val" style="color:var(--red)">8–12%</div>
+        <div class="card-desc">Medium-term tariff increases expected as EGAT recovers massive accumulated losses. Drives corporate urgency for solar hedging.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛢️</div>
+        <div class="card-title">LNG Import Dependency</div>
+        <div class="card-val cyan">57.5%</div>
+        <div class="card-desc">Natural gas share of Thailand's electricity generation. Domestic Gulf of Thailand reserves depleting, forcing reliance on volatile LNG spot markets.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Key Insight:</strong> For massive commercial facilities in Bangkok and industrial plants in Pattaya, rooftop solar PV arrays have transformed from discretionary sustainability projects into <strong>essential financial hedges</strong> against operational cost inflation. By locking in a levelized cost of energy through a capitalized solar asset, corporations shield their operating margins from geopolitical LNG fluctuations.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: REGULATORY LANDSCAPE ═══ -->
+  <section class="section" id="regulatory">
+    <div class="eyebrow-sm">Policy Environment</div>
+    <div class="section-title">Regulatory Deregulation &amp; Tax Incentives</div>
+    <p class="section-desc">
+      A watershed regulatory reform in late December 2024 fundamentally altered the landscape, slashing development timelines and reducing administrative overhead for solar installation firms.
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">Factory License Eliminated (Ror. Ngor. 4)</div>
+        <div class="timeline-desc">
+          The Thai Cabinet officially eliminated the Factory Operation License requirement for all solar rooftop installations outside designated industrial estates. Previously, any installation exceeding 1MW was classified as a factory, requiring extensive environmental safety assessments that delayed projects by several quarters. Now, only a simple 30-day notification to local authorities is required.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">150% Tax Deduction for Solar</div>
+        <div class="timeline-desc">
+          Corporations can deduct 150% of the actual cost of certified high-efficiency solar arrays from their taxable income. Valid for installations completed by December 31, 2028. This aggressive tax shield dramatically accelerates payback periods and transitions the sales narrative into a sophisticated corporate tax strategy.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-title">IEAT Waivers Expected (2026)</div>
+        <div class="timeline-desc">
+          Projects within Industrial Estate Authority of Thailand boundaries still require a Land Use Permit (IEAT 01/2), but the authority is evaluating waivers for self-consumption systems expected to materialize later in 2026. Standard construction permits and controlled energy production licenses remain mandatory.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: GEOGRAPHIC FOCUS ═══ -->
+  <section class="section" id="geography">
+    <div class="eyebrow-sm">Strategic Focus</div>
+    <div class="section-title">Bangkok &amp; Pattaya: Two Market Nodes</div>
+    <p class="section-desc">
+      Initial operations must focus on the two most dense nodes of commercial and industrial electricity demand: the Bangkok Metropolitan Region and the Pattaya municipality within the Eastern Economic Corridor.
+    </p>
+
+    <div class="card-grid cols-2">
+      <div class="card" style="border-color:rgba(245,158,11,0.2)">
+        <div class="card-icon">🏙️</div>
+        <div class="card-title" style="font-family:'Unbounded',sans-serif;font-size:0.85rem">Bangkok Metropolitan</div>
+        <div class="card-desc" style="margin-top:10px">
+          <strong style="color:var(--text)">Target:</strong> Commercial real estate — retail complexes, corporate HQs, hospitals, educational campuses.<br><br>
+          <strong style="color:var(--text)">Advantage:</strong> Peak electricity demand during daylight hours (commercial AC chillers) means virtually all solar power is consumed instantly onsite — no battery storage needed.<br><br>
+          <strong style="color:var(--text)">Challenge:</strong> Grid infrastructure bottlenecks. In 2024, certain saturated feeders experienced up to 50 hours of curtailment events where solar penetration exceeded 18% of daytime demand. Interconnection approvals can be delayed 6–18 months.
+        </div>
+      </div>
+      <div class="card" style="border-color:rgba(6,182,212,0.2)">
+        <div class="card-icon">🏭</div>
+        <div class="card-title" style="font-family:'Unbounded',sans-serif;font-size:0.85rem">Pattaya / Eastern Economic Corridor</div>
+        <div class="card-desc" style="margin-top:10px">
+          <strong style="color:var(--text)">Target:</strong> Heavy manufacturing, logistics, cold storage in Chonburi and Rayong provinces.<br><br>
+          <strong style="color:var(--text)">Advantage:</strong> Expansive, unobstructed roof spaces capable of hosting multi-megawatt arrays. Single contracts can eclipse revenue of dozens of smaller Bangkok projects.<br><br>
+          <strong style="color:var(--text)">Driver:</strong> EU Carbon Border Adjustment Mechanism forces Thai exporters to decarbonize operations to protect export margins and fulfill international supply chain mandates.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: SUPPLY CHAIN & HARDWARE ═══ -->
+  <section class="section" id="hardware">
+    <div class="eyebrow-sm">Supply Chain</div>
+    <div class="section-title">Hardware Costs &amp; Supply Dynamics</div>
+    <p class="section-desc">
+      Global solar supply chain pricing compression, driven by massive Chinese manufacturing overcapacity, has saturated Southeast Asian markets. US tariffs (24–36%) on Thai-manufactured panels have paradoxically trapped premium modules in the domestic market, ensuring abundant, discounted supply for local EPC firms.
+    </p>
+
+    <div class="card-grid cols-3">
+      <div class="card">
+        <div class="card-title">Module Pricing</div>
+        <div class="card-val green">$0.10–0.12/W</div>
+        <div class="card-desc">Wholesale price for high-efficiency bifacial modules and TOPCon cells. Historic lows driven by Chinese overcapacity.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Installed System Cost</div>
+        <div class="card-val">฿20–25/Wp</div>
+        <div class="card-desc">Total turnkey cost for commercial systems using Tier-1 equipment. Includes modules, inverters, BOS, and labor.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Labor Share</div>
+        <div class="card-val cyan">10–20%</div>
+        <div class="card-desc">Labor and installation logistics as percentage of total turnkey project price, depending on roof complexity.</div>
+      </div>
+    </div>
+
+    <!-- Turnkey Pricing Table -->
+    <div class="table-wrap" style="margin-top:20px">
+      <div class="table-header">
+        <div class="table-title">Commercial System Turnkey Pricing</div>
+        <div class="table-subtitle">2026 Market Rates · Tier-1 Equipment</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>System Capacity</th>
+              <th>Turnkey Price (THB)</th>
+              <th>Target Demographic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>20 kWp</strong></td>
+              <td style="color:var(--amber)">฿450,000 – ฿600,000</td>
+              <td>Boutique hotels, small clinics, standalone retail stores</td>
+            </tr>
+            <tr>
+              <td><strong>50 kWp</strong></td>
+              <td style="color:var(--amber)">฿1,000,000 – ฿1,300,000</td>
+              <td>Mid-sized supermarkets, light manufacturing, office blocks</td>
+            </tr>
+            <tr>
+              <td><strong>100 kWp+</strong></td>
+              <td style="color:var(--amber)">฿2,000,000 – ฿2,500,000</td>
+              <td>Heavy industrial factories, cold storage, logistics warehouses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: LABOR ECONOMICS ═══ -->
+  <section class="section" id="labor">
+    <div class="eyebrow-sm">Crew Economics</div>
+    <div class="section-title">Labor Costs, Tooling &amp; Certification</div>
+    <p class="section-desc">
+      The crux of the operational strategy revolves around the capitalization and management of the installation workforce. A standard commercial crew requires a minimum of 5 personnel: one senior electrical foreman, two mid-level structural installers, and two entry-level technicians.
+    </p>
+
+    <!-- Salary Table -->
+    <div class="table-wrap">
+      <div class="table-header">
+        <div class="table-title">Solar Installer Salary Structure — Thailand 2026</div>
+        <div class="table-subtitle">Source: ERI Economic Research Institute / SalaryExpert</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Role / Level</th>
+              <th>Annual Salary (THB)</th>
+              <th>Hourly Rate</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>National Average</strong></td>
+              <td style="color:var(--amber)">฿533,563</td>
+              <td>฿257/hr</td>
+              <td>All experience levels, nationwide</td>
+            </tr>
+            <tr>
+              <td><strong>Bangkok Premium</strong></td>
+              <td style="color:var(--amber)">฿542,122</td>
+              <td>฿261/hr</td>
+              <td>Metropolitan area localized premium</td>
+            </tr>
+            <tr>
+              <td><strong>Entry-Level</strong> (1–3 yrs)</td>
+              <td>฿391,389 – ฿397,667</td>
+              <td>—</td>
+              <td>Basic installation competency</td>
+            </tr>
+            <tr>
+              <td><strong>Senior / Foreman</strong> (8+ yrs)</td>
+              <td style="color:var(--green)">฿607,351 – ฿617,094</td>
+              <td>—</td>
+              <td>Complex grid synchronization capability</td>
+            </tr>
+            <tr>
+              <td><strong>Performance Bonus</strong></td>
+              <td>฿9,497 – ฿9,650</td>
+              <td>—</td>
+              <td>Standard annual bonus across industry</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div>
+        <div class="label">Total Annual Payroll (5-Person Crew)</div>
+        <div class="value">฿2,400,000</div>
+      </div>
+      <div style="text-align:right">
+        <div class="label">Per Month</div>
+        <div class="value cyan" style="font-size:1.1rem">฿200,000</div>
+      </div>
+    </div>
+
+    <!-- Tooling & Training -->
+    <div class="card-grid cols-3" style="margin-top:24px">
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <div class="card-title">Safety Equipment</div>
+        <div class="card-val">฿17,500–31,500</div>
+        <div class="card-desc">Per technician. Premium fall-protection harnesses, lifeline kits (Petzl-grade). Critical for monsoon-season metal roof work.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚙️</div>
+        <div class="card-title">Solar Toolkits</div>
+        <div class="card-val cyan">฿10,500–35,000</div>
+        <div class="card-desc">Per set. MC4 crimping tools, precision wire strippers, calibrated torque wrenches, irradiance meters, multimeters, megohmmeters.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <div class="card-title">Training &amp; Certification</div>
+        <div class="card-val green">฿150,000–300,000</div>
+        <div class="card-desc">Annual per crew. EIT 2025 compliance, high-voltage safety renewals, advanced engineering certifications. International courses: ฿140K–210K per participant.</div>
+      </div>
+    </div>
+
+    <div class="summary-box" style="margin-top:16px">
+      <div>
+        <div class="label">Total Crew Tooling CapEx (5-Person)</div>
+        <div class="value">฿250,000–350,000</div>
+      </div>
+      <div style="text-align:right">
+        <div class="label">Annual Training OpEx</div>
+        <div class="value cyan" style="font-size:1.1rem">฿150,000–300,000</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 6: OPERATIONAL MODELS ═══ -->
+  <section class="section" id="models">
+    <div class="eyebrow-sm">Strategy</div>
+    <div class="section-title">In-House vs. Subcontracting: Operational Models</div>
+    <p class="section-desc">
+      The most critical operational divergence lies in labor capitalization: developing a proprietary in-house workforce versus relying on outsourced subcontracting teams. The optimal strategy is a meticulously calibrated hybrid approach.
+    </p>
+
+    <div class="compare-grid">
+      <!-- Scenario A -->
+      <div class="compare-card">
+        <div class="compare-label">Scenario A</div>
+        <div class="compare-title">100% In-House</div>
+        <ul class="compare-list">
+          <li>Gross Margins <span style="color:var(--green)">15–35%</span></li>
+          <li>Net Margins <span style="color:var(--green)">10–15%</span></li>
+          <li>Quality Control <span style="color:var(--green)">Full</span></li>
+          <li>Fixed Overhead <span style="color:var(--red)">High</span></li>
+          <li>Scalability <span style="color:var(--amber)">Limited</span></li>
+          <li>Brand Equity <span style="color:var(--green)">Strong</span></li>
+          <li>Monsoon Risk <span style="color:var(--red)">Cash drain</span></li>
+        </ul>
+      </div>
+
+      <!-- Scenario C (Hybrid) -->
+      <div class="compare-card featured">
+        <div class="compare-label" style="color:var(--amber)">Scenario C</div>
+        <div class="compare-title" style="color:var(--amber)">Strategic Hybrid</div>
+        <ul class="compare-list">
+          <li>Gross Margins <span style="color:var(--green)">15–30%</span></li>
+          <li>Net Margins <span style="color:var(--green)">10–15%</span></li>
+          <li>Quality Control <span style="color:var(--green)">Full (core)</span></li>
+          <li>Fixed Overhead <span style="color:var(--amber)">Moderate</span></li>
+          <li>Scalability <span style="color:var(--green)">Flexible</span></li>
+          <li>Brand Equity <span style="color:var(--green)">Strong</span></li>
+          <li>Surge Capacity <span style="color:var(--green)">Subs for labor</span></li>
+        </ul>
+      </div>
+
+      <!-- Scenario B -->
+      <div class="compare-card">
+        <div class="compare-label">Scenario B</div>
+        <div class="compare-title">100% Subcontracted</div>
+        <ul class="compare-list">
+          <li>Gross Margins <span style="color:var(--red)">Compressed</span></li>
+          <li>Net Margins <span style="color:var(--red)">5–8%</span></li>
+          <li>Quality Control <span style="color:var(--red)">Low</span></li>
+          <li>Fixed Overhead <span style="color:var(--green)">Zero</span></li>
+          <li>Scalability <span style="color:var(--green)">Explosive</span></li>
+          <li>Brand Equity <span style="color:var(--red)">Fragile</span></li>
+          <li>Monsoon Risk <span style="color:var(--green)">None</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Hybrid Model:</strong> The firm invests capital to develop a highly trained, elite in-house core team for flagship projects and complex electrical commissioning (EIT 2025 compliance). Rigorously vetted subcontractors serve as variable-cost surge capacity, relegated to rudimentary mechanical tasks under direct supervisory oversight of in-house foremen.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 7: FINANCIAL PROJECTIONS ═══ -->
+  <section class="section" id="financials">
+    <div class="eyebrow-sm">Investor Returns</div>
+    <div class="section-title">Comparative Financial Projections — Year 1</div>
+    <p class="section-desc">
+      Modeling the theoretical P&amp;L for completing 5MW (5,000 kWp) of commercial installations during the firm's inaugural year. Contract price: ฿22/Wp. Gross annual revenue: ฿110,000,000.
+    </p>
+
+    <div class="table-wrap">
+      <div class="table-header">
+        <div class="table-title">Year 1 P&amp;L: In-House vs. Subcontracted (5MW)</div>
+        <div class="table-subtitle">Contract Price: ฿22/Wp · Revenue: ฿110M</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Financial Metric</th>
+              <th>Scenario A: In-House</th>
+              <th>Scenario B: Subcontracted</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Total Gross Revenue</strong></td>
+              <td>฿110,000,000</td>
+              <td>฿110,000,000</td>
+            </tr>
+            <tr>
+              <td>Hardware Procurement</td>
+              <td>฿75,000,000</td>
+              <td>฿75,000,000</td>
+            </tr>
+            <tr>
+              <td>Direct Labor &amp; Installation</td>
+              <td style="color:var(--green)">฿7,200,000 <span style="font-size:0.7rem;color:var(--muted)">(3 crews payroll)</span></td>
+              <td style="color:var(--red)">฿16,500,000 <span style="font-size:0.7rem;color:var(--muted)">(15% sub fee)</span></td>
+            </tr>
+            <tr>
+              <td>Tooling, Safety &amp; Training</td>
+              <td>฿2,500,000</td>
+              <td style="color:var(--green)">฿0 <span style="font-size:0.7rem;color:var(--muted)">(absorbed by sub)</span></td>
+            </tr>
+            <tr>
+              <td>Corporate Overhead</td>
+              <td>฿10,000,000</td>
+              <td>฿10,000,000</td>
+            </tr>
+            <tr>
+              <td><strong>Total OpEx</strong></td>
+              <td>฿94,700,000</td>
+              <td>฿101,500,000</td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.05)">
+              <td><strong style="color:var(--amber)">Net Profit</strong></td>
+              <td style="color:var(--green)"><strong>฿15,300,000</strong></td>
+              <td><strong>฿8,500,000</strong></td>
+            </tr>
+            <tr style="background:rgba(245,158,11,0.05)">
+              <td><strong style="color:var(--amber)">Net Profit Margin</strong></td>
+              <td style="color:var(--green)"><strong>13.91%</strong></td>
+              <td><strong>7.72%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <strong>Bottom Line:</strong> The in-house capitalization model nearly <strong>doubles</strong> total net profit at scale (฿15.3M vs ฿8.5M). While subcontracting reduces upfront CapEx and mitigates payroll risk during lean months, the margin compression is severe — leaving virtually no financial buffer for unexpected delays or engineering errors.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 8: CLIENT ROI ═══ -->
+  <section class="section" id="client-roi">
+    <div class="eyebrow-sm">Sales Strategy</div>
+    <div class="section-title">Client ROI: The Corporate Sales Pitch</div>
+    <p class="section-desc">
+      The firm must articulate an airtight, mathematically unassailable return on investment narrative. Thailand's equatorial positioning delivers 1,200–1,500 kWh/kWp annually, creating an overwhelmingly favorable financial equation.
+    </p>
+
+    <!-- ROI Calculation -->
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(6,182,212,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:28px;margin-bottom:20px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center">
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">System Capacity</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--amber)">100 kWp</div>
+        </div>
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Annual Energy Yield</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--cyan)">135,000 kWh</div>
+        </div>
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Year 1 Savings</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--green)">฿564,300</div>
+        </div>
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Simple Payback</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--amber)">3.89 Years</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;font-size:0.72rem;color:var(--muted)">
+        Based on ฿2,200,000 turnkey cost · ฿4.18/kWh displaced tariff · 1,350 kWh/kWp annual yield · 100% daytime self-consumption
+      </div>
+    </div>
+
+    <!-- Client Financial Table -->
+    <div class="table-wrap">
+      <div class="table-header">
+        <div class="table-title">100 kWp Commercial Array — Client Financial Model</div>
+        <div class="table-subtitle">No battery storage required (100% daytime consumption)</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Performance Metric</th>
+              <th>Value</th>
+              <th>Economic Justification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Total CapEx</strong></td>
+              <td style="color:var(--amber)">฿2,200,000</td>
+              <td>฿22/Wp market average, Tier-1 equipment</td>
+            </tr>
+            <tr>
+              <td><strong>Annual Energy Yield</strong></td>
+              <td style="color:var(--cyan)">135,000 kWh</td>
+              <td>Median 1,350 kWh/kWp (equatorial irradiance)</td>
+            </tr>
+            <tr>
+              <td><strong>Displaced Tariff</strong></td>
+              <td>฿4.18/kWh</td>
+              <td>PEA commercial rate (pre-forecasted hikes)</td>
+            </tr>
+            <tr>
+              <td><strong>Year 1 Savings</strong></td>
+              <td style="color:var(--green)">฿564,300</td>
+              <td>Direct reduction in operational utility expenses</td>
+            </tr>
+            <tr>
+              <td><strong>Simple Payback</strong></td>
+              <td style="color:var(--amber)"><strong>3.89 Years</strong></td>
+              <td>Point of total capital recovery</td>
+            </tr>
+            <tr>
+              <td><strong>With 150% Tax Deduction</strong></td>
+              <td style="color:var(--green)"><strong>&lt; 3 Years</strong></td>
+              <td>Effective out-of-pocket cost drops precipitously</td>
+            </tr>
+            <tr>
+              <td><strong>Remaining Lifespan Value</strong></td>
+              <td style="color:var(--green)"><strong>~20 years free electricity</strong></td>
+              <td>After payback, massive liquidity injection to bottom line</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <strong>Tax Strategy:</strong> By integrating the 150% corporate tax deduction into financial modeling, the effective out-of-pocket cost drops precipitously — frequently accelerating the true payback period to under 3 years. This transitions the sales narrative from a simple energy discussion into a sophisticated corporate tax strategy.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 9: PPA PIVOT ═══ -->
+  <section class="section" id="ppa">
+    <div class="eyebrow-sm">Long-Term Vision</div>
+    <div class="section-title">The Power Purchase Agreement Pivot</div>
+    <p class="section-desc">
+      While EPC cash sales provide excellent initial cash flow, the ultimate ceiling on enterprise valuation is achieved by transitioning the firm into an Independent Power Producer through Private Power Purchase Agreements.
+    </p>
+
+    <div class="card-grid cols-2">
+      <div class="card" style="border-color:rgba(245,158,11,0.2)">
+        <div class="card-icon">📋</div>
+        <div class="card-title">Private PPA Model</div>
+        <div class="card-desc" style="margin-top:8px">
+          The firm finances, installs, owns, and maintains the PV array on the client's rooftop at <strong style="color:var(--green)">zero upfront cost</strong> to the client. The client signs a binding 20-year contract to purchase all generated electricity at a fixed discount — typically <strong style="color:var(--amber)">10–15% below</strong> the prevailing state utility tariff.
+        </div>
+      </div>
+      <div class="card" style="border-color:rgba(16,185,129,0.2)">
+        <div class="card-icon">🏦</div>
+        <div class="card-title">Enterprise Transformation</div>
+        <div class="card-desc" style="margin-top:8px">
+          Replaces lumpy, project-based construction revenue with <strong style="color:var(--green)">guaranteed, multi-decade recurring utility revenue streams</strong>. Thai entities like Gunkul Engineering and Prime Road Power consistently report robust growth driven by recurring PPA electricity sales. The firm metamorphoses from a localized contractor into a <strong style="color:var(--amber)">privately held renewable utility</strong>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 10: STRATEGIC DIRECTIVES ═══ -->
+  <section class="section" id="conclusion">
+    <div class="eyebrow-sm">Conclusion</div>
+    <div class="section-title">Strategic Directives for Investors</div>
+
+    <div class="card-grid cols-4" style="margin-bottom:24px">
+      <div class="card" style="text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:8px">🏗️</div>
+        <div class="card-title" style="font-size:0.78rem">Build In-House Core</div>
+        <div class="card-desc">Deploy ฿2.4M payroll + ฿350K tooling per crew. Reject total subcontractor reliance.</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:8px">📜</div>
+        <div class="card-title" style="font-size:0.78rem">EIT 2025 Compliance</div>
+        <div class="card-desc">Continuous training on fire prevention, arc fault protection, rapid shutdown mechanisms.</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:8px">💰</div>
+        <div class="card-title" style="font-size:0.78rem">Tax-Led Sales</div>
+        <div class="card-desc">Anchor sales in 150% tax deduction + empirical payback modeling for CFO-level pitches.</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:1.6rem;margin-bottom:8px">🔄</div>
+        <div class="card-title" style="font-size:0.78rem">PPA Transition</div>
+        <div class="card-desc">Maneuver toward recurring revenue via Private Power Purchase Agreements for maximum valuation.</div>
+      </div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(16,185,129,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:28px">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center">
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Target Net Margin</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.5rem;font-weight:700;color:var(--green)">10–15%</div>
+        </div>
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Year 1 Net Profit (5MW)</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.5rem;font-weight:700;color:var(--amber)">฿15.3M</div>
+        </div>
+        <div>
+          <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Client Payback</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.5rem;font-weight:700;color:var(--cyan)">&lt; 4 Years</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:20px">
+      <strong>Asymmetric Opportunity:</strong> The alignment of impending utility rate hikes, removal of Ror. Ngor. 4 factory licensing, and collapse of PV module pricing to historic lows has created an environment where engineering firms can thrive while simultaneously delivering staggering financial value to their corporate clients. The window is open — capital deployment now captures maximum first-mover advantage.
+    </div>
+  </section>
+
+  <!-- ═══ SOURCES ═══ -->
+  <section class="section" id="sources">
+    <div class="eyebrow-sm">References</div>
+    <div class="section-title">Data Sources &amp; Citations</div>
+    <div style="columns:2;column-gap:32px;font-size:0.72rem;color:var(--muted);line-height:1.8">
+      <p><strong style="color:rgba(238,242,255,0.5)">[1]</strong> Thailand Solar Energy Market — Mordor Intelligence / MarketResearch.com (2026–2031)</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[3]</strong> Thailand Energy Industry Outlook 2025–2030 — Intellify</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[5]</strong> Power price cut to bring in the New Year — Bangkok Post</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[6]</strong> Solar Installation Regulations in Thailand from 2025 — SolarPPM</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[7]</strong> Thailand Eases Solar Rooftop Regulations — Acclime</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[10]</strong> Thailand Tax Incentives for Energy Efficiency — Orbis Alliance</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[11]</strong> Evaluating ROI of Solar Panels in Thailand — Reddit r/Thailand</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[13]</strong> Spring 2025 Solar Industry Update — NREL</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[14]</strong> April 2025 Tariffs on Solar Equipment — Sunhub</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[15]</strong> Rooftop Solar Business Models for Thailand — Krungsri Research</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[16]</strong> Solar Power System Costs — Greenergy Thailand</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[20–23]</strong> Solar Installer Salary Data — ERI / SalaryExpert (2026)</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[24]</strong> Solar Install &amp; Maintenance Kit — Solar Tools USA</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[26]</strong> EIT 2025 Thai Electrical Code — Bangkok Post</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[28–30]</strong> Solar PV Training Courses — Scandinavian Academy / SIT</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[33]</strong> Overhead Costs &amp; Profit Margins in Solar — Lumber</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[35]</strong> Hidden Costs That Impact Solar ROI — Eigen Energy</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[36]</strong> Thailand Solar Panel Manufacturing Report — PVKnowhow</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[38]</strong> Thailand Solar Business Course — IST India</p>
+      <p><strong style="color:rgba(238,242,255,0.5)">[39]</strong> Gunkul Engineering Q1 Report — Gunkul.com</p>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section" style="text-align:center;padding:48px 0 32px">
+    <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--amber);margin-bottom:12px">Ready to Build?</div>
+    <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:12px">Power the Solar-AI Revolution</div>
+    <p style="color:var(--muted);font-size:0.88rem;max-width:500px;margin:0 auto 24px;line-height:1.7">
+      SAI tokens fund the infrastructure behind this research. Join the Baseflow network and help deploy solar-AI nodes across Thailand.
+    </p>
+    <a href="../presale.html" style="display:inline-block;background:linear-gradient(135deg,var(--amber),#f97316);color:#000;border:none;border-radius:10px;padding:14px 32px;font-family:'Unbounded',sans-serif;font-size:0.82rem;font-weight:700;text-decoration:none;transition:all 0.25s;letter-spacing:0.03em">
+      Buy SAI Tokens →
+    </a>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-logo">BASEFLOW · RESEARCH</div>
+    <div class="footer-links">
+      <a href="../presale.html">Token Sale</a>
+      <a href="#">Whitepaper</a>
+      <a href="#">Terms</a>
+      <a href="mailto:info@baseflow.io">Contact</a>
+    </div>
+    <div class="footer-disclaimer">
+      This research report is provided for informational purposes only and does not constitute investment advice. Data sourced from publicly available market research, government publications, and industry reports as of March 2026. All projections are hypothetical and subject to market conditions. Baseflow is not responsible for investment decisions made based on this analysis.
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+</body>
+</html>

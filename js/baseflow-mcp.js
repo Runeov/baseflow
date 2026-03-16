@@ -34,7 +34,7 @@
 (function() {
   'use strict';
 
-  const DATA_URL = 'data/baseflow-roi.json';
+  const DATA_URL = '/data/baseflow-roi.json';
   let mcpData = null;
   let isLoaded = false;
 

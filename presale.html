@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════╗
+║  SAI TOKEN PRESALE — PRODUCTION ✅                            ║
+║                                                              ║
+║  Domain:   baseflow.energy                                   ║
+║  Wallet:   0x0812522C4c653E9385f085a909b6A43Bb5966cb5       ║
+║  Supabase: https://pjzdowbmggfpcjrdvdcf.supabase.co        ║
+║  Network:  Polygon Mainnet (chainId 137)                     ║
+╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAI Token Presale — Baseflow Network</title>
+
+<!-- SEO & Open Graph -->
+<meta name="description" content="Buy SAI tokens at presale price. Power the world's first solar-AI-crypto node network on Polygon. Phase 1 price: $0.10 per SAI.">
+<meta name="keywords" content="SAI token, presale, Baseflow, solar AI, crypto, Polygon, DePIN">
+<meta property="og:title" content="SAI Token Presale — Phase 1 Live">
+<meta property="og:description" content="Buy SAI tokens at $0.10. Power the world's first solar-AI node network. Limited Phase 1 allocation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baseflow.energy/presale.html">
+<meta property="og:image" content="https://baseflow.energy/og-presale.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SAI Token Presale — Phase 1 Live">
+<meta name="twitter:description" content="Buy SAI tokens at $0.10. Power the world's first solar-AI node network.">
+<meta name="twitter:image" content="https://baseflow.energy/og-presale.png">
+
+<link rel="canonical" href="https://baseflow.energy/presale.html">
+<link rel="icon" type="image/png" href="img/logo_1200.png">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- ethers.js v5 — wallet connection & blockchain transactions (reliable CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Supabase JS v2 — database logging -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<!-- Baseflow MCP data binding engine — populates data-mcp tags with live numbers -->
+<script src="js/baseflow-mcp.js"></script>
+
+<style>
+:root {
+  --bg: #04060d;
+  --surface: #080e1c;
+  --s2: #0d1526;
+  --s3: #111d35;
+  --border: rgba(255,255,255,0.06);
+  --amber: #f59e0b;
+  --amber-d: rgba(245,158,11,0.12);
+  --amber-g: rgba(245,158,11,0.35);
+  --cyan: #06b6d4;
+  --cyan-d: rgba(6,182,212,0.1);
+  --green: #10b981;
+  --red: #ef4444;
+  --text: #eef2ff;
+  --muted: rgba(238,242,255,0.42);
+  --r: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  font-family: 'Epilogue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 15% 0%, rgba(245,158,11,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 85% 90%, rgba(6,182,212,0.05) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* ─── DEV BANNER ─── */
+.dev-banner {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 100;
+  display: none;
+}
+.dev-banner.show { display: block; }
+.dev-banner code { background: rgba(0,0,0,0.25); padding: 2px 6px; border-radius: 4px; font-size: 0.72rem; }
+
+/* ─── LAYOUT ─── */
+.wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.page-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+.logo { font-family: 'Unbounded', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--amber); letter-spacing: 0.06em; display: flex; align-items: center; gap: 10px; }
+.logo img { height: 36px; width: 36px; border-radius: 50%; object-fit: cover; }
+.live-badge { display: flex; align-items: center; gap: 7px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 20px; padding: 5px 12px; font-size: 0.7rem; color: var(--green); }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 1.5s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+/* ─── HERO ─── */
+.hero { display: grid; grid-template-columns: 1fr 420px; gap: 48px; align-items: start; padding: 60px 0 40px; }
+.hero-eyebrow { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.hero-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--amber); }
+h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 18px; }
+.hero-desc { color: rgba(238,242,255,0.6); line-height: 1.8; font-size: 0.95rem; font-weight: 300; max-width: 480px; margin-bottom: 28px; }
+
+/* ─── COUNTDOWN ─── */
+.countdown-wrap { background: var(--surface); border: 1px solid rgba(245,158,11,0.15); border-radius: var(--r); padding: 18px 22px; margin-bottom: 20px; }
+.countdown-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.countdown-label::before { content: '⏱'; }
+.countdown-grid { display: flex; gap: 12px; }
+.cd-unit { text-align: center; flex: 1; }
+.cd-val { font-family: 'Unbounded', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--amber); display: block; background: var(--s2); border-radius: 8px; padding: 8px 4px; }
+.cd-lbl { font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; display: block; }
+
+/* ─── RAISE PROGRESS ─── */
+.raise-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 22px; margin-bottom: 28px; }
+.raise-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.raise-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.raise-amount { font-family: 'Unbounded', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--amber); }
+.raise-target { font-size: 0.75rem; color: var(--muted); }
+.progress-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; margin-bottom: 4px; position: relative; }
+.progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--amber), #f97316); transition: width 1.2s cubic-bezier(0.22,1,0.36,1); }
+.progress-milestones { display: flex; justify-content: space-between; margin-bottom: 10px; position: relative; height: 16px; }
+.milestone { position: absolute; transform: translateX(-50%); font-size: 0.55rem; color: var(--muted); text-align: center; }
+.milestone::before { content: ''; display: block; width: 1px; height: 6px; background: rgba(255,255,255,0.15); margin: 0 auto 2px; }
+.raise-stats { display: flex; gap: 24px; }
+.rs-item { font-size: 0.72rem; color: var(--muted); }
+.rs-item span { color: rgba(238,242,255,0.8); font-weight: 500; }
+
+/* ─── TOKEN METRICS ─── */
+.token-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.tm { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+.tm-val { font-family: 'Unbounded', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--amber); display: block; }
+.tm-lbl { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; }
+
+/* ─── BUY WIDGET ─── */
+.buy-card {
+  background: var(--surface);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--r);
+  padding: 28px;
+  position: sticky;
+  top: 24px;
+}
+.buy-title { font-family: 'Unbounded', sans-serif; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; }
+.buy-phase { background: var(--amber-d); border: 1px solid rgba(245,158,11,0.25); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+.phase-name { font-size: 0.7rem; color: var(--muted); }
+.phase-price { font-family: 'Unbounded', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--amber); }
+.phase-note { font-size: 0.65rem; color: var(--muted); margin-top: 2px; }
+
+/* Payment selector */
+.pay-tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+.pay-tab { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--muted); font-family: 'Epilogue', sans-serif; font-size: 0.78rem; cursor: pointer; transition: all 0.22s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.pay-tab:hover, .pay-tab.active { border-color: var(--amber); color: var(--amber); background: var(--amber-d); }
+
+/* Input group */
+.input-group { margin-bottom: 14px; }
+.input-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.bal-label { color: var(--cyan); cursor: pointer; }
+.input-row { display: flex; align-items: center; background: var(--s2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+.input-row:focus-within { border-color: rgba(245,158,11,0.4); }
+.input-row input { flex: 1; background: transparent; border: none; outline: none; padding: 12px 14px; font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text); }
+.input-row input::placeholder { color: var(--muted); font-weight: 400; font-size: 0.85rem; }
+.input-tag { padding: 0 14px; font-size: 0.75rem; font-weight: 600; color: var(--muted); border-left: 1px solid var(--border); white-space: nowrap; }
+.input-error { font-size: 0.68rem; color: var(--red); margin-top: 4px; display: none; }
+.input-error.show { display: block; }
+
+/* Conversion display */
+.conversion { background: var(--s2); border-radius: 8px; padding: 12px 14px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+.conv-label { font-size: 0.68rem; color: var(--muted); }
+.conv-val { font-family: 'Unbounded', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--amber); }
+.conv-sub { font-size: 0.65rem; color: var(--muted); text-align: right; margin-top: 2px; }
+
+/* Buttons */
+.btn-connect, .btn-buy {
+  width: 100%; padding: 14px; border: none; border-radius: 10px; font-family: 'Unbounded', sans-serif; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.25s; letter-spacing: 0.03em;
+}
+.btn-connect { background: linear-gradient(135deg, var(--amber), #f97316); color: #000; }
+.btn-connect:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--amber-g); }
+.btn-buy { background: linear-gradient(135deg, var(--amber), #f97316); color: #000; }
+.btn-buy:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 24px var(--amber-g); }
+.btn-buy:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-switch { width: 100%; padding: 12px; border: 1px solid rgba(245,158,11,0.4); border-radius: 10px; background: var(--amber-d); color: var(--amber); font-family: 'Unbounded', sans-serif; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.22s; }
+.btn-switch:hover { background: var(--amber); color: #000; }
+
+/* Connected wallet display */
+.wallet-info { background: var(--s2); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.wallet-addr { font-family: 'Unbounded', sans-serif; font-size: 0.72rem; color: var(--green); }
+.wallet-bal { font-size: 0.7rem; color: var(--muted); }
+.btn-disconnect { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; transition: color 0.2s; }
+.btn-disconnect:hover { color: var(--red); }
+
+/* Transaction status */
+.tx-status { border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; font-size: 0.8rem; display: none; align-items: flex-start; gap: 10px; }
+.tx-status.show { display: flex; }
+.tx-status.pending { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); color: var(--cyan); }
+.tx-status.success { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--green); }
+.tx-status.error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); color: var(--red); }
+.tx-icon { font-size: 1rem; flex-shrink: 0; }
+.tx-text { line-height: 1.5; }
+.tx-link { color: inherit; opacity: 0.75; font-size: 0.7rem; display: block; margin-top: 4px; word-break: break-all; }
+.tx-link:hover { opacity: 1; }
+
+/* MATIC warning */
+.matic-warning { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.72rem; color: var(--red); display: none; line-height: 1.5; }
+.matic-warning.show { display: block; }
+
+/* Spinner */
+.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(6,182,212,0.3); border-top-color: var(--cyan); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; margin-top: 2px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.buy-disclaimer { font-size: 0.65rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.6; }
+
+/* ─── CELEBRATION MODAL ─── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(4,6,13,0.85);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.show { display: flex; }
+.modal-card {
+  background: var(--surface);
+  border: 1px solid rgba(245,158,11,0.3);
+  border-radius: 20px;
+  padding: 40px 32px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: modalIn 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.modal-emoji { font-size: 3rem; margin-bottom: 16px; }
+.modal-title { font-family: 'Unbounded', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+.modal-subtitle { color: var(--muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 20px; }
+.modal-amount { font-family: 'Unbounded', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--amber); margin-bottom: 4px; }
+.modal-usd { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; }
+.modal-tx { background: var(--s2); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; }
+.modal-tx a { color: var(--cyan); font-size: 0.72rem; text-decoration: none; word-break: break-all; }
+.modal-tx a:hover { color: var(--amber); }
+.modal-share { display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; }
+.modal-share a {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px; font-size: 0.72rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s;
+}
+.share-x { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid var(--border); }
+.share-x:hover { background: rgba(255,255,255,0.15); }
+.share-tg { background: rgba(6,182,212,0.12); color: var(--cyan); border: 1px solid rgba(6,182,212,0.25); }
+.share-tg:hover { background: rgba(6,182,212,0.2); }
+.modal-close {
+  background: linear-gradient(135deg, var(--amber), #f97316);
+  color: #000; border: none; border-radius: 10px;
+  padding: 12px 32px; font-family: 'Unbounded', sans-serif;
+  font-size: 0.78rem; font-weight: 700; cursor: pointer;
+  transition: all 0.2s;
+}
+.modal-close:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--amber-g); }
+
+/* Confetti canvas */
+#confettiCanvas { position: fixed; inset: 0; z-index: 1001; pointer-events: none; }
+
+/* ─── INFO SECTIONS (below hero grid) ─── */
+.section { padding: 48px 0; border-top: 1px solid var(--border); }
+.section-title { font-family: 'Unbounded', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 28px; }
+.eyebrow-sm { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--amber); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.eyebrow-sm::before { content: ''; width: 14px; height: 1px; background: var(--amber); }
+
+/* How it works steps */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; position: relative; }
+.step-num { font-family: 'Unbounded', sans-serif; font-size: 0.65rem; font-weight: 700; color: var(--bg); background: var(--amber); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.step-title { font-weight: 500; font-size: 0.88rem; margin-bottom: 6px; }
+.step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+
+/* Token allocation */
+.alloc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.alloc-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.alloc-pct { font-family: 'Unbounded', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--amber); }
+.alloc-name { font-size: 0.78rem; color: rgba(238,242,255,0.8); margin: 4px 0 2px; font-weight: 500; }
+.alloc-desc { font-size: 0.7rem; color: var(--muted); }
+.alloc-item.a2 .alloc-pct { color: var(--cyan); }
+.alloc-item.a3 .alloc-pct { color: var(--green); }
+
+/* ─── FAQ ─── */
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.faq-q {
+  padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.88rem; font-weight: 500; color: var(--text); transition: color 0.2s;
+  user-select: none;
+}
+.faq-q:hover { color: var(--amber); }
+.faq-arrow { font-size: 0.7rem; color: var(--muted); transition: transform 0.3s; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 20px;
+  font-size: 0.82rem; color: var(--muted); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 300px; padding: 0 20px 16px; }
+
+/* Recent purchases table */
+.purchases-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+.purchases-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.purchases-title { font-family: 'Unbounded', sans-serif; font-size: 0.75rem; font-weight: 600; }
+.purchases-count { font-size: 0.68rem; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+th { padding: 10px 16px; text-align: left; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--s2); }
+td { padding: 11px 16px; font-size: 0.82rem; border-bottom: 1px solid var(--border); color: rgba(238,242,255,0.75); }
+tr:last-child td { border-bottom: none; }
+.tx-hash-cell { font-family: monospace; font-size: 0.72rem; color: var(--cyan); }
+.tx-hash-cell a { color: inherit; text-decoration: none; }
+.tx-hash-cell a:hover { color: var(--amber); }
+.status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; font-weight: 500; }
+.status-badge.confirmed { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+.status-badge.pending { background: rgba(6,182,212,0.1); color: var(--cyan); border: 1px solid rgba(6,182,212,0.25); }
+.empty-state { padding: 40px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+/* Skeleton loading */
+.skeleton { background: linear-gradient(90deg, var(--s2) 25%, var(--s3) 50%, var(--s2) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 6px; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.skeleton-row { display: flex; gap: 16px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.skeleton-cell { height: 14px; border-radius: 4px; }
+.skeleton-cell.w1 { width: 80px; }
+.skeleton-cell.w2 { width: 100px; }
+.skeleton-cell.w3 { width: 120px; }
+.skeleton-cell.w4 { width: 90px; }
+
+/* Callout */
+.callout { border-left: 2px solid var(--amber); background: var(--amber-d); border-radius: 0 10px 10px 0; padding: 12px 16px; font-size: 0.84rem; color: rgba(238,242,255,0.72); line-height: 1.65; }
+.callout.blue { border-color: var(--cyan); background: var(--cyan-d); }
+
+/* Footer */
+footer { padding: 32px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-logo { font-family: 'Unbounded', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--amber); display: flex; align-items: center; gap: 8px; }
+.footer-logo img { height: 28px; width: 28px; border-radius: 50%; object-fit: cover; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--amber); }
+.footer-social { display: flex; gap: 12px; }
+.footer-social a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+.footer-social a:hover { color: var(--amber); }
+.footer-disclaimer { font-size: 0.65rem; color: var(--muted); width: 100%; line-height: 1.65; }
+
+/* ─── MOBILE STICKY CTA ─── */
+.mobile-cta {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  background: var(--surface);
+  border-top: 1px solid rgba(245,158,11,0.2);
+  padding: 12px 20px;
+  backdrop-filter: blur(12px);
+}
+.mobile-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 600px; margin: 0 auto; }
+.mobile-cta-text { font-size: 0.72rem; color: var(--muted); }
+.mobile-cta-text strong { color: var(--amber); font-family: 'Unbounded', sans-serif; font-size: 0.85rem; display: block; }
+.mobile-cta-btn {
+  background: linear-gradient(135deg, var(--amber), #f97316);
+  color: #000; border: none; border-radius: 8px;
+  padding: 10px 20px; font-family: 'Unbounded', sans-serif;
+  font-size: 0.72rem; font-weight: 700; cursor: pointer;
+  white-space: nowrap; transition: all 0.2s;
+}
+.mobile-cta-btn:hover { box-shadow: 0 4px 16px var(--amber-g); }
+
+/* ─── RESPONSIVE ─── */
+/* ─── ROI SECTION GRID ─── */
+#roi-section .alloc-grid { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .buy-card { position: static; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .alloc-grid { grid-template-columns: repeat(2, 1fr); }
+  #roi-section .alloc-grid { grid-template-columns: repeat(2, 1fr); }
+  .token-metrics { grid-template-columns: repeat(3, 1fr); }
+  .mobile-cta { display: block; }
+  body { padding-bottom: 70px; }
+}
+@media (max-width: 520px) {
+  .steps { grid-template-columns: 1fr; }
+  .alloc-grid { grid-template-columns: 1fr; }
+  #roi-section .alloc-grid { grid-template-columns: 1fr; }
+  .token-metrics { grid-template-columns: 1fr; }
+  table { font-size: 0.75rem; }
+  th, td { padding: 8px 10px; }
+  .countdown-grid { gap: 8px; }
+  .cd-val { font-size: 1.1rem; }
+  /* ROI calculation grid stacks on mobile */
+  #roi-section [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+  #roi-section [style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- DEV MODE BANNER (shown when placeholders detected) -->
+<div class="dev-banner" id="devBanner">
+  ⚠️ <strong>DEV MODE</strong> — Config placeholders detected. Replace <code>RECEIVING_WALLET</code>, <code>SUPABASE_URL</code>, and <code>SUPABASE_ANON_KEY</code> in CONFIG before going live.
+</div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <a href="index.html" class="logo" style="text-decoration:none"><img src="img/logo_1200.png" alt="Baseflow Logo">BASEFLOW</a>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="index.html" style="font-size:0.72rem;color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--amber)'" onmouseout="this.style.color='var(--muted)'">← Overview</a>
+      <div class="live-badge"><span class="live-dot"></span>Presale Live</div>
+    </div>
+  </header>
+
+  <!-- HERO GRID -->
+  <div class="hero">
+
+    <!-- LEFT: Info -->
+    <div>
+      <div class="hero-eyebrow">Phase 1 · Public Presale</div>
+      <h1>Buy <span style="color:var(--amber)">SAI</span> Tokens<br>at Launch Price</h1>
+      <p class="hero-desc">
+        Power the world's first solar-AI-crypto node network. SAI tokens fuel node operations, enable AI compute access, and participate in network governance — supported by real solar infrastructure across Thailand.
+      </p>
+
+      <!-- Countdown timer -->
+      <div class="countdown-wrap">
+        <div class="countdown-label">Phase 1 Ends In</div>
+        <div class="countdown-grid">
+          <div class="cd-unit"><span class="cd-val" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
+          <div class="cd-unit"><span class="cd-val" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
+          <div class="cd-unit"><span class="cd-val" id="cdMins">--</span><span class="cd-lbl">Mins</span></div>
+          <div class="cd-unit"><span class="cd-val" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
+        </div>
+      </div>
+
+      <!-- Raise progress -->
+      <div class="raise-box">
+        <div class="raise-header">
+          <div>
+            <div class="raise-label">Total Raised</div>
+            <div class="raise-amount" id="totalRaised">$0</div>
+          </div>
+          <div style="text-align:right">
+            <div class="raise-label">Raise Target</div>
+            <div class="raise-target"><span data-mcp="token.raise_target" data-mcp-format="currency">$600,000</span> USD</div>
+          </div>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <div class="progress-milestones">
+          <div class="milestone" style="left:25%">Pilot Nodes</div>
+          <div class="milestone" style="left:50%">Training Program</div>
+          <div class="milestone" style="left:75%">Platform Dev</div>
+        </div>
+        <div class="raise-stats">
+          <div class="rs-item">Participants: <span id="participantCount">0</span></div>
+          <div class="rs-item">SAI Sold: <span id="saiSold">0</span></div>
+          <div class="rs-item">Network: <span style="color:var(--cyan)">Polygon</span></div>
+        </div>
+      </div>
+
+      <!-- Token metrics (data-mcp powered) -->
+      <div class="token-metrics">
+        <div class="tm"><span class="tm-val" data-mcp="token.price_phase1" data-mcp-format="price">$0.10</span><span class="tm-lbl">Token Price</span></div>
+        <div class="tm"><span class="tm-val" data-mcp="token.for_sale" data-mcp-format="number-m">100M</span><span class="tm-lbl">SAI For Sale</span></div>
+        <div class="tm"><span class="tm-val" data-mcp="token.total_supply" data-mcp-format="number-m">1B</span><span class="tm-lbl">Max Supply</span></div>
+      </div>
+
+      <div class="callout">
+        <strong>Presale allocation:</strong> SAI tokens are recorded against your wallet address and distributed at TGE (Token Generation Event). Purchase records are immutably logged on Polygon and stored in our database. <strong>Tokens will be airdropped to your wallet automatically.</strong>
+      </div>
+    </div>
+
+    <!-- RIGHT: Buy Widget -->
+    <div>
+      <div class="buy-card" id="buyCard">
+        <div class="buy-title">Purchase SAI Tokens</div>
+
+        <div class="buy-phase">
+          <div>
+            <div class="phase-name">Phase 1 Presale Price</div>
+            <div class="phase-note">Phase 2 price: <span data-mcp="token.price_phase2" data-mcp-format="price">$0.15</span> · TGE price: <span data-mcp="token.price_tge" data-mcp-format="price">$0.25</span></div>
+          </div>
+          <div class="phase-price"><span data-mcp="token.price_phase1" data-mcp-format="price">$0.10</span> / SAI</div>
+        </div>
+
+        <!-- Payment method tabs -->
+        <div class="pay-tabs">
+          <button class="pay-tab active" onclick="setPayment('USDT',this)">
+            <span>💵</span> USDT
+          </button>
+          <button class="pay-tab" onclick="setPayment('MATIC',this)">
+            <span>⬡</span> MATIC
+          </button>
+        </div>
+
+        <!-- Not connected state -->
+        <div id="stateDisconnected">
+          <div style="background:var(--s2);border-radius:8px;padding:16px;margin-bottom:16px;text-align:center">
+            <div style="font-size:1.5rem;margin-bottom:8px">🦊</div>
+            <div style="font-size:0.8rem;color:var(--muted);line-height:1.6">Connect MetaMask to purchase SAI tokens.<br>Polygon network required.</div>
+          </div>
+          <button class="btn-connect" id="btnConnect" onclick="connectWallet()">
+            Connect Wallet
+          </button>
+        </div>
+
+        <!-- Wrong network state -->
+        <div id="stateWrongNetwork" style="display:none">
+          <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:8px;padding:14px;margin-bottom:14px;text-align:center;font-size:0.8rem;color:var(--red)">
+            ⚠️ Please switch to <strong>Polygon Mainnet</strong>
+          </div>
+          <button class="btn-switch" onclick="switchToPolygon()">Switch to Polygon</button>
+        </div>
+
+        <!-- Connected state -->
+        <div id="stateConnected" style="display:none">
+          <div class="wallet-info">
+            <div>
+              <div class="wallet-addr" id="walletAddr">0x...</div>
+              <div class="wallet-bal" id="walletBal">Balance: —</div>
+            </div>
+            <button class="btn-disconnect" onclick="disconnectWallet()">Disconnect</button>
+          </div>
+
+          <!-- MATIC price warning -->
+          <div class="matic-warning" id="maticWarning">
+            ⚠️ Unable to fetch live MATIC price. MATIC payments are temporarily disabled. Please use USDT instead.
+          </div>
+
+          <!-- Amount input -->
+          <div class="input-group">
+            <div class="input-label">
+              <span id="payLabel">You Pay (USDT)</span>
+              <span class="bal-label" onclick="fillMax()" title="Fill max balance">MAX</span>
+            </div>
+            <div class="input-row">
+              <input type="number" id="payAmount" placeholder="0.00" min="0" step="0.01" oninput="updateConversion()">
+              <span class="input-tag" id="payTag">USDT</span>
+            </div>
+            <div class="input-error" id="inputError">Minimum purchase: $10 USD (100 SAI)</div>
+          </div>
+
+          <!-- Conversion display -->
+          <div class="conversion">
+            <div>
+              <div class="conv-label">You Receive</div>
+            </div>
+            <div style="text-align:right">
+              <div class="conv-val" id="saiAmount">0 SAI</div>
+              <div class="conv-sub" id="convRate">@ $0.10 per SAI</div>
+            </div>
+          </div>
+
+          <!-- Transaction status -->
+          <div class="tx-status" id="txStatus">
+            <span class="tx-icon" id="txIcon"></span>
+            <div class="tx-text">
+              <div id="txMessage"></div>
+              <a id="txLink" class="tx-link" target="_blank" rel="noopener" href="#" style="display:none"></a>
+            </div>
+          </div>
+
+          <!-- Buy button -->
+          <button class="btn-buy" id="btnBuy" onclick="executePurchase()" disabled>
+            Buy SAI Tokens
+          </button>
+
+          <div class="buy-disclaimer">
+            Minimum purchase: 100 SAI ($10 USDT) · This is a utility token presale, not a securities offering.<br>
+            Tokens distributed at TGE. Network: Polygon Mainnet.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="eyebrow-sm">Process</div>
+    <div class="section-title">How to Buy SAI</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Install MetaMask</div>
+        <div class="step-desc">Download MetaMask browser extension or app. Create or import a wallet. Add Polygon network (chainId 137).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Fund Your Wallet</div>
+        <div class="step-desc">Add USDT to Polygon via Binance, OKX, or bridge from Ethereum. You'll also need a small amount of MATIC for gas fees (~0.01 MATIC).</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Connect & Buy</div>
+        <div class="step-desc">Click "Connect Wallet", approve the MetaMask popup, enter your USDT amount, and confirm the transaction. Takes ~5 seconds on Polygon.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Receive SAI at TGE</div>
+        <div class="step-desc">Your purchase is recorded on-chain and in our database. SAI tokens are airdropped to your wallet address at Token Generation Event.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKEN ALLOCATION -->
+  <section class="section">
+    <div class="eyebrow-sm">Tokenomics</div>
+    <div class="section-title">SAI Token Allocation</div>
+    <div class="alloc-grid">
+      <div class="alloc-item">
+        <div class="alloc-pct">35%</div>
+        <div class="alloc-name">Ecosystem & Community</div>
+        <div class="alloc-desc">Node operator rewards, airdrops, community programs. 4-year emission schedule tied to node deployments.</div>
+      </div>
+      <div class="alloc-item a2">
+        <div class="alloc-pct">25%</div>
+        <div class="alloc-name">Treasury</div>
+        <div class="alloc-desc">Protocol development, R&D, partnerships. 4-year vesting with 12-month cliff.</div>
+      </div>
+      <div class="alloc-item">
+        <div class="alloc-pct">15%</div>
+        <div class="alloc-name">Team & Advisors</div>
+        <div class="alloc-desc">Founding team and advisors. 4-year vesting, 12-month cliff. Aligned with long-term network success.</div>
+      </div>
+      <div class="alloc-item a3">
+        <div class="alloc-pct">10%</div>
+        <div class="alloc-name">Public Sale</div>
+        <div class="alloc-desc">This presale + Phase 2 sale. Unlocked at TGE for purchasers. Current phase: $0.10/SAI.</div>
+      </div>
+      <div class="alloc-item a2">
+        <div class="alloc-pct">10%</div>
+        <div class="alloc-name">Liquidity & Staking</div>
+        <div class="alloc-desc">DEX liquidity pools (Uniswap/QuickSwap) and staking rewards for network participants.</div>
+      </div>
+      <div class="alloc-item">
+        <div class="alloc-pct">5%</div>
+        <div class="alloc-name">Marketing</div>
+        <div class="alloc-desc">Exchange listings, partnerships, ambassador programs, and regional marketing in SEA.</div>
+      </div>
+    </div>
+    <div class="callout blue" style="margin-top:20px">
+      <strong>Deflationary mechanics:</strong> 25% of all platform fees are burned. Token unlocks are tied to infrastructure milestones — not arbitrary dates. At 5,000 nodes = full supply in circulation.
+    </div>
+  </section>
+
+  <!-- NODE ROI BREAKDOWN (data-mcp powered) -->
+  <section class="section" id="roi-section">
+    <div class="eyebrow-sm">Node Economics</div>
+    <div class="section-title">Baseflow Node ROI Breakdown</div>
+    <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;margin-bottom:28px;max-width:680px">
+      Each Baseflow node combines solar panels, battery storage, and AI/crypto hardware into a self-sustaining compute unit. Here's the transparent economics behind our projected <strong style="color:var(--amber)"><span data-mcp="roi.target_pct" data-mcp-format="raw">27</span>% annual ROI</strong>.
+    </p>
+
+    <!-- Investment Breakdown -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--amber)">☀️</span> Step 1: Initial Investment
+      </h3>
+      <div class="alloc-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.solar_panels_min" data-mcp-format="currency-k" data-mcp-animate="true">$8K</div>
+          <div class="alloc-name">Solar Panels + Inverter</div>
+          <div class="alloc-desc">10kW system, <span data-mcp="investment.solar_panels_min" data-mcp-format="currency">$8,000</span>–<span data-mcp="investment.solar_panels_max" data-mcp-format="currency">$10,000</span>. Produces ~35–45kWh daily.</div>
+        </div>
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.battery_min" data-mcp-format="currency-k" data-mcp-animate="true">$4K</div>
+          <div class="alloc-name">Battery Storage</div>
+          <div class="alloc-desc">42kWh system, <span data-mcp="investment.battery_min" data-mcp-format="currency">$4,000</span>–<span data-mcp="investment.battery_max" data-mcp-format="currency">$6,500</span>. Enables 24/7 operation.</div>
+        </div>
+        <div class="alloc-item a3">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.hardware_min" data-mcp-format="currency-k" data-mcp-animate="true">$2K</div>
+          <div class="alloc-name">AI/Crypto Hardware</div>
+          <div class="alloc-desc">GPUs + ASIC, <span data-mcp="investment.hardware_min" data-mcp-format="currency">$2,000</span>–<span data-mcp="investment.hardware_max" data-mcp-format="currency">$5,000</span>. Dual RTX 5090 class.</div>
+        </div>
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="investment.setup" data-mcp-format="currency-k" data-mcp-animate="true">$1K</div>
+          <div class="alloc-name">Setup & Wiring</div>
+          <div class="alloc-desc">Installation, ventilation, software integration, node monitoring.</div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em">Total Node Investment</span>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;color:var(--amber)" data-mcp="investment.total_mid" data-mcp-format="currency" data-mcp-animate="true">$20,000</div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Range</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="investment.total_min" data-mcp-format="currency">$15,000</span> – <span data-mcp="investment.total_max" data-mcp-format="currency">$25,000</span></div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--green)">With 30% subsidy</span>
+          <div style="font-size:0.88rem;color:var(--green);font-weight:500">$14,000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Breakdown -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--green)">💰</span> Step 2: Annual Revenue Sources
+      </h3>
+      <div class="alloc-grid">
+        <div class="alloc-item a3">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="revenue.ai_compute_monthly_min" data-mcp-format="currency">$300</span>–<span data-mcp="revenue.ai_compute_monthly_max" data-mcp-format="currency">$600</span><span style="font-size:0.6rem;color:var(--muted)">/mo</span></div>
+          <div class="alloc-name">AI Compute Rentals</div>
+          <div class="alloc-desc">GPU rentals via OctaSpace/Salad at 70–90% utilization. Annual: <span data-mcp="revenue.ai_compute_min" data-mcp-format="currency">$3,600</span>–<span data-mcp="revenue.ai_compute_max" data-mcp-format="currency">$7,200</span></div>
+        </div>
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="revenue.crypto_monthly_min" data-mcp-format="currency">$100</span>–<span data-mcp="revenue.crypto_monthly_max" data-mcp-format="currency">$300</span><span style="font-size:0.6rem;color:var(--muted)">/mo</span></div>
+          <div class="alloc-name">Crypto Rewards / Mining</div>
+          <div class="alloc-desc">SAI staking + ASIC mining. Annual: <span data-mcp="revenue.crypto_min" data-mcp-format="currency">$1,200</span>–<span data-mcp="revenue.crypto_max" data-mcp-format="currency">$3,600</span></div>
+        </div>
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="revenue.energy_monthly_min" data-mcp-format="currency">$50</span>–<span data-mcp="revenue.energy_monthly_max" data-mcp-format="currency">$100</span><span style="font-size:0.6rem;color:var(--muted)">/mo</span></div>
+          <div class="alloc-name">Energy Sales / DeFi Yield</div>
+          <div class="alloc-desc">Grid sell-back + SAI staking at 5–13% APY. Annual: <span data-mcp="revenue.energy_min" data-mcp-format="currency">$600</span>–<span data-mcp="revenue.energy_max" data-mcp-format="currency">$1,200</span></div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px 20px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em">Total Annual Revenue</span>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;color:var(--green)" data-mcp="revenue.total_mid" data-mcp-format="currency" data-mcp-animate="true">$6,900</div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Range</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="revenue.total_min" data-mcp-format="currency">$5,400</span> – <span data-mcp="revenue.total_max" data-mcp-format="currency">$12,000</span></div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Monthly Benchmark</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="revenue.monthly_benchmark" data-mcp-format="currency">$575</span>/mo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Costs Breakdown -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--cyan)">⚡</span> Step 3: Annual Costs (Near-Zero with Solar)
+      </h3>
+      <div class="alloc-grid">
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem;color:var(--green)" data-mcp="costs.energy" data-mcp-format="currency">$0</div>
+          <div class="alloc-name">Energy Costs</div>
+          <div class="alloc-desc">Solar covers 100% with battery backup. Saves <span data-mcp="costs.grid_savings_min" data-mcp-format="currency">$1,200</span>–<span data-mcp="costs.grid_savings_max" data-mcp-format="currency">$1,800</span>/yr vs grid.</div>
+        </div>
+        <div class="alloc-item">
+          <div class="alloc-pct" style="font-size:1rem"><span data-mcp="costs.maintenance_min" data-mcp-format="currency">$200</span>–<span data-mcp="costs.maintenance_max" data-mcp-format="currency">$500</span></div>
+          <div class="alloc-name">Maintenance</div>
+          <div class="alloc-desc">Annual inspections, minor repairs. Batteries warrantied 10 years.</div>
+        </div>
+        <div class="alloc-item a2">
+          <div class="alloc-pct" style="font-size:1rem" data-mcp="costs.other" data-mcp-format="currency">$100</div>
+          <div class="alloc-name">Software & Internet</div>
+          <div class="alloc-desc">Node monitoring software, internet connectivity fees.</div>
+        </div>
+      </div>
+      <div style="background:var(--surface);border:1px solid rgba(6,182,212,0.2);border-radius:10px;padding:16px 20px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <span style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em">Total Annual Costs</span>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.4rem;font-weight:700;color:var(--cyan)" data-mcp="costs.total_mid" data-mcp-format="currency" data-mcp-animate="true">$400</div>
+        </div>
+        <div style="text-align:right">
+          <span style="font-size:0.72rem;color:var(--muted)">Range</span>
+          <div style="font-size:0.88rem;color:rgba(238,242,255,0.7)"><span data-mcp="costs.total_min" data-mcp-format="currency">$300</span> – <span data-mcp="costs.total_max" data-mcp-format="currency">$600</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROI Calculation Result -->
+    <div style="margin-bottom:32px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--amber)">📊</span> Step 4: ROI Calculation
+      </h3>
+      <div style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(6,182,212,0.05));border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:28px;margin-bottom:16px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center">
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Net Annual Profit</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--green)" data-mcp="roi.moderate.net_profit" data-mcp-format="currency" data-mcp-animate="true">$5,120</div>
+          </div>
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Annual ROI</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--amber)" data-mcp="roi.moderate.roi_pct" data-mcp-format="percent" data-mcp-animate="true">25.6%</div>
+          </div>
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">Payback Period</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--cyan)" data-mcp="roi.moderate.payback_years" data-mcp-format="years" data-mcp-animate="true">3.9 years</div>
+          </div>
+          <div>
+            <div style="font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:6px">20-Year Lifetime Profit</div>
+            <div style="font-family:'Unbounded',sans-serif;font-size:1.3rem;font-weight:700;color:var(--green)" data-mcp="roi.moderate.lifetime_profit_20yr" data-mcp-format="currency-k" data-mcp-animate="true">$82K</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:16px;font-size:0.72rem;color:var(--muted)">
+          Formula: ROI = [(Annual Revenue − Annual Costs) / Initial Investment] × 100
+        </div>
+      </div>
+
+      <!-- Scenario comparison -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px">🐻 Conservative</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:rgba(238,242,255,0.6)" data-mcp="roi.conservative.roi_pct" data-mcp-format="percent">14.9%</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Payback: <span data-mcp="roi.conservative.payback_years" data-mcp-format="years">6.7 years</span></div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Investment: <span data-mcp="roi.conservative.investment" data-mcp-format="currency">$25,000</span></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--amber);margin-bottom:8px">⚖️ Moderate (Base)</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:var(--amber)" data-mcp="roi.moderate.roi_pct" data-mcp-format="percent">25.6%</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Payback: <span data-mcp="roi.moderate.payback_years" data-mcp-format="years">3.9 years</span></div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Investment: <span data-mcp="roi.moderate.investment" data-mcp-format="currency">$20,000</span></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:8px">🚀 Optimistic</div>
+          <div style="font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:var(--green)" data-mcp="roi.optimistic.roi_pct" data-mcp-format="percent">62%</div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:4px">Payback: <span data-mcp="roi.optimistic.payback_years" data-mcp-format="years">1.6 years</span></div>
+          <div style="font-size:0.65rem;color:var(--muted);margin-top:2px">Investment: <span data-mcp="roi.optimistic.investment" data-mcp-format="currency">$15,000</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Network Scaling Roadmap -->
+    <div style="margin-bottom:24px">
+      <h3 style="font-family:'Unbounded',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--amber)">🌐</span> Network Scaling Roadmap
+      </h3>
+      <div class="purchases-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Timeline</th>
+              <th>Nodes</th>
+              <th>Infra Value</th>
+              <th>Annual Revenue</th>
+              <th>Annual Profit</th>
+              <th>Solar Capacity</th>
+              <th>CO₂ Offset</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Year 1</strong></td>
+              <td data-mcp="network.year1_100_nodes.node_count" data-mcp-format="number">100</td>
+              <td style="color:var(--amber)" data-mcp="network.year1_100_nodes.total_infrastructure_value" data-mcp-format="currency-m">$2M</td>
+              <td data-mcp="network.year1_100_nodes.annual_network_revenue" data-mcp-format="currency-k">$690K</td>
+              <td style="color:var(--green)" data-mcp="network.year1_100_nodes.annual_network_profit" data-mcp-format="currency-k">$650K</td>
+              <td><span data-mcp="network.year1_100_nodes.solar_capacity_kw" data-mcp-format="number">1,000</span> kW</td>
+              <td><span data-mcp="network.year1_100_nodes.co2_offset_tons_year" data-mcp-format="number">1,022</span> tons</td>
+            </tr>
+            <tr>
+              <td><strong>Year 3</strong></td>
+              <td data-mcp="network.year3_1000_nodes.node_count" data-mcp-format="number">1,000</td>
+              <td style="color:var(--amber)" data-mcp="network.year3_1000_nodes.total_infrastructure_value" data-mcp-format="currency-m">$20M</td>
+              <td data-mcp="network.year3_1000_nodes.annual_network_revenue" data-mcp-format="currency-m">$6.9M</td>
+              <td style="color:var(--green)" data-mcp="network.year3_1000_nodes.annual_network_profit" data-mcp-format="currency-m">$6.5M</td>
+              <td><span data-mcp="network.year3_1000_nodes.solar_capacity_kw" data-mcp-format="number">10,000</span> kW</td>
+              <td><span data-mcp="network.year3_1000_nodes.co2_offset_tons_year" data-mcp-format="number">10,220</span> tons</td>
+            </tr>
+            <tr>
+              <td><strong>Year 6</strong></td>
+              <td data-mcp="network.year6_5000_nodes.node_count" data-mcp-format="number">5,000</td>
+              <td style="color:var(--amber)" data-mcp="network.year6_5000_nodes.total_infrastructure_value" data-mcp-format="currency-m">$100M</td>
+              <td data-mcp="network.year6_5000_nodes.annual_network_revenue" data-mcp-format="currency-m">$34.5M</td>
+              <td style="color:var(--green)" data-mcp="network.year6_5000_nodes.annual_network_profit" data-mcp-format="currency-m">$32.5M</td>
+              <td><span data-mcp="network.year6_5000_nodes.solar_capacity_kw" data-mcp-format="number">50,000</span> kW</td>
+              <td><span data-mcp="network.year6_5000_nodes.co2_offset_tons_year" data-mcp-format="number">51,100</span> tons</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sensitivity & Risk -->
+    <div class="callout" style="margin-bottom:16px">
+      <strong>⚠️ Sensitivity:</strong> If crypto prices drop 50%, ROI halves to ~<span data-mcp="roi.conservative.roi_pct" data-mcp-format="raw">14.9</span>%. High solar uptime boosts ROI by 20–30%. With government subsidies (30–60%), payback drops to 1.8–2.5 years. All projections are hypothetical — validate with your local conditions.
+    </div>
+    <div class="callout blue">
+      <strong>🔍 Transparency:</strong> These numbers are derived from real-world solar AI/crypto node benchmarks. No public whitepaper or audit exists yet for Baseflow — these are hypothetical projections. We recommend investors model personal scenarios based on local electricity rates and sun hours. <em>Not financial advice.</em>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="eyebrow-sm">Questions</div>
+    <div class="section-title">Frequently Asked Questions</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          When do I receive my SAI tokens?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">SAI tokens are distributed at the Token Generation Event (TGE). Your purchase is recorded on-chain immediately, and tokens will be airdropped directly to the wallet address you used for purchase. You'll receive a notification when TGE is scheduled.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What network does this run on?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">The presale runs on Polygon Mainnet (chainId 137). You'll need USDT on Polygon and a small amount of MATIC for gas fees (~0.01 MATIC per transaction). If you're on the wrong network, the page will prompt you to switch.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Is SAI a security or investment product?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">No. SAI is a utility token that powers the Baseflow solar-AI node network. It is used for node operations, AI compute access, and network governance. This presale is not an offering of securities. Please consult your local regulations before participating.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What is the minimum purchase?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">The minimum purchase is 100 SAI ($10 USDT). There is no maximum limit during Phase 1, but the total Phase 1 allocation is capped at 100M SAI tokens.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can I buy with a credit card?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Currently, the presale only accepts USDT and MATIC on Polygon via MetaMask. You can purchase USDT on exchanges like Binance or OKX and send it to your MetaMask wallet on the Polygon network. Credit card support may be added in future phases.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What happens after Phase 1 ends?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Phase 2 begins with a price increase to $0.15 per SAI. The TGE listing price is planned at $0.25. Early participants in Phase 1 get the best allocation rate. Unsold Phase 1 tokens roll into Phase 2.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How is the 27% ROI calculated?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">The projected ROI is based on a hypothetical node costing ~<span data-mcp="investment.total_mid" data-mcp-format="currency">$20,000</span>, generating ~<span data-mcp="revenue.total_mid" data-mcp-format="currency">$6,900</span>/year in revenue from AI compute rentals, crypto rewards, and energy sales, with ~<span data-mcp="costs.total_mid" data-mcp-format="currency">$400</span>/year in costs. This yields a net profit of ~<span data-mcp="roi.moderate.net_profit" data-mcp-format="currency">$5,120</span> and a payback period of ~<span data-mcp="roi.moderate.payback_years" data-mcp-format="years">3.9 years</span>. These are benchmarks from similar real-world solar AI/crypto setups — not guaranteed returns. See the <a href="#roi-section" style="color:var(--amber)">full ROI breakdown</a> for details.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What are the risks?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-a">Key risks include crypto price volatility (a 50% drop halves ROI to ~<span data-mcp="roi.conservative.roi_pct" data-mcp-format="raw">14.9</span>%), fluctuating AI compute demand, solar uptime variability by location, and hardware depreciation over 5–7 years. Government subsidies (30–60%) can significantly reduce payback time. We recommend modeling your personal scenario based on local conditions.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT PURCHASES -->
+  <section class="section">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px">
+      <div>
+        <div class="eyebrow-sm">Transparency</div>
+        <div class="section-title" style="margin-bottom:0">Recent Purchases</div>
+      </div>
+      <button onclick="loadPurchases()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--muted);font-family:'Epilogue',sans-serif;font-size:0.72rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--amber)';this.style.color='var(--amber)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↻ Refresh</button>
+    </div>
+    <div class="purchases-wrap">
+      <div class="purchases-header">
+        <div class="purchases-title">Verified On-Chain Purchases</div>
+        <div class="purchases-count" id="purchasesCount">Loading...</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Wallet</th>
+              <th>SAI Purchased</th>
+              <th>Amount Paid</th>
+              <th>Tx Hash</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="purchasesTable">
+            <!-- Skeleton loading -->
+            <tr><td colspan="6" style="padding:0">
+              <div class="skeleton-row"><div class="skeleton skeleton-cell w1"></div><div class="skeleton skeleton-cell w2"></div><div class="skeleton skeleton-cell w3"></div><div class="skeleton skeleton-cell w2"></div><div class="skeleton skeleton-cell w4"></div><div class="skeleton skeleton-cell w1"></div></div>
+              <div class="skeleton-row"><div class="skeleton skeleton-cell w1"></div><div class="skeleton skeleton-cell w2"></div><div class="skeleton skeleton-cell w3"></div><div class="skeleton skeleton-cell w2"></div><div class="skeleton skeleton-cell w4"></div><div class="skeleton skeleton-cell w1"></div></div>
+              <div class="skeleton-row"><div class="skeleton skeleton-cell w1"></div><div class="skeleton skeleton-cell w2"></div><div class="skeleton skeleton-cell w3"></div><div class="skeleton skeleton-cell w2"></div><div class="skeleton skeleton-cell w4"></div><div class="skeleton skeleton-cell w1"></div></div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">BASEFLOW · SAI TOKEN</div>
+    <div class="footer-social">
+      <a href="https://x.com/BaseflowEnergy" title="X (Twitter)" target="_blank" rel="noopener">𝕏</a>
+      <a href="https://t.me/baseflow" title="Telegram" target="_blank" rel="noopener">✈</a>
+      <a href="https://discord.gg/baseflow" title="Discord" target="_blank" rel="noopener">💬</a>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Project Overview</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="https://polygonscan.com" target="_blank" rel="noopener">PolygonScan</a>
+      <a href="mailto:info@baseflow.energy">Contact</a>
+    </div>
+    <div class="footer-disclaimer">
+      This token sale is a presale for the SAI utility token. Tokens will be distributed at the Token Generation Event (TGE). This is not an offering of securities and does not constitute investment advice. SAI tokens provide utility within the Baseflow network and do not represent equity, debt, or any claim to future profits. Participation in token sales carries risk. Please consult local regulations before participating. All purchases are final. Baseflow is not responsible for funds sent to incorrect addresses.
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<!-- CELEBRATION MODAL -->
+<div class="modal-overlay" id="celebrationModal">
+  <div class="modal-card">
+    <div class="modal-emoji">🎉🚀</div>
+    <div class="modal-title">Purchase Successful!</div>
+    <div class="modal-subtitle">Your SAI tokens have been allocated. They'll be airdropped to your wallet at TGE.</div>
+    <div class="modal-amount" id="modalAmount">0 SAI</div>
+    <div class="modal-usd" id="modalUsd">$0.00 paid</div>
+    <div class="modal-tx" id="modalTx">
+      <a id="modalTxLink" href="#" target="_blank" rel="noopener">View transaction on PolygonScan →</a>
+    </div>
+    <div class="modal-share">
+      <a class="share-x" id="shareX" href="#" target="_blank" rel="noopener">𝕏 Share</a>
+      <a class="share-tg" id="shareTg" href="#" target="_blank" rel="noopener">✈ Telegram</a>
+    </div>
+    <button class="modal-close" onclick="closeCelebration()">Continue</button>
+  </div>
+</div>
+
+<!-- Confetti canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" id="mobileCta">
+  <div class="mobile-cta-inner">
+    <div class="mobile-cta-text">
+      <strong>$0.10 / SAI</strong>
+      Phase 1 Presale
+    </div>
+    <button class="mobile-cta-btn" onclick="scrollToBuy()">Buy SAI →</button>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════
+//  CONFIGURATION — REPLACE THESE WITH YOUR ACTUAL VALUES
+// ════════════════════════════════════════════════════════════
+const CONFIG = {
+  // Your Polygon wallet address where funds are received
+  RECEIVING_WALLET: '0x0812522C4c653E9385f085a909b6A43Bb5966cb5',
+
+  // Supabase project URL (from Settings > API)
+  SUPABASE_URL: 'https://pjzdowbmggfpcjrdvdcf.supabase.co',
+
+  // Supabase anon key (from Settings > API)
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqemRvd2JtZ2dmcGNqcmR2ZGNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTI2ODIsImV4cCI6MjA4OTE2ODY4Mn0.8lkDNQy0XnDY-iHoqRTUI64_kSsFlCYlwQX6Hyh12wY',
+
+  // SAI token price in USD
+  SAI_PRICE_USD: 0.10,
+
+  // Minimum purchase in USD
+  MIN_PURCHASE_USD: 10,
+
+  // USDT contract address on Polygon Mainnet
+  USDT_ADDRESS: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+
+  // Total raise target in USD
+  RAISE_TARGET: 600000,
+
+  // Polygon chainId
+  POLYGON_CHAIN_ID: 137,
+
+  // Phase 1 end date (UTC) — adjust to your actual end date
+  PHASE1_END: new Date('2026-06-15T00:00:00Z'),
+};
+
+// ════════════════════════════════════════════════════════════
+//  CONSTANTS
+// ════════════════════════════════════════════════════════════
+const USDT_ABI = [
+  "function transfer(address to, uint256 amount) returns (bool)",
+  "function balanceOf(address account) view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
+
+const POLYGON_NETWORK = {
+  chainId: '0x89',
+  chainName: 'Polygon Mainnet',
+  nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+  rpcUrls: ['https://polygon-rpc.com'],
+  blockExplorerUrls: ['https://polygonscan.com'],
+};
+
+// ════════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════════
+let provider = null;
+let signer = null;
+let walletAddress = null;
+let currentPayment = 'USDT';
+let maticPrice = 0; // 0 = not fetched yet
+let maticPriceFetched = false;
+let supabaseClient = null; // renamed to avoid collision with Supabase UMD global
+
+// ════════════════════════════════════════════════════════════
+//  DEV MODE DETECTION
+// ════════════════════════════════════════════════════════════
+function checkDevMode() {
+  const isPlaceholder = (
+    CONFIG.RECEIVING_WALLET === 'YOUR_POLYGON_WALLET_ADDRESS' ||
+    CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_PROJECT_URL' ||
+    CONFIG.SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY'
+  );
+  if (isPlaceholder) {
+    document.getElementById('devBanner').classList.add('show');
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+//  SUPABASE INIT (using renamed variable)
+// ════════════════════════════════════════════════════════════
+function initSupabase() {
+  if (CONFIG.SUPABASE_URL === 'YOUR_SUPABASE_PROJECT_URL') {
+    console.warn('Supabase not configured — purchases will not be logged to database.');
+    return false;
+  }
+  try {
+    supabaseClient = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+    return true;
+  } catch(e) {
+    console.error('Supabase init failed:', e);
+    return false;
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+//  COUNTDOWN TIMER
+// ════════════════════════════════════════════════════════════
+function updateCountdown() {
+  const now = new Date();
+  const diff = CONFIG.PHASE1_END - now;
+
+  if (diff <= 0) {
+    document.getElementById('cdDays').textContent = '0';
+    document.getElementById('cdHours').textContent = '0';
+    document.getElementById('cdMins').textContent = '0';
+    document.getElementById('cdSecs').textContent = '0';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cdDays').textContent = days;
+  document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+  document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
+}
+
+// ════════════════════════════════════════════════════════════
+//  WALLET CONNECTION
+// ════════════════════════════════════════════════════════════
+async function connectWallet() {
+  if (typeof window.ethereum === 'undefined') {
+    alert('MetaMask not found. Please install MetaMask from metamask.io');
+    return;
+  }
+
+  try {
+    document.getElementById('btnConnect').textContent = 'Connecting...';
+    document.getElementById('btnConnect').disabled = true;
+
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    const network = await provider.getNetwork();
+
+    if (network.chainId !== CONFIG.POLYGON_CHAIN_ID) {
+      showState('wrongNetwork');
+      return;
+    }
+
+    signer = provider.getSigner();
+    walletAddress = await signer.getAddress();
+
+    await updateWalletUI();
+    showState('connected');
+
+    // Fetch MATIC price
+    fetchMaticPrice();
+
+    // Listen for account/network changes
+    window.ethereum.on('accountsChanged', handleAccountChange);
+    window.ethereum.on('chainChanged', handleChainChange);
+
+  } catch(e) {
+    console.error(e);
+    document.getElementById('btnConnect').textContent = 'Connect Wallet';
+    document.getElementById('btnConnect').disabled = false;
+    if (e.code !== 4001) alert('Connection failed: ' + e.message);
+  }
+}
+
+async function updateWalletUI() {
+  const short = walletAddress.slice(0,6) + '...' + walletAddress.slice(-4);
+  document.getElementById('walletAddr').textContent = short;
+
+  try {
+    if (currentPayment === 'USDT') {
+      const usdt = new ethers.Contract(CONFIG.USDT_ADDRESS, USDT_ABI, provider);
+      const bal = await usdt.balanceOf(walletAddress);
+      const dec = await usdt.decimals();
+      const formatted = parseFloat(ethers.utils.formatUnits(bal, dec)).toFixed(2);
+      document.getElementById('walletBal').textContent = `Balance: ${formatted} USDT`;
+    } else {
+      const bal = await provider.getBalance(walletAddress);
+      const formatted = parseFloat(ethers.utils.formatEther(bal)).toFixed(4);
+      document.getElementById('walletBal').textContent = `Balance: ${formatted} MATIC`;
+    }
+  } catch(e) {
+    document.getElementById('walletBal').textContent = 'Balance: error fetching';
+  }
+}
+
+async function disconnectWallet() {
+  provider = null; signer = null; walletAddress = null;
+  showState('disconnected');
+  clearTxStatus();
+}
+
+function handleAccountChange(accounts) {
+  if (accounts.length === 0) disconnectWallet();
+  else { walletAddress = accounts[0]; updateWalletUI(); }
+}
+
+function handleChainChange() { window.location.reload(); }
+
+async function switchToPolygon() {
+  try {
+    await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x89' }] });
+  } catch(e) {
+    if (e.code === 4902) {
+      await window.ethereum.request({ method: 'wallet_addEthereumChain', params: [POLYGON_NETWORK] });
+    }
+  }
+  window.location.reload();
+}
+
+function showState(state) {
+  document.getElementById('stateDisconnected').style.display = state === 'disconnected' ? 'block' : 'none';
+  document.getElementById('stateWrongNetwork').style.display = state === 'wrongNetwork' ? 'block' : 'none';
+  document.getElementById('stateConnected').style.display = state === 'connected' ? 'block' : 'none';
+  if (state === 'disconnected') {
+    document.getElementById('btnConnect').textContent = 'Connect Wallet';
+    document.getElementById('btnConnect').disabled = false;
+  }
+  if (state === 'connected') validateBuyButton();
+}
+
+// ════════════════════════════════════════════════════════════
+//  PAYMENT LOGIC
+// ════════════════════════════════════════════════════════════
+function setPayment(type, btn) {
+  currentPayment = type;
+  document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('payLabel').textContent = `You Pay (${type})`;
+  document.getElementById('payTag').textContent = type;
+  document.getElementById('payAmount').value = '';
+  document.getElementById('saiAmount').textContent = '0 SAI';
+  document.getElementById('inputError').classList.remove('show');
+
+  // Show MATIC warning if price not fetched
+  if (type === 'MATIC' && !maticPriceFetched) {
+    document.getElementById('maticWarning').classList.add('show');
+  } else {
+    document.getElementById('maticWarning').classList.remove('show');
+  }
+
+  document.getElementById('convRate').textContent = type === 'USDT' ? '@ $0.10 per SAI' : (maticPriceFetched ? `1 MATIC ≈ $${maticPrice.toFixed(2)} · $0.10 per SAI` : 'MATIC price unavailable');
+  if (walletAddress) updateWalletUI();
+  clearTxStatus();
+  validateBuyButton();
+}
+
+async function fetchMaticPrice() {
+  try {
+    const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd');
+    const data = await res.json();
+    maticPrice = data['matic-network'].usd;
+    maticPriceFetched = true;
+    document.getElementById('maticWarning').classList.remove('show');
+    if (currentPayment === 'MATIC') {
+      document.getElementById('convRate').textContent = `1 MATIC ≈ $${maticPrice.toFixed(2)} · $0.10 per SAI`;
+    }
+    updateConversion();
+  } catch(e) {
+    console.warn('MATIC price fetch failed — MATIC payments disabled');
+    maticPriceFetched = false;
+    maticPrice = 0;
+    if (currentPayment === 'MATIC') {
+      document.getElementById('maticWarning').classList.add('show');
+    }
+  }
+}
+
+function updateConversion() {
+  const raw = parseFloat(document.getElementById('payAmount').value) || 0;
+  let usdValue = 0;
+
+  if (currentPayment === 'USDT') {
+    usdValue = raw;
+  } else {
+    if (!maticPriceFetched) {
+      document.getElementById('saiAmount').textContent = '— SAI';
+      document.getElementById('convRate').textContent = 'MATIC price unavailable';
+      validateBuyButton();
+      return;
+    }
+    usdValue = raw * maticPrice;
+  }
+
+  const sai = usdValue / CONFIG.SAI_PRICE_USD;
+  document.getElementById('saiAmount').textContent = sai > 0 ? formatNum(sai) + ' SAI' : '0 SAI';
+  document.getElementById('convRate').textContent = currentPayment === 'USDT'
+    ? `@ $${CONFIG.SAI_PRICE_USD} per SAI`
+    : `1 MATIC ≈ $${maticPrice.toFixed(2)} · @ $${CONFIG.SAI_PRICE_USD} per SAI`;
+
+  // Show/hide minimum error
+  const errorEl = document.getElementById('inputError');
+  if (raw > 0 && usdValue < CONFIG.MIN_PURCHASE_USD) {
+    errorEl.classList.add('show');
+  } else {
+    errorEl.classList.remove('show');
+  }
+
+  validateBuyButton();
+}
+
+async function fillMax() {
+  if (!walletAddress) return;
+  try {
+    if (currentPayment === 'USDT') {
+      const usdt = new ethers.Contract(CONFIG.USDT_ADDRESS, USDT_ABI, provider);
+      const bal = await usdt.balanceOf(walletAddress);
+      const dec = await usdt.decimals();
+      document.getElementById('payAmount').value = parseFloat(ethers.utils.formatUnits(bal, dec)).toFixed(2);
+    } else {
+      const bal = await provider.getBalance(walletAddress);
+      // Leave some MATIC for gas
+      const usable = parseFloat(ethers.utils.formatEther(bal)) - 0.01;
+      document.getElementById('payAmount').value = Math.max(0, usable).toFixed(4);
+    }
+    updateConversion();
+  } catch(e) { console.error(e); }
+}
+
+function validateBuyButton() {
+  const btn = document.getElementById('btnBuy');
+  if (!walletAddress) { btn.disabled = true; return; }
+
+  // Disable MATIC if price not fetched
+  if (currentPayment === 'MATIC' && !maticPriceFetched) { btn.disabled = true; return; }
+
+  const raw = parseFloat(document.getElementById('payAmount').value) || 0;
+  const usdValue = currentPayment === 'USDT' ? raw : raw * maticPrice;
+  btn.disabled = usdValue < CONFIG.MIN_PURCHASE_USD;
+}
+
+// ════════════════════════════════════════════════════════════
+//  EXECUTE PURCHASE
+// ════════════════════════════════════════════════════════════
+async function executePurchase() {
+  if (CONFIG.RECEIVING_WALLET === 'YOUR_POLYGON_WALLET_ADDRESS') {
+    alert('⚠️ Developer: Please set your RECEIVING_WALLET address in CONFIG before going live.');
+    return;
+  }
+
+  const btn = document.getElementById('btnBuy');
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+  clearTxStatus();
+
+  const amount = parseFloat(document.getElementById('payAmount').value);
+  const usdValue = currentPayment === 'USDT' ? amount : amount * maticPrice;
+  const saiAllocated = Math.floor(usdValue / CONFIG.SAI_PRICE_USD);
+
+  try {
+    let txHash;
+
+    if (currentPayment === 'USDT') {
+      // ── USDT Transfer ──
+      showTxStatus('pending', 'Waiting for MetaMask approval...', null);
+      const usdt = new ethers.Contract(CONFIG.USDT_ADDRESS, USDT_ABI, signer);
+      const decimals = await usdt.decimals();
+      const amountInUnits = ethers.utils.parseUnits(amount.toFixed(6), decimals);
+
+      const tx = await usdt.transfer(CONFIG.RECEIVING_WALLET, amountInUnits);
+      txHash = tx.hash;
+      showTxStatus('pending', 'Transaction submitted. Waiting for confirmation...', txHash);
+
+      await tx.wait(1); // wait 1 confirmation
+    } else {
+      // ── MATIC Transfer ──
+      showTxStatus('pending', 'Waiting for MetaMask approval...', null);
+      const amountInWei = ethers.utils.parseEther(amount.toString());
+      const tx = await signer.sendTransaction({ to: CONFIG.RECEIVING_WALLET, value: amountInWei });
+      txHash = tx.hash;
+      showTxStatus('pending', 'Transaction submitted. Waiting for confirmation...', txHash);
+
+      await tx.wait(1);
+    }
+
+    // ── Log to Supabase ──
+    await logPurchaseToSupabase({
+      wallet_address: walletAddress.toLowerCase(),
+      payment_token: currentPayment,
+      amount_paid: amount,
+      amount_usd: usdValue,
+      sai_allocated: saiAllocated,
+      tx_hash: txHash,
+      status: 'confirmed',
+    });
+
+    showTxStatus('success', `✅ Confirmed! ${formatNum(saiAllocated)} SAI allocated.`, txHash);
+    
+    // Show celebration modal
+    showCelebration(saiAllocated, usdValue, txHash);
+
+    document.getElementById('payAmount').value = '';
+    updateConversion();
+    loadPurchases();
+    loadRaiseStats();
+
+  } catch(e) {
+    console.error(e);
+    if (e.code === 4001) {
+      showTxStatus('error', 'Transaction rejected by user.', null);
+    } else {
+      showTxStatus('error', `Transaction failed: ${e.reason || e.message || 'Unknown error'}`, null);
+    }
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Buy SAI Tokens';
+    validateBuyButton();
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+//  CELEBRATION MODAL
+// ════════════════════════════════════════════════════════════
+function showCelebration(saiAmount, usdPaid, txHash) {
+  document.getElementById('modalAmount').textContent = formatNum(saiAmount) + ' SAI';
+  document.getElementById('modalUsd').textContent = `$${usdPaid.toFixed(2)} paid via ${currentPayment}`;
+  document.getElementById('modalTxLink').href = `https://polygonscan.com/tx/${txHash}`;
+  document.getElementById('modalTxLink').textContent = `${txHash.slice(0,16)}...${txHash.slice(-8)} →`;
+
+  // Share links
+  const shareText = encodeURIComponent(`Just bought ${formatNum(saiAmount)} SAI tokens in the @BaseflowEnergy presale! 🚀☀️ Power the solar-AI revolution → baseflow.energy/presale.html`);
+  document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+  document.getElementById('shareTg').href = `https://t.me/share/url?url=https://baseflow.energy/presale.html&text=${shareText}`;
+
+  document.getElementById('celebrationModal').classList.add('show');
+  launchConfetti();
+}
+
+function closeCelebration() {
+  document.getElementById('celebrationModal').classList.remove('show');
+}
+
+// Simple confetti effect
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ['#f59e0b', '#f97316', '#06b6d4', '#10b981', '#eef2ff', '#fbbf24'];
+  const particles = [];
+
+  for (let i = 0; i < 120; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      w: Math.random() * 8 + 4,
+      h: Math.random() * 4 + 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 4,
+      vy: Math.random() * 3 + 2,
+      rot: Math.random() * 360,
+      rotV: (Math.random() - 0.5) * 10,
+      opacity: 1,
+    });
+  }
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+
+    particles.forEach(p => {
+      if (p.opacity <= 0) return;
+      alive = true;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.05;
+      p.rot += p.rotV;
+      if (frame > 60) p.opacity -= 0.008;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.globalAlpha = Math.max(0, p.opacity);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    });
+
+    frame++;
+    if (alive && frame < 200) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  animate();
+}
+
+// ════════════════════════════════════════════════════════════
+//  SUPABASE OPERATIONS (using supabaseClient)
+// ════════════════════════════════════════════════════════════
+async function logPurchaseToSupabase(data) {
+  if (!supabaseClient) {
+    console.log('Supabase not configured. Purchase data:', data);
+    return;
+  }
+  try {
+    const { error } = await supabaseClient.from('purchases').insert([{
+      wallet_address: data.wallet_address,
+      payment_token: data.payment_token,
+      amount_paid: data.amount_paid,
+      amount_usd: data.amount_usd,
+      sai_allocated: data.sai_allocated,
+      tx_hash: data.tx_hash,
+      network: 'polygon',
+      status: data.status,
+    }]);
+    if (error) throw error;
+  } catch(e) {
+    console.error('Supabase log error:', e);
+    // Don't fail the purchase if DB logging fails — tx is already confirmed on-chain
+  }
+}
+
+async function loadPurchases() {
+  const tbody = document.getElementById('purchasesTable');
+
+  if (!supabaseClient) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:var(--amber)">Database not configured. See SETUP.md to connect Supabase.</td></tr>';
+    document.getElementById('purchasesCount').textContent = 'Not connected';
+    return;
+  }
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('purchases')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(20);
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No purchases yet — be the first!</td></tr>';
+      document.getElementById('purchasesCount').textContent = '0 purchases';
+      return;
+    }
+
+    document.getElementById('purchasesCount').textContent = data.length + ' most recent';
+
+    // Safe rendering — no innerHTML with user data (XSS prevention)
+    tbody.innerHTML = '';
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+
+      // Wallet cell
+      const tdWallet = document.createElement('td');
+      tdWallet.textContent = sanitizeHex(row.wallet_address).slice(0,6) + '...' + sanitizeHex(row.wallet_address).slice(-4);
+      tr.appendChild(tdWallet);
+
+      // SAI amount cell
+      const tdSai = document.createElement('td');
+      const strong = document.createElement('strong');
+      strong.style.color = 'var(--amber)';
+      strong.textContent = formatNum(row.sai_allocated) + ' SAI';
+      tdSai.appendChild(strong);
+      tr.appendChild(tdSai);
+
+      // Amount paid cell
+      const tdPaid = document.createElement('td');
+      tdPaid.textContent = '$' + Number(row.amount_usd).toFixed(2) + ' (' + Number(row.amount_paid).toFixed(4) + ' ' + sanitizeText(row.payment_token) + ')';
+      tr.appendChild(tdPaid);
+
+      // Tx hash cell
+      const tdHash = document.createElement('td');
+      tdHash.className = 'tx-hash-cell';
+      const a = document.createElement('a');
+      const cleanHash = sanitizeHex(row.tx_hash);
+      a.href = 'https://polygonscan.com/tx/' + cleanHash;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = cleanHash.slice(0,8) + '...' + cleanHash.slice(-6);
+      tdHash.appendChild(a);
+      tr.appendChild(tdHash);
+
+      // Time cell
+      const tdTime = document.createElement('td');
+      tdTime.textContent = formatTime(row.created_at);
+      tr.appendChild(tdTime);
+
+      // Status cell
+      const tdStatus = document.createElement('td');
+      const badge = document.createElement('span');
+      badge.className = 'status-badge ' + (row.status === 'confirmed' ? 'confirmed' : 'pending');
+      badge.textContent = sanitizeText(row.status);
+      tdStatus.appendChild(badge);
+      tr.appendChild(tdStatus);
+
+      tbody.appendChild(tr);
+    });
+  } catch(e) {
+    console.error(e);
+    tbody.innerHTML = '';
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    td.colSpan = 6;
+    td.className = 'empty-state';
+    td.style.color = 'var(--red)';
+    td.textContent = 'Error loading purchases: ' + e.message;
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  }
+}
+
+async function loadRaiseStats() {
+  if (!supabaseClient) return;
+  try {
+    const { data, error } = await supabaseClient
+      .from('purchases')
+      .select('amount_usd, sai_allocated, wallet_address')
+      .eq('status', 'confirmed');
+
+    if (error || !data) return;
+
+    const totalUsd = data.reduce((s, r) => s + (r.amount_usd || 0), 0);
+    const totalSai = data.reduce((s, r) => s + (r.sai_allocated || 0), 0);
+    const unique = new Set(data.map(r => r.wallet_address)).size;
+    const pct = Math.min((totalUsd / CONFIG.RAISE_TARGET) * 100, 100);
+
+    document.getElementById('totalRaised').textContent = '$' + formatNum(Math.round(totalUsd));
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('participantCount').textContent = unique.toLocaleString();
+    document.getElementById('saiSold').textContent = formatNum(Math.round(totalSai));
+  } catch(e) { console.error(e); }
+}
+
+// ════════════════════════════════════════════════════════════
+//  UI HELPERS
+// ════════════════════════════════════════════════════════════
+function showTxStatus(type, msg, txHash) {
+  const el = document.getElementById('txStatus');
+  const icon = document.getElementById('txIcon');
+  const message = document.getElementById('txMessage');
+  const link = document.getElementById('txLink');
+
+  el.className = 'tx-status show ' + type;
+  message.textContent = msg;
+
+  if (type === 'pending') {
+    icon.innerHTML = '<div class="spinner"></div>';
+  } else if (type === 'success') {
+    icon.textContent = '✅';
+  } else {
+    icon.textContent = '❌';
+  }
+
+  if (txHash) {
+    link.href = `https://polygonscan.com/tx/${txHash}`;
+    link.textContent = `View on PolygonScan: ${txHash.slice(0,20)}...`;
+    link.style.display = 'block';
+  } else {
+    link.style.display = 'none';
+  }
+}
+
+function clearTxStatus() {
+  const el = document.getElementById('txStatus');
+  el.className = 'tx-status';
+}
+
+function formatNum(n) {
+  if (n >= 1000000) return (n / 1000000).toFixed(2) + 'M';
+  if (n >= 1000) return n.toLocaleString();
+  return n.toString();
+}
+
+function formatTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+    d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+// Sanitize hex strings (wallet addresses, tx hashes)
+function sanitizeHex(str) {
+  if (!str) return '';
+  return String(str).replace(/[^a-fA-F0-9x]/g, '');
+}
+
+// Sanitize general text
+function sanitizeText(str) {
+  if (!str) return '';
+  const div = document.createElement('div');
+  div.textContent = String(str);
+  return div.innerHTML;
+}
+
+// FAQ toggle
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+// Mobile CTA scroll
+function scrollToBuy() {
+  document.getElementById('buyCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ════════════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  checkDevMode();
+  initSupabase();
+  loadPurchases();
+  loadRaiseStats();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Check if already connected
+  if (window.ethereum) {
+    window.ethereum.request({ method: 'eth_accounts' }).then(accounts => {
+      if (accounts.length > 0) connectWallet();
+    });
+  }
+});
+</script>
+</body>
+</html>

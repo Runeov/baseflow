@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BFW Tokenomics — Baseflow Investor Deep Dive</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Complete BFW tokenomics breakdown — token distribution, DeFi yield mechanisms, vesting schedules, protocol revenue, and investor ROI scenarios for the Baseflow BFW token.">
+  <meta name="keywords" content="BFW tokenomics, Baseflow, DeFi yield, veBFW, staking, solar crypto, token distribution">
+  <meta property="og:title" content="BFW Tokenomics — Baseflow Investor Deep Dive">
+  <meta property="og:description" content="Token distribution, DeFi yield, vesting schedules, and ROI scenarios for the Baseflow BFW token.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://baseflow.energy/tokenomics.html">
+  <meta property="og:image" content="https://baseflow.energy/og-baseflow.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BFW Tokenomics — Baseflow Investor Deep Dive">
+  <meta name="twitter:description" content="Token distribution, DeFi yield, vesting schedules, and ROI scenarios for BFW.">
+  <meta name="twitter:image" content="https://baseflow.energy/og-baseflow.png">
+  <link rel="canonical" href="https://baseflow.energy/tokenomics.html">
+  <link rel="icon" type="image/png" href="img/logo_1200.png">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #080d18;
+      --bg2:     #0c1424;
+      --bg3:     #111c30;
+      --accent:  #e8920d;
+      --accent2: #ffc857;
+      --gold:    #f0a030;
+      --purple:  #c49a3c;
+      --red:     #d4603a;
+      --text:    #e8dcc8;
+      --muted:   #8a8070;
+      --border:  rgba(232,146,13,0.15);
+      --card:    rgba(12,20,36,0.9);
+      --radius:  12px;
+      --glow:    0 0 24px rgba(232,146,13,0.18);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(232,146,13,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(232,146,13,0.03) 1px,transparent 1px);
+      background-size: 48px 48px; pointer-events: none;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(8,13,20,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; text-decoration: none; }
+    .nav-logo:hover { text-decoration: none; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-size: 0.82rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .nav-back { background: rgba(232,146,13,0.08); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; color: var(--accent) !important; font-size: 0.8rem !important; }
+
+    /* LAYOUT */
+    section { position: relative; z-index: 1; padding: 90px 5%; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem; }
+    h2.section-title { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 0.8rem; }
+    .section-desc { max-width: 680px; color: var(--muted); font-size: 1rem; margin-bottom: 0; }
+
+    /* HERO */
+    #hero {
+      min-height: 62vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding-top: 130px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196,154,60,0.1) 0%, transparent 70%);
+    }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,154,60,0.1); border: 1px solid rgba(196,154,60,0.25); border-radius: 999px; padding: 6px 18px; font-size: 0.75rem; letter-spacing: 2px; color: var(--purple); text-transform: uppercase; margin-bottom: 1.5rem; }
+    h1.hero-title { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; }
+    h1.hero-title .a1 { color: var(--accent); }
+    h1.hero-title .a2 { color: var(--purple); }
+    .hero-sub { max-width: 620px; margin: 1.2rem auto 2.5rem; color: var(--muted); font-size: 1.05rem; }
+    .disclaimer { margin-top: 2rem; padding: 1rem 1.5rem; background: rgba(240,192,64,0.06); border: 1px solid rgba(240,192,64,0.2); border-radius: 8px; font-size: 0.82rem; color: var(--muted); max-width: 680px; }
+
+    /* SNAPSHOT BAR */
+    .snapshot { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; }
+    .snap-item { flex: 1; min-width: 160px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem 1.5rem; }
+    .snap-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .snap-val { font-size: 1.35rem; font-weight: 700; color: #fff; }
+    .snap-val.g { color: var(--accent2); }
+    .snap-val.b { color: var(--accent); }
+    .snap-val.p { color: var(--purple); }
+    .snap-val.y { color: var(--gold); }
+
+    /* CARDS */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; transition: border-color 0.2s, box-shadow 0.2s; }
+    .card:hover { border-color: var(--accent); box-shadow: var(--glow); }
+    .card-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .card h3 { font-size: 1rem; color: #fff; margin-bottom: 0.4rem; }
+    .card p, .card li { font-size: 0.88rem; color: var(--muted); }
+    .card ul { padding-left: 1.1rem; }
+    .card ul li { margin-bottom: 0.25rem; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th { background: var(--bg3); color: var(--accent); text-align: left; padding: 11px 16px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); font-size: 0.8rem; text-transform: uppercase; }
+    td { padding: 11px 16px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    tr:hover td { background: rgba(232,146,13,0.03); }
+    .hl  { color: var(--accent2) !important; font-weight: 600; }
+    .hla { color: var(--accent)  !important; font-weight: 600; }
+    .hlg { color: var(--gold)    !important; font-weight: 600; }
+    .hlp { color: var(--purple)  !important; font-weight: 600; }
+    .hlr { color: var(--red)     !important; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; }
+    .bg { background: rgba(255,200,87,0.12); color: var(--accent2); }
+    .bb { background: rgba(232,146,13,0.12); color: var(--accent); }
+    .by { background: rgba(240,192,64,0.12); color: var(--gold); }
+    .bp { background: rgba(196,154,60,0.12); color: var(--purple); }
+    .br { background: rgba(255,92,92,0.12); color: var(--red); }
+
+    /* ALLOCATION VISUAL */
+    .alloc-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; margin-top: 2.5rem; align-items: start; }
+    @media(max-width:700px){ .alloc-grid { grid-template-columns: 1fr; } }
+    .alloc-bars { display: flex; flex-direction: column; gap: 0.75rem; }
+    .alloc-row { display: flex; align-items: center; gap: 1rem; }
+    .alloc-label { font-size: 0.82rem; color: var(--muted); width: 140px; flex-shrink: 0; }
+    .alloc-bar-wrap { flex: 1; background: rgba(255,255,255,0.05); border-radius: 4px; height: 10px; }
+    .alloc-bar { height: 10px; border-radius: 4px; }
+    .alloc-pct { font-size: 0.82rem; font-weight: 700; width: 36px; text-align: right; }
+
+    /* EMISSION CHART */
+    .emission-chart { margin-top: 2.5rem; }
+    .year-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; }
+    .year-label { font-size: 0.8rem; color: var(--muted); width: 48px; flex-shrink: 0; }
+    .year-bar-wrap { flex: 1; background: rgba(255,255,255,0.05); border-radius: 4px; height: 28px; display: flex; align-items: center; padding: 0 10px; overflow: hidden; }
+    .year-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; font-size: 0.75rem; font-weight: 600; color: #080d14; white-space: nowrap; transition: width 0.8s ease; }
+    .year-meta { font-size: 0.78rem; color: var(--muted); width: 140px; text-align: right; flex-shrink: 0; }
+
+    /* VESTING TIMELINE */
+    .vesting-wrap { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .vest-row { display: grid; grid-template-columns: 160px 1fr 120px; align-items: center; gap: 1rem; }
+    @media(max-width:600px){ .vest-row { grid-template-columns: 1fr; } }
+    .vest-label { font-size: 0.82rem; color: var(--text); font-weight: 600; }
+    .vest-track { display: flex; height: 22px; border-radius: 4px; overflow: hidden; background: rgba(255,255,255,0.04); position: relative; }
+    .vest-cliff { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); }
+    .vest-linear { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: rgba(8,13,20,0.8); }
+    .vest-tge { font-size: 0.78rem; color: var(--muted); text-align: right; }
+
+    /* YIELD TABLE */
+    .yield-section { background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255,200,87,0.04) 0%, transparent 70%); }
+    .yield-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 2rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 1rem; }
+    .yield-card:hover { border-color: var(--accent2); }
+    .yield-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+    .yield-desc { font-size: 0.86rem; color: var(--muted); max-width: 520px; }
+    .yield-apy { text-align: right; }
+    .apy-num { font-size: 1.8rem; font-weight: 800; color: var(--accent2); line-height: 1; }
+    .apy-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* LOCK TIERS */
+    .lock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .lock-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; transition: all 0.2s; }
+    .lock-card:hover { border-color: var(--purple); box-shadow: 0 0 20px rgba(196,154,60,0.15); }
+    .lock-period { font-size: 1.4rem; font-weight: 800; color: var(--purple); }
+    .lock-mult { font-size: 0.8rem; color: var(--muted); margin: 4px 0; }
+    .lock-apy { font-size: 1.1rem; font-weight: 700; color: var(--accent2); margin-top: 8px; }
+    .lock-features { margin-top: 1rem; font-size: 0.78rem; color: var(--muted); text-align: left; }
+    .lock-features li { list-style: none; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .lock-features li::before { content: '✓ '; color: var(--accent2); }
+
+    /* ROI SCENARIOS */
+    .roi-section { background: radial-gradient(ellipse 50% 40% at 50% 50%, rgba(196,154,60,0.05) 0%, transparent 70%); }
+    .scenario-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .stab { padding: 8px 20px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); color: var(--muted); background: transparent; transition: all 0.2s; letter-spacing: 0.5px; }
+    .stab.active-bear  { background: rgba(255,92,92,0.12);   border-color: var(--red);    color: var(--red); }
+    .stab.active-base  { background: rgba(232,146,13,0.1);    border-color: var(--accent); color: var(--accent); }
+    .stab.active-bull  { background: rgba(255,200,87,0.1);    border-color: var(--accent2); color: var(--accent2); }
+
+    .scenario-block { display: none; }
+    .scenario-block.visible { display: block; }
+
+    .roi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .roi-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; }
+    .roi-year { font-size: 0.72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .roi-price { font-size: 2rem; font-weight: 800; }
+    .roi-mult { font-size: 0.9rem; font-weight: 700; margin-top: 4px; }
+    .roi-note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+
+    .bear .roi-price { color: var(--red); }
+    .bear .roi-mult  { color: var(--red); }
+    .base .roi-price { color: var(--accent); }
+    .base .roi-mult  { color: var(--accent2); }
+    .bull .roi-price { color: var(--accent2); }
+    .bull .roi-mult  { color: var(--gold); }
+
+    /* STAKING COMPOUNDER */
+    .compound-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-top: 2rem; }
+    .compound-box h3 { color: #fff; margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .compound-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.88rem; }
+    .compound-row:last-child { border-bottom: none; }
+    .compound-row .c-label { color: var(--muted); }
+    .compound-row .c-val   { color: #fff; font-weight: 600; }
+    .compound-row .c-usd   { color: var(--accent2); }
+
+    /* REVENUE MODEL */
+    .rev-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .rev-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .rev-card h4 { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem; }
+    .rev-card .rev-y1 { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .rev-card .rev-y3 { font-size: 1rem; color: var(--accent2); font-weight: 600; margin-top: 4px; }
+    .rev-card p { font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
+
+    /* METRICS */
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .metric-card h4 { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.6rem; }
+    .metric-card .m-y1 { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .metric-card .m-y3 { font-size: 0.9rem; color: var(--accent2); margin-top: 2px; }
+    .metric-card .m-label { font-size: 0.75rem; color: var(--muted); }
+
+    /* COMPARABLES */
+    .comp-section {}
+
+    /* FOOTER */
+    footer { position: relative; z-index: 1; background: var(--bg2); border-top: 1px solid var(--border); padding: 3rem 5% 2rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand .nav-logo { font-size: 1.3rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.85rem; max-width: 300px; margin-top: 0.5rem; }
+    .footer-links a { display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .footer-links h4 { color: var(--text); font-size: 0.82rem; margin-bottom: 0.8rem; letter-spacing: 1px; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.78rem; color: var(--muted); }
+
+    /* MOBILE NAV */
+    .nav-toggle { display: none; background: none; border: none; color: var(--accent); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+    @media(max-width:768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; background: rgba(8,13,20,0.98);
+        padding: 1rem 5%; gap: 1rem; border-bottom: 1px solid var(--border);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      section { padding: 70px 5%; }
+      .vest-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span> &nbsp;<span style="color:var(--muted);font-weight:400;font-size:0.85rem">/ Tokenomics</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html" class="nav-back">← Back to Overview</a>
+    <a href="#snapshot">Snapshot</a>
+    <a href="#allocation">Allocation</a>
+    <a href="#yield">Yield</a>
+    <a href="#vebfw">veBFW</a>
+    <a href="#roi">ROI Scenarios</a>
+    <a href="#revenue">Revenue</a>
+    <a href="#comparables">Comparables</a>
+    <a href="presale.html" style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);border-radius:6px;padding:6px 14px;color:#f59e0b;font-size:0.8rem;font-weight:600;">🔥 Buy SAI →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">Investor Deep Dive · BFW Token</div>
+  <h1 class="hero-title">
+    <span class="a1">BFW</span> Tokenomics<br/>
+    Built for <span class="a2">Real Yield</span>
+  </h1>
+  <p class="hero-sub">
+    A complete breakdown of token distribution, DeFi yield mechanisms, vesting schedules,
+    protocol revenue, and investor ROI scenarios for the Baseflow BFW token.
+  </p>
+  <div class="disclaimer">
+    ⚠️ This document is for informational purposes only. Cryptocurrency investments carry significant risk.
+    Past performance of comparable projects does not guarantee future results. All ROI projections are
+    illustrative scenarios, not financial advice.
+  </div>
+</section>
+
+<!-- SNAPSHOT -->
+<section id="snapshot">
+  <div class="section-tag">Token Overview</div>
+  <h2 class="section-title">Token Snapshot</h2>
+  <p class="section-desc">Core parameters of the BFW token at genesis.</p>
+  <div class="snapshot">
+    <div class="snap-item"><div class="snap-label">Token Symbol</div><div class="snap-val b">BFW</div></div>
+    <div class="snap-item"><div class="snap-label">Total Supply</div><div class="snap-val">1,000,000,000</div></div>
+    <div class="snap-item"><div class="snap-label">TGE Float</div><div class="snap-val y">7.5% (75M)</div></div>
+    <div class="snap-item"><div class="snap-label">IDO Price (Target)</div><div class="snap-val g">$0.05</div></div>
+    <div class="snap-item"><div class="snap-label">IDO Market Cap</div><div class="snap-val g">$3.75M</div></div>
+    <div class="snap-item"><div class="snap-label">FDV at IDO</div><div class="snap-val">$50M</div></div>
+    <div class="snap-item"><div class="snap-label">Chain</div><div class="snap-val b">L2 on Base / ETH</div></div>
+    <div class="snap-item"><div class="snap-label">Consensus</div><div class="snap-val p">PoGS</div></div>
+    <div class="snap-item"><div class="snap-label">Max Lock Period</div><div class="snap-val p">4 Years (veBFW)</div></div>
+    <div class="snap-item"><div class="snap-label">HQ</div><div class="snap-val">Thailand 🇹🇭</div></div>
+  </div>
+</section>
+
+<!-- ALLOCATION -->
+<section id="allocation">
+  <div class="section-tag">Token Distribution</div>
+  <h2 class="section-title">Allocation &amp; Vesting</h2>
+  <p class="section-desc">A lean TGE float of 7.5% prevents early dump pressure. Team tokens are locked for 12 months before a 36-month linear release — aligning long-term incentives.</p>
+
+  <div class="alloc-grid">
+    <div>
+      <div class="alloc-bars">
+        <div class="alloc-row">
+          <div class="alloc-label">Public Sale</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar" style="width:30%;background:var(--accent);"></div></div>
+          <div class="alloc-pct" style="color:var(--accent)">30%</div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-label">Validator Rewards</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar" style="width:25%;background:var(--accent2);"></div></div>
+          <div class="alloc-pct" style="color:var(--accent2)">25%</div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-label">DAO Treasury</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar" style="width:20%;background:var(--purple);"></div></div>
+          <div class="alloc-pct" style="color:var(--purple)">20%</div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-label">Team &amp; Advisors</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar" style="width:10%;background:var(--gold);"></div></div>
+          <div class="alloc-pct" style="color:var(--gold)">10%</div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-label">Solar Grants Fund</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar" style="width:10%;background:#ff6b6b;"></div></div>
+          <div class="alloc-pct" style="color:#ff6b6b">10%</div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-label">Reserve</div>
+          <div class="alloc-bar-wrap"><div class="alloc-bar" style="width:5%;background:#3a7bd5;"></div></div>
+          <div class="alloc-pct" style="color:#3a7bd5">5%</div>
+        </div>
+      </div>
+
+      <div class="table-wrap" style="margin-top:1.5rem;">
+        <table>
+          <thead><tr><th>Bucket</th><th>Tokens</th><th>TGE Unlock</th><th>Vesting</th></tr></thead>
+          <tbody>
+            <tr><td>Public Sale</td><td>300M</td><td class="hl">25% at TGE</td><td>3-month cliff, 9-month linear</td></tr>
+            <tr><td>Validator Rewards</td><td>250M</td><td class="hl">Emissions-based</td><td>Released over 5 years via PoGS</td></tr>
+            <tr><td>DAO Treasury</td><td>200M</td><td class="hla">0%</td><td>Governance-controlled release</td></tr>
+            <tr><td>Team &amp; Advisors</td><td>100M</td><td class="hlr">0%</td><td>12-month cliff + 36-month linear</td></tr>
+            <tr><td>Solar Grants Fund</td><td>100M</td><td class="hlg">5% at TGE</td><td>Milestone-based release</td></tr>
+            <tr><td>Reserve</td><td>50M</td><td class="hlr">0%</td><td>Locked 24 months, governance vote</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="color:#fff;margin-bottom:1.5rem;font-size:1rem;">Vesting Timeline (48-month view)</h3>
+      <div class="vesting-wrap">
+
+        <div class="vest-row">
+          <div class="vest-label">Public Sale</div>
+          <div class="vest-track" style="background:rgba(255,255,255,0.04);">
+            <div class="vest-cliff" style="width:6.25%;background:rgba(232,146,13,0.3)">TGE</div>
+            <div class="vest-cliff" style="width:6.25%;background:rgba(232,146,13,0.15)">Lock</div>
+            <div class="vest-linear" style="width:18.75%;background:rgba(232,146,13,0.5)">Linear 9m</div>
+            <div style="flex:1;"></div>
+          </div>
+          <div class="vest-tge">25% at TGE</div>
+        </div>
+
+        <div class="vest-row">
+          <div class="vest-label">Validator Rewards</div>
+          <div class="vest-track">
+            <div class="vest-linear" style="width:100%;background:linear-gradient(90deg,rgba(255,200,87,0.7),rgba(255,200,87,0.15));font-size:0.65rem;color:rgba(255,255,255,0.6);">Continuous PoGS Emissions (5 years)</div>
+          </div>
+          <div class="vest-tge">Ongoing</div>
+        </div>
+
+        <div class="vest-row">
+          <div class="vest-label">DAO Treasury</div>
+          <div class="vest-track">
+            <div class="vest-cliff" style="width:100%;background:rgba(196,154,60,0.2);">Governance-controlled</div>
+          </div>
+          <div class="vest-tge">0% TGE</div>
+        </div>
+
+        <div class="vest-row">
+          <div class="vest-label">Team &amp; Advisors</div>
+          <div class="vest-track">
+            <div class="vest-cliff" style="width:25%;background:rgba(240,192,64,0.25)">12m Cliff</div>
+            <div class="vest-linear" style="width:75%;background:rgba(240,192,64,0.5)">36-month Linear Vest</div>
+          </div>
+          <div class="vest-tge">0% TGE</div>
+        </div>
+
+        <div class="vest-row">
+          <div class="vest-label">Solar Grants Fund</div>
+          <div class="vest-track">
+            <div class="vest-cliff" style="width:6.25%;background:rgba(255,107,107,0.3)">TGE</div>
+            <div class="vest-cliff" style="width:93.75%;background:rgba(255,107,107,0.15);">Milestone-based</div>
+          </div>
+          <div class="vest-tge">5% TGE</div>
+        </div>
+
+        <div class="vest-row">
+          <div class="vest-label">Reserve</div>
+          <div class="vest-track">
+            <div class="vest-cliff" style="width:50%;background:rgba(58,123,213,0.25)">24m Lock</div>
+            <div class="vest-cliff" style="width:50%;background:rgba(58,123,213,0.12)">Governance Vote</div>
+          </div>
+          <div class="vest-tge">0% TGE</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:rgba(255,200,87,0.06);border:1px solid rgba(255,200,87,0.15);border-radius:8px;font-size:0.85rem;color:var(--muted);">
+        💡 <strong style="color:var(--accent2)">Tight launch supply:</strong> Only 75M tokens (7.5%) circulate at TGE, creating genuine scarcity at launch. Team tokens are fully locked for 12 months — no insider dumps at launch.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <h3 style="color:#fff;margin-bottom:1rem;font-size:1rem;">5-Year Emission Schedule</h3>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:1.5rem;">Front-loaded validator rewards compress over time — mirrors Helium and Bittensor's proven halving model. Scarcity grows as emissions decline.</p>
+    <div class="emission-chart">
+      <div class="year-row">
+        <div class="year-label">Year 1</div>
+        <div class="year-bar-wrap"><div class="year-bar" style="width:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));">80M BFW / yr — 32% APY base</div></div>
+        <div class="year-meta">80M emitted</div>
+      </div>
+      <div class="year-row">
+        <div class="year-label">Year 2</div>
+        <div class="year-bar-wrap"><div class="year-bar" style="width:60%;background:linear-gradient(90deg,var(--accent),#3a7bd5);">48M BFW / yr — 18% APY</div></div>
+        <div class="year-meta">48M emitted</div>
+      </div>
+      <div class="year-row">
+        <div class="year-label">Year 3</div>
+        <div class="year-bar-wrap"><div class="year-bar" style="width:37%;background:linear-gradient(90deg,var(--purple),var(--accent));">30M BFW / yr — 10% APY</div></div>
+        <div class="year-meta">30M emitted</div>
+      </div>
+      <div class="year-row">
+        <div class="year-label">Year 4</div>
+        <div class="year-bar-wrap"><div class="year-bar" style="width:24%;background:linear-gradient(90deg,var(--gold),var(--purple));">18M BFW / yr — 6% APY</div></div>
+        <div class="year-meta">18M emitted</div>
+      </div>
+      <div class="year-row">
+        <div class="year-label">Year 5</div>
+        <div class="year-bar-wrap"><div class="year-bar" style="width:15%;background:var(--gold);">12M BFW / yr</div></div>
+        <div class="year-meta">12M emitted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YIELD MECHANISMS -->
+<section id="yield" class="yield-section">
+  <div class="section-tag">DeFi Yield</div>
+  <h2 class="section-title">How BFW Holders Earn</h2>
+  <p class="section-desc">Six stacked yield mechanisms — from base staking to AI inference fees — give investors multiple income streams simultaneously.</p>
+
+  <div style="margin-top:2.5rem;">
+
+    <div class="yield-card">
+      <div>
+        <div class="yield-name">âš¡ PoGS Validator Staking</div>
+        <div class="yield-desc">Stake BFW to operate or delegate to a Proof of Green Stake validator node. Solar-certified nodes earn a bonus multiplier on top of base staking rewards. Year 1 emission-funded; transitions to real-yield-backed in Year 3.</div>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge bg">Year 1: 12–18% APY</span>
+          <span class="badge bb">Year 3: 6–10% real yield</span>
+          <span class="badge by">+3–8% Solar Bonus</span>
+        </div>
+      </div>
+      <div class="yield-apy"><div class="apy-num">15%</div><div class="apy-label">Base Year 1</div></div>
+    </div>
+
+    <div class="yield-card">
+      <div>
+        <div class="yield-name">🔁 DEX Liquidity Provision (BFW/USDC)</div>
+        <div class="yield-desc">Provide liquidity to the Baseflow native DEX BFW/USDC pool. Earn 0.25% of every trade proportionally. Early liquidity miners also receive bonus BFW emissions. Protocol targets $10M+ TVL in Year 1.</div>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge bg">40–120% APY early</span>
+          <span class="badge bb">15–35% mature</span>
+          <span class="badge bp">+ BFW mining bonus</span>
+        </div>
+      </div>
+      <div class="yield-apy"><div class="apy-num">80%</div><div class="apy-label">Launch Phase</div></div>
+    </div>
+
+    <div class="yield-card">
+      <div>
+        <div class="yield-name">🔒 veBFW Lock — Fee Share</div>
+        <div class="yield-desc">Lock BFW for 1 month to 4 years to receive veBFW (vote-escrowed BFW). veBFW holders receive 50% of all protocol revenue distributed in USDC — real yield, not inflation. Longer locks earn greater voting weight and higher fee share.</div>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge bg">Up to 40% real APY</span>
+          <span class="badge bp">50% fee redistribution</span>
+          <span class="badge bb">Paid in USDC</span>
+        </div>
+      </div>
+      <div class="yield-apy"><div class="apy-num">40%</div><div class="apy-label">4yr Lock (real yield)</div></div>
+    </div>
+
+    <div class="yield-card">
+      <div>
+        <div class="yield-name">🤖 AI Inference Marketplace Fees</div>
+        <div class="yield-desc">Solar validator nodes that contribute compute to the AI inference marketplace earn BFW per query processed. As the AI services marketplace grows, this becomes an additional passive income stream for node operators — similar to Bittensor's subnet rewards.</div>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge bg">Pay-per-query in BFW</span>
+          <span class="badge by">Scales with AI demand</span>
+          <span class="badge bb">+2–12% APY (Year 2+)</span>
+        </div>
+      </div>
+      <div class="yield-apy"><div class="apy-num">+12%</div><div class="apy-label">AI Bonus (Y2+)</div></div>
+    </div>
+
+    <div class="yield-card">
+      <div>
+        <div class="yield-name">📡 Broadcast Node Hosting Rewards</div>
+        <div class="yield-desc">Operators hosting broadcast relay nodes in the SEA mesh network earn BFW per MB relayed and per uptime epoch. Government and enterprise SLA contracts pay in stablecoins converted to BFW buybacks — directly supporting token price.</div>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge bg">Per-relay BFW rewards</span>
+          <span class="badge bb">Government SLA revenue</span>
+          <span class="badge by">Buyback-supported</span>
+        </div>
+      </div>
+      <div class="yield-apy"><div class="apy-num">+8%</div><div class="apy-label">Node Ops (Y3+)</div></div>
+    </div>
+
+    <div class="yield-card">
+      <div>
+        <div class="yield-name">💳 Lending &amp; Borrowing (BFW Collateral)</div>
+        <div class="yield-desc">Use BFW as collateral on the native lending protocol to borrow USDC or stablecoins without selling your position. Lenders supply stablecoins and earn interest. Borrowers maintain BFW exposure while accessing liquidity — the foundation of leveraged yield strategies.</div>
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge bb">USDC supply: 4–6% APY</span>
+          <span class="badge bp">BFW collateral LTV: 60%</span>
+          <span class="badge by">Leverage yield strategies</span>
+        </div>
+      </div>
+      <div class="yield-apy"><div class="apy-num">6%</div><div class="apy-label">USDC Supply APY</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- veBFW -->
+<section id="vebfw">
+  <div class="section-tag">Vote-Escrow Tokenomics</div>
+  <h2 class="section-title">veBFW Lock Tiers</h2>
+  <p class="section-desc">Modelled on Curve's proven ve-tokenomics — the gold standard for aligning long-term holders with protocol health. Longer commitment = greater rewards, voting power, and fee share.</p>
+
+  <div class="lock-grid">
+    <div class="lock-card">
+      <div class="lock-period">1 Month</div>
+      <div class="lock-mult">1.0× voting weight</div>
+      <div class="lock-apy">~8% APY</div>
+      <ul class="lock-features">
+        <li>Base fee share</li>
+        <li>Protocol governance vote</li>
+        <li>1.0× LP boost</li>
+      </ul>
+    </div>
+    <div class="lock-card">
+      <div class="lock-period">6 Months</div>
+      <div class="lock-mult">1.5× voting weight</div>
+      <div class="lock-apy">~14% APY</div>
+      <ul class="lock-features">
+        <li>1.5× fee share</li>
+        <li>Gauge weight vote</li>
+        <li>1.2× LP boost</li>
+      </ul>
+    </div>
+    <div class="lock-card" style="border-color:var(--accent);">
+      <div class="lock-period" style="color:var(--accent)">1 Year</div>
+      <div class="lock-mult">2.0× voting weight</div>
+      <div class="lock-apy">~20% APY</div>
+      <ul class="lock-features">
+        <li>2.0× fee share</li>
+        <li>Solar grant votes</li>
+        <li>1.5× LP boost</li>
+        <li>Early feature access</li>
+      </ul>
+    </div>
+    <div class="lock-card">
+      <div class="lock-period">2 Years</div>
+      <div class="lock-mult">3.0× voting weight</div>
+      <div class="lock-apy">~28% APY</div>
+      <ul class="lock-features">
+        <li>3.0× fee share</li>
+        <li>Protocol revenue split</li>
+        <li>1.8× LP boost</li>
+        <li>DAO council eligibility</li>
+      </ul>
+    </div>
+    <div class="lock-card" style="border-color:var(--accent2);">
+      <div class="lock-period" style="color:var(--accent2)">4 Years</div>
+      <div class="lock-mult">4.0× voting weight</div>
+      <div class="lock-apy" style="color:var(--gold)">~40% APY</div>
+      <ul class="lock-features">
+        <li>4.0× fee share</li>
+        <li>50% protocol revenue</li>
+        <li>2.5× LP boost</li>
+        <li>Founding node status</li>
+        <li>Solar node whitelist</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:rgba(196,154,60,0.06);border:1px solid rgba(196,154,60,0.2);border-radius:8px;font-size:0.88rem;color:var(--muted);">
+    <strong style="color:var(--purple)">How veBFW Works:</strong> Lock BFW → receive non-transferable veBFW → earn 50% of all protocol swap fees, AI inference fees, and lending spreads in USDC weekly. Your veBFW balance decays linearly — re-lock to maintain position. At peak lock participation, veBFW holders have received up to 40% real APY on comparable protocols (Curve, GMX).
+  </div>
+
+  <div class="table-wrap" style="margin-top:2rem;">
+    <table>
+      <thead><tr><th>Lock Period</th><th>veBFW Multiplier</th><th>Est. APY</th><th>Fee Share Rate</th><th>LP Boost</th><th>Extra Perks</th></tr></thead>
+      <tbody>
+        <tr><td>1 Month</td><td>1.0×</td><td class="hla">~8%</td><td>Base</td><td>1.0×</td><td>Governance vote</td></tr>
+        <tr><td>6 Months</td><td>1.5×</td><td class="hla">~14%</td><td>1.5×</td><td>1.2×</td><td>Gauge votes</td></tr>
+        <tr><td>1 Year</td><td>2.0×</td><td class="hla">~20%</td><td>2.0×</td><td>1.5×</td><td>Solar grant votes</td></tr>
+        <tr><td>2 Years</td><td>3.0×</td><td class="hlp">~28%</td><td>3.0×</td><td>1.8×</td><td>DAO council eligible</td></tr>
+        <tr><td>4 Years</td><td>4.0×</td><td class="hl">~40%</td><td>4.0×</td><td>2.5×</td><td>Founding node + solar whitelist</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ROI SCENARIOS -->
+<section id="roi" class="roi-section">
+  <div class="section-tag">Investment Scenarios</div>
+  <h2 class="section-title">ROI Projections</h2>
+  <p class="section-desc">Three forward-looking scenarios based on comparable project trajectories, market cap analysis, and protocol revenue multiples. IDO price assumed at $0.05 per BFW.</p>
+
+  <div class="scenario-tabs">
+    <button class="stab active-bear" onclick="showScenario('bear')">Bear Case</button>
+    <button class="stab active-base" onclick="showScenario('base')">Base Case</button>
+    <button class="stab active-bull" onclick="showScenario('bull')">Bull Case</button>
+  </div>
+
+  <!-- BEAR -->
+  <div id="sc-bear" class="scenario-block bear visible">
+    <div style="padding:0.75rem 1rem;background:rgba(255,92,92,0.08);border:1px solid rgba(255,92,92,0.2);border-radius:8px;font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;">
+      <strong style="color:var(--red)">Bear Case:</strong> Market downturn suppresses new token launches. Limited DEX volume. Staking yield remains the primary return driver. FDV never exceeds $25M.
+    </div>
+    <div class="roi-grid">
+      <div class="roi-card bear"><div class="roi-year">IDO</div><div class="roi-price">$0.05</div><div class="roi-mult">1× — Entry</div><div class="roi-note">$50M FDV</div></div>
+      <div class="roi-card bear"><div class="roi-year">6 Months</div><div class="roi-price">$0.02</div><div class="roi-mult" style="color:var(--red)">−60%</div><div class="roi-note">Market correction</div></div>
+      <div class="roi-card bear"><div class="roi-year">Year 1</div><div class="roi-price">$0.03</div><div class="roi-mult" style="color:var(--red)">−40%</div><div class="roi-note">Stakers still earn 15% APY</div></div>
+      <div class="roi-card bear"><div class="roi-year">Year 3</div><div class="roi-price">$0.05</div><div class="roi-mult" style="color:var(--muted)">≈ breakeven</div><div class="roi-note">Staking compounds losses</div></div>
+      <div class="roi-card bear"><div class="roi-year">Year 5</div><div class="roi-price">$0.04</div><div class="roi-mult" style="color:var(--red)">−20% net</div><div class="roi-note">Staked BFW partially offsets</div></div>
+    </div>
+    <div class="compound-box" style="border-color:rgba(255,92,92,0.2);">
+      <h3>Staking Return (Bear — 100,000 BFW @ $0.05 = $5,000 investment)</h3>
+      <div class="compound-row"><div class="c-label">Year 1 staking yield (15%)</div><div class="c-val">115,000 BFW</div><div class="c-usd" style="color:var(--red)">$3,450 (−31% total)</div></div>
+      <div class="compound-row"><div class="c-label">Year 3 compound (10% avg)</div><div class="c-val">140,000 BFW</div><div class="c-usd" style="color:var(--muted)">$7,000 (+40% from staking only)</div></div>
+      <div class="compound-row"><div class="c-label">Year 5 compound (7% avg)</div><div class="c-val">162,000 BFW</div><div class="c-usd" style="color:var(--muted)">$6,480 net at $0.04</div></div>
+      <div class="compound-row" style="border-top:1px solid rgba(255,92,92,0.2);margin-top:8px;padding-top:12px;"><div class="c-label"><strong>Key insight</strong></div><div class="c-val" colspan="2" style="color:var(--red);font-size:0.82rem;">Even in the bear case, staking accumulates tokens. Net loss is far smaller than spot price decline alone.</div></div>
+    </div>
+  </div>
+
+  <!-- BASE -->
+  <div id="sc-base" class="scenario-block base">
+    <div style="padding:0.75rem 1rem;background:rgba(232,146,13,0.07);border:1px solid rgba(232,146,13,0.2);border-radius:8px;font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;">
+      <strong style="color:var(--accent)">Base Case:</strong> Baseflow captures a small share of the growing AI+DeFi market. DEX reaches $10M TVL by Year 2. FDV reaches $500M–$1.36B by Year 3 (25× P/Revenue on $54M projected revenue).
+    </div>
+    <div class="roi-grid">
+      <div class="roi-card base"><div class="roi-year">IDO</div><div class="roi-price">$0.05</div><div class="roi-mult">1× — Entry</div><div class="roi-note">$50M FDV</div></div>
+      <div class="roi-card base"><div class="roi-year">6 Months</div><div class="roi-price">$0.20</div><div class="roi-mult">4×</div><div class="roi-note">Testnet hype + staking</div></div>
+      <div class="roi-card base"><div class="roi-year">Year 1</div><div class="roi-price" style="color:var(--accent2)">$0.30</div><div class="roi-mult">6×</div><div class="roi-note">Mainnet live, DEX active</div></div>
+      <div class="roi-card base"><div class="roi-year">Year 3</div><div class="roi-price" style="color:var(--accent2)">$1.36</div><div class="roi-mult">27×</div><div class="roi-note">$1.36B FDV via P/Revenue</div></div>
+      <div class="roi-card base"><div class="roi-year">Year 5</div><div class="roi-price" style="color:var(--gold)">$5.00</div><div class="roi-mult">100×</div><div class="roi-note">Mid-tier DeFi protocol</div></div>
+    </div>
+    <div class="compound-box">
+      <h3>Staking Return (Base — 100,000 BFW @ $0.05 = $5,000 investment)</h3>
+      <div class="compound-row"><div class="c-label">Year 1 staking yield (15%)</div><div class="c-val">115,000 BFW</div><div class="c-usd">$34,500 at $0.30 (+590%)</div></div>
+      <div class="compound-row"><div class="c-label">Year 3 compound (10% avg)</div><div class="c-val">140,000 BFW</div><div class="c-usd">$190,400 at $1.36 (+3,708%)</div></div>
+      <div class="compound-row"><div class="c-label">Year 5 compound (7% avg)</div><div class="c-val">162,000 BFW</div><div class="c-usd">$810,000 at $5.00 (+16,100%)</div></div>
+      <div class="compound-row" style="border-top:1px solid var(--border);margin-top:8px;padding-top:12px;"><div class="c-label"><strong>Comparable</strong></div><div class="c-val" style="color:var(--accent2);font-size:0.82rem;">Helium (HNT) went $0.25 → $54 peak (216×). Bittensor (TAO) achieved ~15× in 12 months at AI narrative peak.</div></div>
+    </div>
+  </div>
+
+  <!-- BULL -->
+  <div id="sc-bull" class="scenario-block bull">
+    <div style="padding:0.75rem 1rem;background:rgba(255,200,87,0.07);border:1px solid rgba(255,200,87,0.2);border-radius:8px;font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;">
+      <strong style="color:var(--accent2)">Bull Case:</strong> AI+DeFi narrative dominates the 2026–2028 cycle. Baseflow becomes the leading green DeFi protocol in Southeast Asia. Thai government broadcast contracts announced. FDV approaches $5B–$10B.
+    </div>
+    <div class="roi-grid">
+      <div class="roi-card bull"><div class="roi-year">IDO</div><div class="roi-price">$0.05</div><div class="roi-mult">1× — Entry</div><div class="roi-note">$50M FDV</div></div>
+      <div class="roi-card bull"><div class="roi-year">6 Months</div><div class="roi-price" style="color:var(--gold)">$0.75</div><div class="roi-mult" style="color:var(--gold)">15×</div><div class="roi-note">AI narrative peak</div></div>
+      <div class="roi-card bull"><div class="roi-year">Year 1</div><div class="roi-price" style="color:var(--gold)">$1.00</div><div class="roi-mult" style="color:var(--gold)">20×</div><div class="roi-note">Mainnet + DEX live</div></div>
+      <div class="roi-card bull"><div class="roi-year">Year 3</div><div class="roi-price" style="color:var(--gold)">$5.00</div><div class="roi-mult" style="color:var(--gold)">100×</div><div class="roi-note">$5B FDV — Tier 1 DeFi</div></div>
+      <div class="roi-card bull"><div class="roi-year">Year 5</div><div class="roi-price" style="color:var(--gold)">$25.00</div><div class="roi-mult" style="color:var(--gold)">500×</div><div class="roi-note">$25B — Aave/Uniswap tier</div></div>
+    </div>
+    <div class="compound-box" style="border-color:rgba(255,200,87,0.2);">
+      <h3>Staking Return (Bull — 100,000 BFW @ $0.05 = $5,000 investment)</h3>
+      <div class="compound-row"><div class="c-label">Year 1 staking yield (15%)</div><div class="c-val">115,000 BFW</div><div class="c-usd">$115,000 at $1.00 (+2,200%)</div></div>
+      <div class="compound-row"><div class="c-label">Year 3 compound (10% avg)</div><div class="c-val">140,000 BFW</div><div class="c-usd">$700,000 at $5.00 (+13,900%)</div></div>
+      <div class="compound-row"><div class="c-label">Year 5 compound (7% avg)</div><div class="c-val">162,000 BFW</div><div class="c-usd">$4,050,000 at $25.00 (+80,900%)</div></div>
+      <div class="compound-row" style="border-top:1px solid rgba(255,200,87,0.2);margin-top:8px;padding-top:12px;"><div class="c-label"><strong>Comparable</strong></div><div class="c-val" style="color:var(--gold);font-size:0.82rem;">Solana went $0.22 → $260 (1,182×). NEAR went from $0.53 → $20.42 (38×). TAO sustained 4,000% in 2023.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOL REVENUE -->
+<section id="revenue">
+  <div class="section-tag">Real Yield Foundation</div>
+  <h2 class="section-title">Protocol Revenue Model</h2>
+  <p class="section-desc">By Year 3, Baseflow is projected to generate $54.5M in annual protocol revenue — the foundation for distributing real yield (paid in USDC) to veBFW holders rather than relying on inflation.</p>
+
+  <div class="rev-cards">
+    <div class="rev-card">
+      <h4>DEX Trading Fees</h4>
+      <div class="rev-y1">$1.8M</div>
+      <div class="rev-y3">$45.6M Year 3</div>
+      <p>0.25% fee on ~$50M/day DEX volume at scale. Fee split: 50% to LPs, 50% to veBFW holders.</p>
+    </div>
+    <div class="rev-card">
+      <h4>AI Inference Fees</h4>
+      <div class="rev-y1">$400K</div>
+      <div class="rev-y3">$5M Year 3</div>
+      <p>Pay-per-query fees charged to AI service consumers on the inference marketplace. Grows with AI node adoption.</p>
+    </div>
+    <div class="rev-card">
+      <h4>Lending Interest Spread</h4>
+      <div class="rev-y1">$200K</div>
+      <div class="rev-y3">$2.5M Year 3</div>
+      <p>Interest rate spread between borrowers and suppliers on the BFW lending protocol. Scales with TVL.</p>
+    </div>
+    <div class="rev-card">
+      <h4>Broadcast Node SLAs</h4>
+      <div class="rev-y1">$0</div>
+      <div class="rev-y3">$1.2M Year 3</div>
+      <p>Government and enterprise contracts for guaranteed emergency broadcast relay uptime. Revenue used for BFW buybacks.</p>
+    </div>
+    <div class="rev-card">
+      <h4>Bridge &amp; Cross-Chain Fees</h4>
+      <div class="rev-y1">$100K</div>
+      <div class="rev-y3">$200K Year 3</div>
+      <p>0.08% fee on BFW cross-chain bridge transactions to/from Ethereum, Solana, and Base.</p>
+    </div>
+    <div class="rev-card" style="border-color:var(--accent2);">
+      <h4>Total Protocol Revenue</h4>
+      <div class="rev-y1" style="font-size:1.8rem;">$2.5M</div>
+      <div class="rev-y3" style="font-size:1.3rem;">$54.5M Year 3</div>
+      <p>At 25× P/Revenue (Aave comparable): <strong style="color:var(--accent2)">$1.36B FDV = $1.36/token</strong> by Year 3.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:2.5rem;">
+    <table>
+      <thead><tr><th>Revenue Source</th><th>Year 1</th><th>Year 3</th><th>Distribution</th></tr></thead>
+      <tbody>
+        <tr><td>DEX Trading Fees</td><td>$1.8M</td><td class="hl">$45.6M</td><td>50% LPs · 50% veBFW</td></tr>
+        <tr><td>AI Inference Fees</td><td>$400K</td><td class="hl">$5M</td><td>70% node operators · 30% veBFW</td></tr>
+        <tr><td>Lending Spread</td><td>$200K</td><td class="hl">$2.5M</td><td>80% lenders · 20% veBFW</td></tr>
+        <tr><td>Broadcast SLAs</td><td>—</td><td class="hl">$1.2M</td><td>100% BFW buyback &amp; burn</td></tr>
+        <tr><td>Bridge Fees</td><td>$100K</td><td class="hl">$200K</td><td>100% veBFW</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>$2.5M</strong></td><td class="hl"><strong>$54.5M</strong></td><td>50% to token holders (real yield)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- KEY METRICS -->
+<section id="metrics">
+  <div class="section-tag">Investor KPIs</div>
+  <h2 class="section-title">Key Metrics to Track</h2>
+  <p class="section-desc">The metrics that determine protocol health and token value. Track these to gauge Baseflow's progress against projections.</p>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <h4>Total Value Locked (TVL)</h4>
+      <div class="m-y1">$10M</div><div class="m-label">Year 1 Target</div>
+      <div class="m-y3">$1B+ Year 3</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:6px;">Protocol trust &amp; fee revenue base. Higher TVL = more swap fees = higher real yield.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Daily Active Wallets</h4>
+      <div class="m-y1">10,000</div><div class="m-label">Year 1 Target</div>
+      <div class="m-y3">1M+ Year 3</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:6px;">Real usage signal. Drives DEX volume and AI marketplace demand.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Protocol Revenue</h4>
+      <div class="m-y1">$2.5M</div><div class="m-label">Year 1 Target</div>
+      <div class="m-y3">$54.5M Year 3</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:6px;">The P/Revenue multiple drives FDV valuation. $54.5M × 25× = $1.36B FDV.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Staking Participation</h4>
+      <div class="m-y1">30%</div><div class="m-label">Year 1 Target</div>
+      <div class="m-y3">50%+ Year 3</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:6px;">High staking rate = constrained circulating supply = upward price pressure.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Solar Nodes Online</h4>
+      <div class="m-y1">100</div><div class="m-label">Year 1 Target</div>
+      <div class="m-y3">10,000 Year 3</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:6px;">Unique differentiator. More solar nodes = stronger PoGS claim &amp; BOI compliance.</p>
+    </div>
+    <div class="metric-card">
+      <h4>veBFW Lock Rate</h4>
+      <div class="m-y1">15%</div><div class="m-label">Year 1 Target</div>
+      <div class="m-y3">35%+ Year 3</div>
+      <p style="font-size:0.78rem;color:var(--muted);margin-top:6px;">Locked BFW is illiquid — directly reduces sell pressure and supports price.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARABLES -->
+<section id="comparables" class="comp-section">
+  <div class="section-tag">Market Context</div>
+  <h2 class="section-title">Comparable Projects</h2>
+  <p class="section-desc">Baseflow sits at the intersection of AI infrastructure, DeFi, and physical network tokens — all high-growth categories in 2026.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Project</th><th>Category</th><th>Peak FDV</th><th>ATH Price</th><th>BFW Overlap</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Helium (HNT)</strong></td><td>Physical wireless network</td><td>$5B</td><td class="hl">$54 (216× from launch)</td><td>Decentralized physical infrastructure + token rewards</td></tr>
+        <tr><td><strong>Bittensor (TAO)</strong></td><td>Decentralized AI</td><td>$15B</td><td class="hl">~15× in 12 months</td><td>AI-powered network, subnet rewards</td></tr>
+        <tr><td><strong>Aave (AAVE)</strong></td><td>DeFi lending</td><td>$8B</td><td class="hla">$661</td><td>Real yield, staking, lending protocol</td></tr>
+        <tr><td><strong>Uniswap (UNI)</strong></td><td>DEX</td><td>$22B</td><td class="hla">$44.97</td><td>Native DEX, fee distribution</td></tr>
+        <tr><td><strong>Curve (CRV)</strong></td><td>veDEX</td><td>$4B</td><td class="hlp">$6.60</td><td>ve-tokenomics model, gauge voting</td></tr>
+        <tr><td><strong>NEAR Protocol</strong></td><td>L1 AI + DeFi</td><td>$8B</td><td class="hlg">$20.42 (38×)</td><td>AI integration, PoS staking 5–12%</td></tr>
+        <tr><td><strong style="color:var(--accent2)">Baseflow (BFW)</strong></td><td>AI + DeFi + Solar + Broadcast</td><td style="color:var(--muted)">TBD</td><td class="hl">$0.05 IDO →?</td><td><span class="badge bg">All of the above + Thailand moat</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:2.5rem;">
+    <h3 style="color:#fff;margin-bottom:1rem;font-size:1rem;">FDV Scenario: What Capturing a Small % of the TAM Means for BFW Price</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>FDV Target</th><th>BFW Token Price</th><th>Multiplier from $0.05 IDO</th><th>Reference</th></tr></thead>
+        <tbody>
+          <tr><td>1% of AI crypto market ($200–500B)</td><td>$2B–$5B</td><td class="hl">$2.00–$5.00</td><td class="hl">40×–100×</td><td>Bittensor / NEAR tier</td></tr>
+          <tr><td>P/Revenue 25× on $54M Y3 revenue</td><td>$1.36B</td><td class="hla">$1.36</td><td class="hla">27×</td><td>Aave methodology</td></tr>
+          <tr><td>Mid-tier DeFi protocol</td><td>$500M</td><td class="hlg">$0.50</td><td class="hlg">10×</td><td>Comparable to mature L2 DeFi</td></tr>
+          <tr><td>Helium-equivalent physical network</td><td>$5B</td><td class="hlp">$5.00</td><td class="hlp">100×</td><td>Helium $54 peak</td></tr>
+          <tr><td>Aave / Uniswap tier (bull cycle)</td><td>$10B–$22B</td><td class="hl">$10.00–$22.00</td><td class="hl">200×–440×</td><td>Top 20 DeFi</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
+      <p>Southeast Asia's green grid of decentralized finance and communication. Headquartered in Thailand.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Tokenomics</h4>
+      <a href="#snapshot">Token Snapshot</a>
+      <a href="#allocation">Allocation &amp; Vesting</a>
+      <a href="#yield">Yield Mechanisms</a>
+      <a href="#vebfw">veBFW Lock Tiers</a>
+      <a href="#roi">ROI Scenarios</a>
+      <a href="#revenue">Protocol Revenue</a>
+    </div>
+    <div class="footer-links">
+      <h4>Project</h4>
+      <a href="index.html">Project Overview</a>
+      <a href="index.html#pillars">Core Pillars</a>
+      <a href="index.html#solar">Solar Research</a>
+      <a href="index.html#roadmap">Roadmap</a>
+      <a href="presale.html" style="color:var(--accent2)">SAI Presale →</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Baseflow. All rights reserved. Headquarters: Thailand.</span>
+    <span>This document does not constitute financial or investment advice. Cryptocurrency investments are high-risk.</span>
+  </div>
+</footer>
+
+<script>
+  function showScenario(s) {
+    ['bear','base','bull'].forEach(n => {
+      document.getElementById('sc-'+n).classList.remove('visible');
+    });
+    document.getElementById('sc-'+s).classList.add('visible');
+    document.querySelectorAll('.stab').forEach(b => {
+      b.className = 'stab';
+      if (b.textContent.toLowerCase().includes(s)) b.classList.add('active-'+s);
+    });
+  }
+  // default
+  showScenario('base');
+</script>
+
+</body>
+</html>

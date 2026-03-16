@@ -1,7 +1,13 @@
 # Solar Panel Procurement Research
-## For Baseflow Validator Node Infrastructure
+## For Baseflow Validator Node Infrastructure — Thailand HQ
 
-*Research Date: March 2026*
+*Research Date: March 2026 | Location: Thailand*
+
+---
+
+## Executive Summary
+
+Thailand is one of the best solar procurement jurisdictions in the world. ACFTA zero-duty imports from China, geographic proximity (15–22 day sea transit vs 30–45 days to the US), a developed domestic distribution network, and near-zero tariffs mean panels land in Thailand at **$0.12–$0.16/W** — vs **$0.28–$0.35/W** in the US. That is a structural 55–60% cost advantage that no US or European competitor can match.
 
 ---
 
@@ -18,110 +24,198 @@
 
 ---
 
-## Panel Comparison Table (US-Stocked)
+## ACFTA Tariff Confirmation (Thailand ← China)
 
-| # | Model | Watts | Efficiency | Price/Panel | $/Watt | MOQ | Certs | Supplier |
-|---|-------|-------|-----------|------------|--------|-----|-------|---------|
-| 1 | ZNShine ZXM7-UHLDD108-440 | 440W | 22.53% | $126.50 | **$0.287/W** | 36 panels (1 pallet) | IEC, ISO | US Solar Supplier |
-| 2 | Eagle Solar 550W Bifacial PERC | 550W | 21.3% | $201.00 | $0.365/W | 36 panels (1 pallet) | PID-resistant, 30yr warranty | Eagle Solar Supply |
-| 3 | Aptos DNA-144-BF10-550W-DG | 550W | 21.3–21.9% | $216.99 | $0.395/W | 31 panels (1 pallet) | IEC 61730, CSA | US Solar Supplier |
-| 4 | Peimar DR10H500M 500W | 500W | 21.06% | $192.50 | $0.385/W | 10 panels | UL 1703, CE, IEC | Signature Solar |
-| 5 | Hanwha Q CELLS 400W | 400W | 20.9% | $150.00 | $0.375/W | Varies | UL 61730, IEC | US Solar Supplier |
-| 6 | Jinko Tiger Neo JKM580N 580W | 580W | 22.45% | $273.99 | $0.472/W | 36 panels (1 pallet) | UL 61730, IEC | US Solar Supplier |
-| 7 | Canadian Solar TOPHiKu6 450W | 450W | 22.5–23% | $259.99 | $0.578/W | 31 panels (1 pallet) | UL, IEC — **USA assembled** | US Solar Supplier |
-| 8 | Heliene 144HC-580W | 580W | 22.44% | $332.99 | $0.574/W | 31 panels (1 pallet) | UL 61215/61730 — **USA made** | US Solar Supplier |
-| 9 | LONGi Hi-MO 7 615–625W | 615–625W | 22.8–23.1% | Quote only | ~$0.26–0.29/W | Pallet/container | IEC, CE, TUV | Nastec Solar |
-| 10 | JA Solar JAM72D40-600W | 600W | ~23% | ~$0.20/W (EU) | ~$0.27/W US landed | Container | IEC 61215/61730 | Alibaba / VoltaconSolar |
+Under the **ASEAN-China Free Trade Agreement (ACFTA)**, solar panels (HS Code 8541.40) are on the **zero-duty schedule**.
 
----
+| Tax / Fee | Rate | Notes |
+|-----------|------|-------|
+| ACFTA Import Duty (HS 8541.40) | **0%** | Requires Form E Certificate of Origin |
+| MFN Import Duty | **0%** | Thailand's MFN rate is also 0% for solar |
+| VAT | **7%** | Applied on CIF value; all imports |
+| Excise Tax | 0% | Not applicable to solar panels |
+| Port / customs handling | ~$150–300/container | Laem Chabang standard fees |
 
-## Complete Solar Kit Options
-
-| Kit | Inverter | Battery | Solar PV | Price | Best For |
-|-----|---------|---------|---------|-------|---------|
-| **EG4 Shed & Garage Kit** (KIT-E0017) | 6kW split-phase | 15.36kWh LiFePO4 | 14–16 panels (~7kW) | **$8,928** | 1–3 Ethereum nodes |
-| **EG4 6000XP x2 Kit** (KIT-E0009) | 12kW parallel | 20.48kWh LiFePO4 | 16–18 panels (~8kW) | **$13,395** | 3–6 Ethereum nodes / mid Solana |
-| **EG4 18kPV + 30.72kWh Bundle** | 12kW / 18kW PV in | 30.72kWh LiFePO4 | Panels separate | **$14,004** | Multi-node rack (add panels) |
-| **SunGold SGR-5KE** | 5kW / 48V | 10.24kWh LiFePO4 | 6x 415W = 2.49kW | **$4,496** | Single Ethereum node |
-| **Dawnice 10kW Kit** | 10kW / 48V | 10kWh LiFePO4 | 16x 550W = 8.8kW | ~$6,000–8,000 | Solana validator / 5–8 ETH nodes |
-
-All EG4 systems: UL 1741, UL 9540, IEEE 1547 certified.
+**Form E Certificate of Origin** is required to claim ACFTA preferential rates — standard on any B2B shipment from China.
 
 ---
 
-## Sizing Guide (24/7 Off-Grid Operation)
+## Price Comparison: China FOB vs Thailand Landed vs US Landed
+
+| Cost Component | China FOB | Thailand Landed | US Landed (2026) |
+|----------------|-----------|----------------|-----------------|
+| Module FOB price (Tier 1 TOPCon) | $0.089–$0.094/W | — | — |
+| Ocean freight | — | +$0.015–$0.025/W | +$0.025–$0.040/W |
+| Import duty | — | **0%** (ACFTA) | 36–800%+ (tariffs) |
+| VAT | — | +7% on CIF | State dependent |
+| Customs/clearance | — | ~$0.002–$0.005/W | ~$0.003–$0.006/W |
+| **All-in (direct import)** | — | **$0.12–$0.16/W** | **$0.28–$0.35/W** |
+| **All-in (via distributor)** | — | $0.16–$0.22/W | $0.32–$0.45/W |
+
+**Thailand saves 55–60% vs the US on every watt of solar hardware.**
+
+### Shipping Time
+| Route | Mode | Transit Time |
+|-------|------|-------------|
+| Shenzhen/Guangzhou → Laem Chabang (Bangkok) | FCL Ocean | **7–22 days** (avg 15–17) |
+| China → USA West Coast | FCL Ocean | 14–21 days |
+| China → USA East Coast | FCL Ocean | 28–40 days |
+
+---
+
+## Thailand Panel Pricing (March 2026)
+
+All prices in USD at ~35 THB/USD.
+
+| Tier | Source | USD/W | THB/W |
+|------|--------|-------|-------|
+| Direct China import | B2B import (ACFTA + 7% VAT) | **$0.12–$0.16/W** | 4.2–5.6 |
+| Thai wholesale distributor | Local B2B | $0.16–$0.22/W | 5.6–7.7 |
+| Retail / end consumer | Retail market | $0.28–$0.57/W | 10–20 |
+
+### Indicative Installed System Costs (Bangkok, on-grid)
+
+| System Size | THB | USD |
+|-------------|-----|-----|
+| 10 kW commercial | 250,000–320,000 | $7,140–$9,140 |
+| 20 kW commercial | 450,000–600,000 | $12,860–$17,140 |
+| 50 kW commercial | 1,000,000–1,300,000 | $28,570–$37,140 |
+| 5 kW off-grid + battery | 300,000–400,000 | $8,570–$11,430 |
+
+---
+
+## Panel Comparison Table
+
+| # | Model | Watts | Efficiency | Est. Thailand Price | Certs | Notes |
+|---|-------|-------|-----------|-------------------|-------|-------|
+| 1 | JA Solar JAM72D40-600W | 600W | ~23% | ~$0.14/W landed | IEC 61215/61730 | Top tier; direct import |
+| 2 | LONGi Hi-MO 7 615–625W | 615–625W | 22.8–23.1% | ~$0.14–0.16/W | IEC, CE, TUV | Highest watt/panel; LONGi TH distributor available |
+| 3 | Trina Vertex N 600W | 600W | ~22.5% | ~$0.14/W | IEC, TUV | Made in Thailand (Trina TH factory) |
+| 4 | Canadian Solar TOPHiKu6 580W | 580W | 22.5–23% | ~$0.13–0.15/W | UL, IEC | **Made in Thailand** (Si Racha, Chonburi) |
+| 5 | Jinko Tiger Neo 580W | 580W | 22.45% | ~$0.13–0.15/W | IEC, UL | Direct import or via Thai dealers |
+| 6 | Solartron (Thai brand) | 380–450W | 19–21% | ~$0.18–0.25/W | UL, TIS, JIS, MCS | **Thai domestic manufacturer**; 35+ years |
+| 7 | GreenSolar Thailand | 400–500W | 20–22% | ~$0.18–0.22/W | CE, TIS | Thai OEM/ODM; custom branding available |
+
+---
+
+## Complete Kit Options (Available in Thailand)
+
+| Kit | Inverter | Battery | Solar | Est. Thailand Price | Best For |
+|-----|---------|---------|-------|---------------------|---------|
+| Growatt + LFP 10kW off-grid kit (China import) | 10kW hybrid | 20kWh LiFePO4 | 10kW panels | **~$5,500–$8,250** | 1 Solana node / 5–8 ETH nodes |
+| Deye + LFP 20kW system (China import) | 20kW hybrid | 40kWh LiFePO4 | 20kW panels | **~$9,900–$15,400** | Multi-node rack |
+| Solaris Green Energy off-grid kit (Thai stock) | Growatt/Deye | LiFePO4 | Multi-brand | Contact Solaris | Off-grid specialist; local warranty |
+| SCG turnkey 10kW (Thai installer) | SMA/Huawei | Optional | Canadian Solar/Trina | ~$8,000–$10,000 | Full install, no hassle |
+
+---
+
+## Thai Solar Distributors & Suppliers
+
+### Tier 1 — National Wholesale Distributors
+
+| Company | Brands | Location | Contact |
+|---------|--------|---------|---------|
+| **QES Energy** (qesenergy.co.th) | Trina Solar (official) | Bangkok | Official Trina direct importer; wholesale pricing |
+| **Energy Dynamics Thailand** (energydynamicsth.com) | Canadian Solar, SMA Inverters | Bangkok (Chatuchak) | Official Canadian Solar distributor |
+| **Solaris Green Energy** (solaris.co.th) | LONGi, multi-brand | Krabi (national) | Off-grid specialist; +66 84 852 4608 |
+| **New Energy Plus Solutions Co.** | LONGi (official 2024 partner) | Bangkok | Official LONGi Thailand partner |
+
+### Tier 2 — Commercial Installers with Procurement
+
+| Company | Specialty |
+|---------|---------|
+| **CleanMax Thailand** | C&I specialist; 1,000+ MW track record |
+| **Bangkok Solar Power Co.** | Subsidiary of Bangkok Cable Group; EPC |
+| **SCG (Siam Cement Group)** | Mass-market; major brand |
+| **Blue Solar** | Since 2006; energy storage |
+| **MonoSun Technology** | Phuket / commercial |
+
+### Thai Domestic Manufacturers
+
+| Company | Location | Capacity / Notes |
+|---------|---------|-----------------|
+| **Solartron Public Co.** (solartron.co.th) | Samut Prakan | 35+ years; UL/MCS/JIS/TIS; German technology |
+| **GreenSolar Thailand** (greensolarthailand.com) | Thailand | OEM/ODM available; mono + poly + black panels |
+| **Canadian Solar Manufacturing TH** | Si Racha, Chonburi (EEC) | 5 GW N-type wafer + TOPCon; buying local eliminates import |
+| **Trina Solar Thailand** | Multiple | 6.5 GW combined TH + Vietnam capacity |
+| **Sungrow Thailand** | Thailand | Inverters + BESS local manufacturing |
+
+---
+
+## Sizing Guide (24/7 Off-Grid Node Operation)
 
 | Node Setup | Daily kWh | Solar Needed | Battery Needed | Panel Config |
 |-----------|----------|-------------|---------------|-------------|
-| 1 Ethereum node (100W) | 2.4 kWh | 1.5–2kW | 10kWh | 4–5x 400W panels |
-| 3 Ethereum nodes (300W) | 7.2 kWh | 4–5kW | 20–25kWh | 10–12x 450W panels |
-| 1 Solana validator (500W) | 12 kWh | 7–8kW | 35–40kWh | 16x 500W panels |
-| 5-node rack (1kW) | 24 kWh | 12–15kW | 60–80kWh | 28–36x 550W panels |
+| 1 ETH node (100W) | 2.4 kWh | 1.5–2kW | 10kWh | 4–5x 400W |
+| 3 ETH nodes (300W) | 7.2 kWh | 4–5kW | 20–25kWh | 10–12x 450W |
+| 1 Solana validator (500W) | 12 kWh | 7–8kW | 35–40kWh | 16x 500W |
+| 5-node rack (1kW) | 24 kWh | 12–15kW | 60–80kWh | 28–36x 550W |
 
 ---
 
-## Recommendations
+## Recommended Procurement Strategy by Scale
 
-### Best Value (US Stock, No Tariff Risk)
-**ZNShine ZXM7-UHLDD108-440 — $0.287/W**
-- 1 pallet = 36 panels = 15.84kW = $4,554
-- 22.53% N-type TOPCon bifacial, 30-year performance warranty
-- Best $/W for a multi-node Ethereum setup or modest Solana validator
-- [US Solar Supplier](https://ussolarsupplier.com/products/znshine-440w-pallet-of-36-bifacial-black-solar-panel-zxm7-uhldd108-440)
+### Option A — Small Scale (< 50 kW)
+**Buy from Thai wholesale distributors**
+- Source from QES Energy (Trina) or Solaris Green Energy (LONGi)
+- No import paperwork; immediate stock; local warranty
+- Cost: **$0.16–$0.22/W panels** | complete off-grid system ~$0.55–$0.85/W all-in
 
-### Best for ITC / IRA Domestic Content Bonus (+10%)
-**Heliene 580W (USA Made) — $0.574/W**
-- Qualifies for the 10% domestic content bonus on top of 30% ITC = **40% total tax credit**
-- Made in Minnesota/Florida — zero tariff risk
-- Best for commercial node operators claiming investment tax credits
-- [US Solar Supplier](https://ussolarsupplier.com/products/heliene-580w-144hc-m10-ntyp-sl-bifacial-solar-panel-domestic-content)
+### Option B — Medium Scale (50–500 kW)
+**Direct import from China via Alibaba / Made-in-China**
+- Source Tier-1 panels (JA Solar, LONGi, Trina, Canadian Solar) direct from Chinese factories
+- Obtain **Form E Certificate of Origin** for ACFTA 0% duty
+- Ship FCL via Laem Chabang (20ft container = ~100–130 kW of 550W panels)
+- Use Thai customs broker (~$200–400/container)
+- Cost: **$0.12–$0.16/W all-in** | Transit: 15–17 days
 
-### Best Complete Kit (Small Operator)
-**EG4 Shed & Garage Kit — $8,928**
-- Fully integrated, UL-listed, expandable to 16 parallel inverters
-- Powers 1–3 Ethereum validators or a modest Solana node
-- [Signature Solar](https://signaturesolar.com/eg4-shed-garage-kit/)
-
-### Best Complete Kit (Serious Multi-Node Operator)
-**EG4 18kPV + 30.72kWh Bundle — $14,004** + ZNShine 440W pallet
-- 12kW continuous AC, 30+ kWh LiFePO4, 18kW PV input
-- Powers 5–8 node rack 24/7 with 2-day autonomy
-- [Signature Solar](https://signaturesolar.com/eg4-18kpv-hybrid-inverter-system-bundle-30-72kwh-eg4-lithium-powerwall/)
-
-### Best for Large-Scale / International Orders
-**JA Solar JAM72D40-600W or LONGi Hi-MO 7 615W via Alibaba**
-- FOB China: ~$0.087–0.095/W
-- US landed after tariffs: ~$0.25–0.33/W
-- Viable for 100+ panel container orders with managed logistics
-- [Alibaba](https://www.alibaba.com/showroom/wholesale-solar-panels.html)
+### Option C — Large Scale (500 kW+)
+**BOI application + direct Thai factory procurement**
+- Apply for BOI promotion under "Data Center" or "Smart Electronics" (Category A2)
+- Receive **0% import duty on all machinery** — eliminates even the 7% VAT on equipment
+- Buy direct from **Canadian Solar Thailand** (Si Racha) or **Trina Solar Thailand** — zero import friction
+- Explore PPA with Thai solar developer (CleanMax, Bangkok Solar) for zero-capex deployment
+- Cost: **$0.10–$0.15/W** with BOI machinery exemption
 
 ---
 
-## US Supplier Directory
+## Vendor Shortlist for Immediate Action
 
-| Supplier | Location | Specialty |
-|---------|---------|---------|
-| [Signature Solar](https://signaturesolar.com) | Sulphur Springs, TX | EG4 complete systems, panels, batteries |
-| [US Solar Supplier](https://ussolarsupplier.com) | US warehouses | Jinko, Canadian Solar, Heliene, ZNShine, Aptos |
-| [Eagle Solar Supply](https://eaglesolarsupply.com) | Dover, DE | Bifacial pallet deals (MOQ 1 pallet) |
-| [A1 SolarStore](https://a1solarstore.com) | Coral Springs, FL | 15+ brands, B2B wholesale accounts |
-| [Greentech Renewables](https://greentechrenewables.com) | Multiple US | Commercial/contractor, Canadian Solar, Qcells |
-| [SunGold Power](https://sungoldpower.com) | Online (US) | Off-grid kits and batteries |
-| [Heliene (Direct)](https://heliene.com) | MN, FL | USA-made domestic content panels |
+| Priority | Vendor | Why |
+|----------|--------|-----|
+| 1 | **QES Energy** (qesenergy.co.th) | Official Trina direct importer; call for wholesale price |
+| 2 | **Solaris Green Energy** (+66 84 852 4608) | LONGi + off-grid kits; wholesale since 2013 |
+| 3 | **Energy Dynamics Thailand** (energydynamicsth.com) | Official Canadian Solar + SMA; Bangkok |
+| 4 | **Canadian Solar Manufacturing Thailand** (Si Racha) | Buy direct from Thai factory at scale |
+| 5 | **Alibaba — JA Solar / LONGi / Trina** (direct factory) | Lowest cost; use for 50kW+ orders |
 
 ---
 
-## Tariff Warning (2025)
+## BOI Solar Incentives Summary
 
-| Source | FOB $/W | US Landed $/W | Notes |
-|--------|---------|--------------|-------|
-| China (direct) | $0.087–0.10 | $0.25–0.35 | 50% Section 301 + AD/CVD + 34% reciprocal tariffs |
-| SE Asia (Vietnam, Cambodia, etc.) | $0.09–0.11 | Up to $0.40+ | AD/CVD up to 3,521% for some manufacturers |
-| US-made (Heliene, Canadian Solar) | N/A | $0.57–0.58 | No tariff risk; IRA domestic content bonus eligible |
-| EU/UK market | N/A | ~€0.095–0.110/W | Lower tariff burden in Europe |
+| Incentive | Detail |
+|-----------|--------|
+| Corporate Income Tax exemption | **8 years, no cap** |
+| Import duty on machinery | **0%** — full exemption |
+| Import duty on raw materials | 0% for R&D / export manufacturing |
+| Land ownership | Permitted for BOI-promoted foreign companies |
+| Foreign skilled workers | No ratio restriction |
+| 100% foreign ownership | Permitted in manufacturing |
 
-**Bottom line:** Buy US-stocked inventory to avoid tariff surprises and import delays unless ordering container-scale with experienced logistics.
+**Key tip:** Apply under "Data Center" or "Smart Electronics" BOI category to get 0% machinery import duty on all solar equipment — eliminates the 7% VAT on top of the already zero tariff.
 
 ---
 
-*Sources: US Solar Supplier, Signature Solar, Eagle Solar Supply, Alibaba, A1 SolarStore, EG4 Electronics, Solar.com, SunHub, EthStaker docs*
+## Thai Government Solar Programs
+
+| Program | Detail |
+|---------|--------|
+| VSPP (Very Small Power Producer) | Sell surplus solar to grid; capacity ≤10 MW |
+| FiT buyback rate | **THB 2.20/kWh** (~$0.063/kWh) |
+| Community Solar quota | 400 MW/year approved starting 2025 |
+| BOI renewable energy project | 5–8 year CIT exemption |
+| June 2025 Cabinet solar deduction | THB 200,000 per rooftop installation (≤10 kWp) |
+
+---
+
+*Sources: QES Energy Thailand, Solaris Green Energy, Energy Dynamics Thailand, Canadian Solar investor relations, ACFTA Wikipedia / Dimerco FTA guide, Thailand National Trade Repository, BOI Lex Nova guide, pv-magazine 2026 pricing, DocShipper China-Thailand freight rates, SolarQuarter Thailand, Energy Tracker Asia*

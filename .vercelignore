@@ -1,0 +1,18 @@
+# Research PDFs (large, not needed for site)
+*.pdf
+*.pdf.txt
+*.pdf.txt.clean.txt
+
+# Python scripts
+*.py
+
+# Markdown docs (not served)
+*.md
+plans/
+
+# Claude config
+.claude/
+
+# Git
+.git/
+.gitignore

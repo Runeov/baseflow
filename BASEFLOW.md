@@ -2,7 +2,7 @@
 
 ## Overview
 
-Baseflow is a next-generation, AI-powered cryptocurrency designed to be self-sustaining through solar energy infrastructure, leveraging government tax incentives, decentralized finance (DeFi) networking, and serving as a resilient backup broadcast communication system.
+Baseflow is a next-generation, AI-powered cryptocurrency headquartered in **Thailand**, designed to be self-sustaining through solar energy infrastructure, leveraging Thai government and BOI tax incentives, decentralized finance (DeFi) networking, and serving as a resilient backup broadcast communication system for Southeast Asia and beyond.
 
 ---
 
@@ -18,23 +18,26 @@ Baseflow is a next-generation, AI-powered cryptocurrency designed to be self-sus
 - Node operators submit proof-of-solar certificates to the network.
 - Energy efficiency metrics are embedded into the block reward algorithm — greener nodes earn higher yields.
 
-### 3. Government Tax Break Integration
-- Baseflow nodes registered as renewable energy infrastructure qualify for applicable federal/state solar investment tax credits (ITC).
-- Smart contracts track and report energy usage on-chain for transparent compliance reporting.
-- Node operators can generate on-chain tax documentation exportable for IRS Form 3468 (Investment Credit) and similar filings.
-- DAO treasury participates in public-private renewable energy grants and programs.
+### 3. Government Tax Break Integration (Thailand)
+- Baseflow is registered under Thailand's **Board of Investment (BOI)** renewable energy category, qualifying for **5–8 years of corporate income tax exemption**.
+- Solar installations qualify for **THB 200,000 rooftop solar deduction** per the Thai Cabinet's June 2025 energy incentive package (valid through December 2028).
+- Thailand's **5-year personal income tax exemption** (until Dec 2029) on crypto capital gains from licensed exchanges directly benefits BFW holders trading on compliant platforms.
+- Smart contracts track and report energy usage on-chain for transparent SEC Thailand compliance reporting.
+- Node operators generate on-chain tax documentation compatible with Thai Revenue Department requirements.
+- DAO treasury pursues BOI-approved renewable energy grants and Ministry of Energy programs.
 
 ### 4. DeFi Networking
 - Native DEX (decentralized exchange) built on the Baseflow L1 chain.
 - Liquidity pools incentivize long-term staking with solar-weighted APY bonuses.
-- Cross-chain bridges connect Baseflow to Ethereum, Solana, and Base (Coinbase L2).
+- Cross-chain bridges connect Baseflow (native on Base) to Ethereum L1 and Solana.
 - Yield farming protocols reward validators and liquidity providers in BFW tokens.
 
 ### 5. Backup Broadcast System
-- Baseflow nodes double as decentralized broadcast relay points for emergency communications.
+- Baseflow nodes double as decentralized broadcast relay points for emergency communications across Southeast Asia.
 - Integrated mesh networking layer enables peer-to-peer data transmission independent of centralized ISPs.
-- Compatible with existing emergency alert systems (EAS/IPAWS) as a redundant broadcast channel.
-- Nodes in disaster-affected regions automatically elevate broadcast priority and relay capacity.
+- Compatible with Thailand's national emergency alert infrastructure and ASEAN disaster coordination systems as a redundant broadcast channel.
+- Nodes in disaster-affected regions (typhoons, floods, earthquakes common in SEA) automatically elevate broadcast priority and relay capacity.
+- Strategic positioning in Thailand provides gateway coverage for Myanmar, Laos, Cambodia, Vietnam, and Malaysia.
 
 ---
 
@@ -50,8 +53,8 @@ The DefAI (AI + DeFi) segment is projected to grow from $1B → $10B by end of 2
 
 > **This is the #1 revenue engine for Baseflow.**
 
-**Solar Node Infrastructure + Tax Breaks**
-The 30% federal Investment Tax Credit (ITC) is active through 2032. MACRS 5-year depreciation on solar installations combined with state incentives means total incentives cover **50–60% of installation costs**, dropping payback periods from 8–10 years to **3–5 years**. Renewable energy now accounts for 54% of Bitcoin mining — regulatory pressure is pushing the entire industry this direction, making early movers the price setters.
+**Solar Node Infrastructure + Thailand Tax Breaks**
+Thailand's BOI grants **5–8 years of corporate income tax exemption** for renewable energy projects. The June 2025 Cabinet solar incentive package adds a THB 200,000 deduction per installation. Crucially, Thailand's proximity to Chinese solar manufacturers means **zero-tariff imports under the ASEAN-China FTA** — panels that cost $0.35/W to land in the US cost as little as **$0.09–0.12/W landed in Thailand**. This is a structural cost advantage no US or European competitor can match.
 
 > **This is Baseflow's cost moat and compliance edge.**
 
@@ -60,12 +63,12 @@ The 30% federal Investment Tax Credit (ITC) is active through 2032. MACRS 5-year
 ### Tier 2 — Strong Niche Profit
 
 **Backup Broadcast / Mesh Network**
-Helium proved decentralized wireless infrastructure with token incentives works at scale. Monetization paths:
-- Government / FEMA contracts for emergency relay infrastructure
+Helium proved decentralized wireless infrastructure with token incentives works at scale. Southeast Asia is one of the most disaster-prone regions on earth — floods, typhoons, and infrastructure failures create genuine demand for a resilient backup broadcast layer. Monetization paths:
+- Thai government / ASEAN disaster management contracts for emergency relay infrastructure
 - Businesses paying BFW for priority broadcast node hosting
-- ISP bypass subscriptions in underserved and rural areas
+- ISP bypass subscriptions in rural Thailand, Myanmar, Laos, and Cambodia where connectivity is unreliable
 
-> **Slower to monetize but high defensibility — no competitor in the crypto space owns this.**
+> **Slower to monetize but high defensibility — no competitor in the crypto space owns this in SEA.**
 
 ---
 
@@ -80,7 +83,7 @@ Tokenizing Renewable Energy Certificates (RECs) and carbon credits on-chain is a
 
 | Priority | Feature | Reason |
 |----------|---------|--------|
-| 1 | L2 on Base or Ethereum | Fastest to market, inherits battle-tested security |
+| 1 | L2 on Base (Coinbase) | Fastest to market, inherits Ethereum security, Coinbase 100M+ user on-ramp |
 | 2 | AI yield optimizer agent | Highest demand, proven revenue model |
 | 3 | Solar node certification system | Tax advantage and green differentiator |
 | 4 | Native DEX + BFW staking | Token utility, liquidity, and holder retention |
@@ -96,7 +99,7 @@ Tokenizing Renewable Energy Certificates (RECs) and carbon credits on-chain is a
 | Total Supply    | 1,000,000,000 BFW                |
 | Consensus       | Proof of Green Stake (PoGS)      |
 | Block Time      | ~3 seconds                       |
-| Chain           | L2 on Base / Ethereum (EVM)      |
+| Chain           | L2 on Base (Coinbase EVM)        |
 | EVM Compatible  | Yes                              |
 
 ### Token Distribution
@@ -129,7 +132,7 @@ Validators with higher solar energy ratios and better AI scores receive proporti
 - [ ] Whitepaper publication
 - [ ] Core team formation
 - [ ] Legal entity and DAO structure established
-- [ ] Deploy as EVM-compatible L2 on Base or Ethereum
+- [ ] Deploy as ERC-20 on Base (Coinbase L2)
 - [ ] Solar node hardware partnerships secured
 
 ### Phase 2 — Testnet *(AI + DeFi lead)*
@@ -141,18 +144,20 @@ Validators with higher solar energy ratios and better AI scores receive proporti
 
 ### Phase 3 — Mainnet *(Revenue live)*
 - [ ] BFW token generation event (TGE)
+- [ ] Thai SEC digital asset license application filed
 - [ ] Mainnet launch with initial validator set
 - [ ] AI inference marketplace live
 - [ ] DEX, liquidity pools, and yield farming live
-- [ ] Government tax credit reporting system live
+- [ ] Thai Revenue Department-compatible tax reporting system live
 
 ### Phase 4 — Expansion *(Defensibility + moats)*
-- [ ] Mesh broadcast layer deployment
-- [ ] EAS/IPAWS emergency broadcast integration
-- [ ] FEMA and government infrastructure contracts
+- [ ] Mesh broadcast layer deployment across Thailand
+- [ ] ASEAN emergency broadcast integration
+- [ ] Thai government and ASEAN disaster management contracts
 - [ ] Carbon credit and REC tokenization
-- [ ] National solar node grant applications
-- [ ] Institutional partnerships
+- [ ] BOI renewable energy grant applications
+- [ ] Regional expansion: Singapore, Vietnam, Indonesia
+- [ ] Institutional partnerships with Thai banks and energy companies
 
 ---
 
@@ -173,8 +178,20 @@ Validators with higher solar energy ratios and better AI scores receive proporti
 | Crypto energy waste                  | Solar-only validator requirement           |
 | Centralized broadcast infrastructure | Decentralized mesh broadcast network       |
 | Complex DeFi onboarding              | Unified AI-assisted DeFi interface         |
-| No tax incentive integration         | Built-in solar ITC reporting tools         |
-| Fragile emergency communications     | Nodes as redundant broadcast relay points  |
+| No tax incentive integration         | Thailand BOI 5–8yr CIT exemption + solar deductions |
+| Fragile emergency communications     | SEA-focused mesh broadcast relay network   |
+| High solar hardware costs (US/EU)    | Near-zero tariff Chinese panels via ASEAN FTA |
+
+---
+
+## Legal & Regulatory
+
+- **Headquarters:** Thailand
+- **Regulatory Body:** Thai Securities and Exchange Commission (SEC)
+- **License Target:** Digital Asset Exchange + ICO Portal (Thai SEC)
+- **BOI Category:** Renewable Energy Infrastructure (Category A2)
+- **Crypto Tax Status:** 5-year capital gains exemption for BFW holders on licensed exchanges (until Dec 2029)
+- **Corporate Tax Status:** 5–8 year CIT exemption via BOI renewable energy promotion
 
 ---
 
@@ -184,7 +201,8 @@ Validators with higher solar energy ratios and better AI scores receive proporti
 - Twitter/X: @BaseflowCrypto
 - Discord: discord.gg/baseflow
 - GitHub: github.com/baseflow
+- HQ: Thailand
 
 ---
 
-*Baseflow — The green grid of decentralized finance and communication.*
+*Baseflow — Southeast Asia's green grid of decentralized finance and communication.*
