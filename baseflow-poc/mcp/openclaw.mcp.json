@@ -1,0 +1,54 @@
+{
+  "$comment": "OpenClaw MCP server configuration for Baseflow solar plant agents.",
+  "$comment2": "Merge these entries into your ~/.openclaw/openclaw.json under 'mcpServers'.",
+
+  "mcpServers": {
+    "baseflow-solar-scada": {
+      "command": "python",
+      "args": ["-m", "mcp.solar_scada.server"],
+      "cwd": "/path/to/baseflow-poc",
+      "env": {
+        "PYTHONPATH": "/path/to/baseflow-poc",
+        "MODBUS_HOST": "192.168.1.10",
+        "MODBUS_PORT": "502",
+        "INVERTER_UNIT_IDS": "1",
+        "SITE_ID": "node-001",
+        "SITE_NAME": "Baseflow Node 001",
+        "SITE_LATITUDE": "13.7563",
+        "SITE_LONGITUDE": "100.5018",
+        "SITE_TIMEZONE": "Asia/Bangkok",
+        "SITE_CAPACITY_KWP": "10.0"
+      },
+      "description": "Reads solar inverters, string combiners, energy meters, and battery via Modbus TCP / SunSpec. Supports inverter control commands."
+    },
+
+    "baseflow-weather": {
+      "command": "python",
+      "args": ["-m", "mcp.weather.server"],
+      "cwd": "/path/to/baseflow-poc",
+      "env": {
+        "PYTHONPATH": "/path/to/baseflow-poc",
+        "SITE_LATITUDE": "13.7563",
+        "SITE_LONGITUDE": "100.5018",
+        "SITE_TIMEZONE": "Asia/Bangkok",
+        "SITE_CAPACITY_KWP": "10.0"
+      },
+      "description": "7-day weather and PV power forecasts from Open-Meteo and Forecast.Solar. Compares actual vs expected generation."
+    },
+
+    "baseflow-alerts": {
+      "command": "python",
+      "args": ["-m", "mcp.alerts.server"],
+      "cwd": "/path/to/baseflow-poc",
+      "env": {
+        "PYTHONPATH": "/path/to/baseflow-poc",
+        "SITE_ID": "node-001",
+        "SITE_NAME": "Baseflow Node 001",
+        "SITE_TIMEZONE": "Asia/Bangkok",
+        "TELEGRAM_BOT_TOKEN": "YOUR_BOT_TOKEN_HERE",
+        "TELEGRAM_ALERT_CHAT_IDS": "YOUR_CHAT_ID_HERE"
+      },
+      "description": "Sends fault notices, performance alerts, and daily reports to operators via Telegram. Includes severity-based throttling."
+    }
+  }
+}

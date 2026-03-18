@@ -1,0 +1,25 @@
+# Baseflow MCP Servers — Python dependencies
+# Install: pip install -r mcp/requirements.txt
+
+# MCP SDK (Model Context Protocol — OpenClaw integration)
+mcp>=1.0.0
+
+# Async HTTP client (weather APIs, Telegram)
+httpx>=0.27.0
+
+# Modbus TCP/RTU client
+pymodbus>=3.7.0
+
+# MQTT client (for live inverter telemetry subscriptions)
+paho-mqtt>=2.0.0
+
+# SunSpec inverter protocol (Modbus object model for solar hardware)
+# pip install pysunspec2
+pysunspec2>=2.2.0
+
+# Environment variable loading
+python-dotenv>=1.0.0
+
+# Timezone support (Python 3.9+ has zoneinfo built-in; this backport for 3.8)
+# tzdata is needed on Windows / Docker images without system tz database
+tzdata>=2024.1
