@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadmap — Baseflow Development Plan</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Baseflow development roadmap — four phases from foundation to regional dominance. AI yield optimizer, solar node certification, native DEX, and ASEAN mesh broadcast.">
+  <meta name="keywords" content="Baseflow, BFW, roadmap, development plan, DeFi, solar crypto, AI blockchain, Thailand">
+  <meta property="og:title" content="Roadmap — Baseflow Development Plan">
+  <meta property="og:description" content="Four phases from foundation to regional dominance — sequenced for maximum early revenue.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://baseflow.energy/roadmap.html">
+  <meta property="og:image" content="https://baseflow.energy/og-baseflow.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roadmap — Baseflow Development Plan">
+  <meta name="twitter:description" content="Four phases from foundation to regional dominance.">
+  <meta name="twitter:image" content="https://baseflow.energy/og-baseflow.png">
+  <link rel="canonical" href="https://baseflow.energy/roadmap.html">
+  <link rel="icon" type="image/png" href="img/logo_1200.png">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #080d18;
+      --bg2:     #0c1424;
+      --bg3:     #111c30;
+      --accent:  #e8920d;
+      --accent2: #ffc857;
+      --gold:    #f0a030;
+      --text:    #e8dcc8;
+      --muted:   #8a8070;
+      --border:  rgba(232,146,13,0.15);
+      --card:    rgba(12,20,36,0.85);
+      --radius:  12px;
+      --glow:    0 0 24px rgba(232,146,13,0.18);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(232,146,13,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(232,146,13,0.03) 1px,transparent 1px);
+      background-size: 48px 48px; pointer-events: none;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(8,13,20,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; text-decoration: none; }
+    .nav-logo:hover { text-decoration: none; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-size: 0.85rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .nav-links a.active { color: var(--accent2); }
+    .nav-back { background: rgba(232,146,13,0.08); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; color: var(--accent) !important; font-size: 0.8rem !important; }
+    .nav-cta { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); border-radius: 6px; padding: 6px 14px; color: #f59e0b !important; font-size: 0.8rem !important; font-weight: 600; }
+
+    /* BREADCRUMB */
+    .breadcrumb-bar {
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      padding: 8px 5%;
+      background: rgba(8,13,24,0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(232,146,13,0.08);
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; letter-spacing: 0.5px;
+    }
+    .breadcrumb-bar a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb-bar a:hover { color: var(--accent); text-decoration: none; }
+    .breadcrumb-bar .sep { color: rgba(232,146,13,0.3); margin: 0 2px; }
+    .breadcrumb-bar .current { color: var(--accent2); font-weight: 600; }
+
+    /* LAYOUT */
+    section { position: relative; z-index: 1; padding: 100px 5%; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-tag { display: inline-block; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
+    h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    .section-desc { max-width: 600px; color: var(--muted); font-size: 1.05rem; }
+
+    /* HERO */
+    #hero {
+      min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding-top: 160px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,146,13,0.08) 0%, transparent 70%);
+    }
+    h1.hero-title { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; }
+    h1.hero-title .accent { color: var(--accent); }
+    h1.hero-title .accent2 { color: var(--accent2); }
+    .hero-sub { max-width: 620px; margin: 1.2rem auto 0; color: var(--muted); font-size: 1.05rem; }
+
+    /* ROADMAP */
+    .roadmap { position: relative; margin-top: 3rem; }
+    .roadmap::before {
+      content: ''; position: absolute; left: 19px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+    .phase { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .phase-dot {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+      border: 2px solid var(--accent); background: var(--bg);
+      color: var(--accent); z-index: 1;
+    }
+    .phase-body { flex: 1; }
+    .phase-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .phase-tag { font-size: 0.75rem; color: var(--accent2); letter-spacing: 1px; }
+    .phase-items { list-style: none; margin-top: 0.75rem; }
+    .phase-items li {
+      font-size: 0.88rem; color: var(--muted);
+      padding: 4px 0; display: flex; align-items: flex-start; gap: 8px;
+    }
+    .phase-items li::before { content: '○'; color: var(--border); flex-shrink: 0; margin-top: 1px; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th { background: var(--bg3); color: var(--accent); text-align: left; padding: 12px 16px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+    td { padding: 11px 16px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    tr:hover td { background: rgba(232,146,13,0.03); color: var(--text); }
+
+    /* TIERS */
+    .tier {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem 2.5rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;
+    }
+    .tier::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+    .tier-1::before { background: var(--accent2); }
+    .tier-2::before { background: var(--accent); }
+    .tier-3::before { background: var(--gold); }
+    .tier-label { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .tier-1 .tier-label { color: var(--accent2); }
+    .tier-2 .tier-label { color: var(--accent); }
+    .tier-3 .tier-label { color: var(--gold); }
+    .tier h3 { font-size: 1.2rem; color: #fff; margin-bottom: 0.75rem; }
+    .tier p { color: var(--muted); font-size: 0.93rem; }
+    .tier .callout {
+      margin-top: 1rem; padding: 0.75rem 1rem;
+      background: rgba(232,146,13,0.06); border-left: 3px solid var(--accent);
+      border-radius: 4px; font-size: 0.9rem; color: var(--text); font-style: italic;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 1; background: var(--bg2);
+      border-top: 1px solid var(--border); padding: 4rem 5% 2rem;
+    }
+    .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+    .footer-brand .nav-logo { font-size: 1.5rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.88rem; max-width: 280px; margin-top: 0.75rem; }
+    .footer-links h4 { color: var(--text); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 1px; }
+    .footer-links a { display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .footer-links a:hover { color: var(--accent); text-decoration: none; }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* MOBILE NAV */
+    .nav-toggle { display: none; background: none; border: none; color: var(--accent); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; background: rgba(8,13,20,0.98);
+        padding: 1rem 5%; gap: 1rem; border-bottom: 1px solid var(--border); z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      section { padding: 80px 5%; padding-top: 100px; }
+      .breadcrumb-bar { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="tokenomics.html">Tokenomics</a>
+    <a href="solar.html">Solar</a>
+    <a href="battery.html">Battery</a>
+    <a href="vision.html">Our Vision</a>
+    <a href="index.html#waitlist" class="nav-cta">📋 Join Waitlist →</a>
+  </div>
+</nav>
+<div class="breadcrumb-bar">
+  <a href="index.html">🏠 Home</a>
+  <span class="sep">›</span>
+  <span class="current">Roadmap</span>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <h1 class="hero-title">
+    Development <span class="accent">Roadmap</span>
+  </h1>
+  <p class="hero-sub">
+    Four phases from foundation to regional dominance — sequenced for maximum early revenue and long-term defensibility.
+  </p>
+</section>
+
+<!-- PROFITABILITY / BUILD ORDER -->
+<section id="profit">
+  <div class="section-tag">Revenue Strategy</div>
+  <h2 class="section-title">Profitability Analysis</h2>
+  <p class="section-desc">Three tiers of revenue — ranked by return potential and time-to-market.</p>
+
+  <div style="margin-top:3rem;">
+    <div class="tier tier-1">
+      <div class="tier-label">Tier 1 — Highest Profit Potential</div>
+      <h3>AI Agent / DeFi Layer</h3>
+      <p>The DefAI segment is projected to grow from $1B → $10B by end of 2025 and <strong style="color:#fff">$30 trillion by 2030</strong>. AI agent tokens are the highest-growth crypto category in 2026. Revenue from transaction fees on the native DEX, AI inference marketplace fees (pay-per-request in BFW), and yield optimization-as-a-service subscriptions.</p>
+      <div class="callout">This is the #1 revenue engine for Baseflow.</div>
+    </div>
+
+    <div class="tier tier-1">
+      <div class="tier-label">Tier 1 — Cost Moat</div>
+      <h3>Solar Infrastructure + Thailand Tax Breaks</h3>
+      <p>Thailand's BOI grants <strong style="color:#fff">8 years of corporate income tax exemption</strong>. The ASEAN-China FTA means panels land in Thailand at <strong style="color:#fff">$0.12–$0.16/W</strong> vs $0.28–$0.35/W in the US — a 55–60% structural cost advantage that no US or European competitor can replicate. The June 2025 Cabinet solar incentive adds THB 200,000 per installation through December 2028.</p>
+      <div class="callout">This is Baseflow's cost moat and compliance edge.</div>
+    </div>
+
+    <div class="tier tier-2">
+      <div class="tier-label">Tier 2 — Strong Niche Profit</div>
+      <h3>Backup Broadcast / Mesh Network</h3>
+      <p>Southeast Asia is one of the most disaster-prone regions on earth — floods, typhoons, infrastructure failures create genuine demand for resilient broadcast infrastructure. Monetization through Thai government and ASEAN disaster management contracts, BFW-gated priority node hosting, and ISP bypass subscriptions in rural Thailand, Myanmar, Laos, and Cambodia.</p>
+      <div class="callout" style="border-color:var(--accent);">No competitor in crypto owns this in SEA. High defensibility.</div>
+    </div>
+
+    <div class="tier tier-3">
+      <div class="tier-label">Tier 3 — Supporting Revenue (Phase 4+)</div>
+      <h3>Green Finance / Carbon Credits</h3>
+      <p>Tokenizing Renewable Energy Certificates (RECs) and carbon credits on-chain. Growing market — high regulatory complexity makes this a Phase 4 build, not Phase 1.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <h3 style="color:#fff; margin-bottom:1rem;">Build Order — Profit Optimized</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Feature</th><th>Reason</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong style="color:var(--accent2)">1</strong></td><td>L2 on Base or Ethereum</td><td>Fastest to market — inherits battle-tested security</td></tr>
+          <tr><td><strong style="color:var(--accent2)">2</strong></td><td>AI yield optimizer agent</td><td>Highest demand, proven revenue model</td></tr>
+          <tr><td><strong style="color:var(--accent2)">3</strong></td><td>Solar node certification system</td><td>Thailand tax advantage and green differentiator</td></tr>
+          <tr><td><strong style="color:var(--accent2)">4</strong></td><td>Native DEX + BFW staking</td><td>Token utility, liquidity, and holder retention</td></tr>
+          <tr><td><strong style="color:var(--accent2)">5</strong></td><td>Mesh broadcast layer</td><td>Government grants + long-term defensibility</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-tag">Development Plan</div>
+  <h2 class="section-title">Roadmap</h2>
+
+  <div class="roadmap">
+    <div class="phase">
+      <div class="phase-dot">1</div>
+      <div class="phase-body">
+        <div class="phase-tag">Highest ROI Focus</div>
+        <div class="phase-title">Phase 1 — Foundation</div>
+        <ul class="phase-items">
+          <li>Whitepaper publication</li>
+          <li>Core team formation</li>
+          <li>Legal entity and DAO structure established in Thailand</li>
+          <li>Deploy as EVM-compatible L2 on Base or Ethereum</li>
+          <li>Solar node hardware partnerships secured</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot">2</div>
+      <div class="phase-body">
+        <div class="phase-tag">AI + DeFi Lead</div>
+        <div class="phase-title">Phase 2 — Testnet</div>
+        <ul class="phase-items">
+          <li>AI yield optimizer agent deployed on testnet</li>
+          <li>PoGS consensus testnet launch</li>
+          <li>DeFi protocol (DEX + staking) deployed on testnet</li>
+          <li>Solar node certification and tax reporting prototype</li>
+          <li>BFW tokenomics stress-tested</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot">3</div>
+      <div class="phase-body">
+        <div class="phase-tag">Revenue Live</div>
+        <div class="phase-title">Phase 3 — Mainnet</div>
+        <ul class="phase-items">
+          <li>BFW token generation event (TGE)</li>
+          <li>Thai SEC digital asset license application filed</li>
+          <li>Mainnet launch with initial validator set</li>
+          <li>AI inference marketplace live</li>
+          <li>DEX, liquidity pools, and yield farming live</li>
+          <li>Thai Revenue Department-compatible tax reporting live</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot">4</div>
+      <div class="phase-body">
+        <div class="phase-tag">Defensibility + Moats</div>
+        <div class="phase-title">Phase 4 — Expansion</div>
+        <ul class="phase-items">
+          <li>Mesh broadcast layer deployment across Thailand</li>
+          <li>ASEAN emergency broadcast integration</li>
+          <li>Thai government and ASEAN disaster management contracts</li>
+          <li>Carbon credit and REC tokenization</li>
+          <li>BOI renewable energy grant applications</li>
+          <li>Regional expansion: Singapore, Vietnam, Indonesia</li>
+          <li>Institutional partnerships with Thai banks and energy companies</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BASEFLOW -->
+<section id="why">
+  <div class="section-tag">Value Proposition</div>
+  <h2 class="section-title">Why Baseflow?</h2>
+  <div class="table-wrap" style="margin-top:2rem;">
+    <table>
+      <thead>
+        <tr><th>Problem</th><th>Baseflow Solution</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Crypto energy waste and regulatory pressure</td><td style="color:var(--accent2);font-weight:600;">Solar-only validator requirement with on-chain proof</td></tr>
+        <tr><td>Centralized broadcast infrastructure fragility</td><td style="color:var(--accent2);font-weight:600;">SEA-focused decentralized mesh broadcast network</td></tr>
+        <tr><td>Complex DeFi onboarding</td><td style="color:var(--accent2);font-weight:600;">Unified AI-assisted DeFi interface</td></tr>
+        <tr><td>No tax incentive integration in crypto</td><td style="color:var(--accent2);font-weight:600;">Thailand BOI 8-yr CIT exemption + solar deductions</td></tr>
+        <tr><td>Fragile emergency comms in SEA disaster zones</td><td style="color:var(--accent2);font-weight:600;">Nodes as redundant broadcast relay points</td></tr>
+        <tr><td>High solar hardware costs (US/EU market)</td><td style="color:var(--accent2);font-weight:600;">Near-zero tariff Chinese panels via ASEAN-China FTA</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
+      <p>Southeast Asia's green grid of decentralized finance and communication. Headquartered in Thailand.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Project</h4>
+      <a href="index.html">Home</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="index.html#waitlist" style="color:var(--accent2)">Join Waitlist →</a>
+    </div>
+    <div class="footer-links">
+      <h4>Research</h4>
+      <a href="solar.html">Solar Procurement</a>
+      <a href="battery.html">Battery Tech</a>
+    </div>
+    <div class="footer-links">
+      <h4>Community</h4>
+      <a href="https://x.com/BaseflowEnergy" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="https://discord.gg/baseflow" target="_blank" rel="noopener">Discord</a>
+      <a href="https://github.com/baseflow" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Baseflow. All rights reserved. Headquarters: Thailand.</span>
+    <span>This website is for informational purposes only and does not constitute financial or investment advice.</span>
+  </div>
+</footer>
+
+</body>
+</html>

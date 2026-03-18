@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Procurement — Baseflow Thailand</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Baseflow solar procurement research — Thailand's ASEAN-China FTA zero-tariff advantage, panel recommendations, procurement strategies, and node sizing for 24/7 off-grid crypto validators.">
+  <meta name="keywords" content="Baseflow, solar panels, Thailand, ACFTA, crypto mining, solar procurement, node sizing, off-grid">
+  <meta property="og:title" content="Solar Procurement — Baseflow Thailand">
+  <meta property="og:description" content="Thailand's ASEAN-China FTA zero-tariff advantage makes it one of the cheapest solar procurement markets in the world.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://baseflow.energy/solar.html">
+  <meta property="og:image" content="https://baseflow.energy/og-baseflow.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solar Procurement — Baseflow Thailand">
+  <meta name="twitter:description" content="Thailand's ASEAN-China FTA zero-tariff advantage for solar-powered crypto nodes.">
+  <meta name="twitter:image" content="https://baseflow.energy/og-baseflow.png">
+  <link rel="canonical" href="https://baseflow.energy/solar.html">
+  <link rel="icon" type="image/png" href="img/logo_1200.png">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #080d18;
+      --bg2:     #0c1424;
+      --bg3:     #111c30;
+      --accent:  #e8920d;
+      --accent2: #ffc857;
+      --gold:    #f0a030;
+      --text:    #e8dcc8;
+      --muted:   #8a8070;
+      --border:  rgba(232,146,13,0.15);
+      --card:    rgba(12,20,36,0.85);
+      --radius:  12px;
+      --glow:    0 0 24px rgba(232,146,13,0.18);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(232,146,13,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(232,146,13,0.03) 1px,transparent 1px);
+      background-size: 48px 48px; pointer-events: none;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 64px;
+      background: rgba(8,13,20,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; text-decoration: none; }
+    .nav-logo:hover { text-decoration: none; }
+    .nav-logo img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
+    .nav-logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-size: 0.85rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .nav-links a.active { color: var(--accent2); }
+    .nav-back { background: rgba(232,146,13,0.08); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; color: var(--accent) !important; font-size: 0.8rem !important; }
+    .nav-cta { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); border-radius: 6px; padding: 6px 14px; color: #f59e0b !important; font-size: 0.8rem !important; font-weight: 600; }
+
+    /* BREADCRUMB */
+    .breadcrumb-bar {
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      padding: 8px 5%;
+      background: rgba(8,13,24,0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(232,146,13,0.08);
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; letter-spacing: 0.5px;
+    }
+    .breadcrumb-bar a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb-bar a:hover { color: var(--accent); text-decoration: none; }
+    .breadcrumb-bar .sep { color: rgba(232,146,13,0.3); margin: 0 2px; }
+    .breadcrumb-bar .current { color: var(--accent2); font-weight: 600; }
+
+    /* LAYOUT */
+    section { position: relative; z-index: 1; padding: 100px 5%; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-tag { display: inline-block; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.75rem; }
+    h2.section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    .section-desc { max-width: 600px; color: var(--muted); font-size: 1.05rem; }
+
+    /* HERO */
+    #hero {
+      min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding-top: 160px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(240,160,48,0.08) 0%, transparent 70%);
+    }
+    h1.hero-title { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; }
+    h1.hero-title .accent { color: var(--accent); }
+    h1.hero-title .gold { color: var(--gold); }
+    .hero-sub { max-width: 620px; margin: 1.2rem auto 0; color: var(--muted); font-size: 1.05rem; }
+
+    /* ADVANTAGE GRID */
+    .advantage-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-top: 2rem;
+    }
+    .adv-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    }
+    .adv-num { font-size: 2.2rem; font-weight: 800; color: var(--accent2); }
+    .adv-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th { background: var(--bg3); color: var(--accent); text-align: left; padding: 12px 16px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+    td { padding: 11px 16px; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    tr:hover td { background: rgba(232,146,13,0.03); color: var(--text); }
+    .highlight { color: var(--accent2) !important; font-weight: 600; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+    .badge-green { background: rgba(255,200,87,0.12); color: var(--accent2); }
+    .badge-blue  { background: rgba(232,146,13,0.12); color: var(--accent); }
+
+    /* CARDS */
+    .card-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { border-color: var(--accent); box-shadow: var(--glow); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.92rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 1; background: var(--bg2);
+      border-top: 1px solid var(--border); padding: 4rem 5% 2rem;
+    }
+    .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+    .footer-brand .nav-logo { font-size: 1.5rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.88rem; max-width: 280px; margin-top: 0.75rem; }
+    .footer-links h4 { color: var(--text); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 1px; }
+    .footer-links a { display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .footer-links a:hover { color: var(--accent); text-decoration: none; }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* MOBILE NAV */
+    .nav-toggle { display: none; background: none; border: none; color: var(--accent); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; background: rgba(8,13,20,0.98);
+        padding: 1rem 5%; gap: 1rem; border-bottom: 1px solid var(--border); z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      section { padding: 80px 5%; padding-top: 100px; }
+      .breadcrumb-bar { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="tokenomics.html">Tokenomics</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="battery.html">Battery</a>
+    <a href="vision.html">Our Vision</a>
+    <a href="index.html#waitlist" class="nav-cta">📋 Join Waitlist →</a>
+  </div>
+</nav>
+<div class="breadcrumb-bar">
+  <a href="index.html">🏠 Home</a>
+  <span class="sep">›</span>
+  <span class="current">Solar Procurement</span>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <h1 class="hero-title">
+    Solar <span class="accent">Procurement</span><br/>
+    <span class="gold">Thailand</span>
+  </h1>
+  <p class="hero-sub">
+    Thailand's ASEAN-China FTA zero-tariff advantage makes it one of the cheapest solar procurement markets in the world for validator node infrastructure.
+  </p>
+</section>
+
+<!-- KEY ADVANTAGES -->
+<section id="advantages">
+  <div class="section-tag">Cost Advantage</div>
+  <h2 class="section-title">Thailand Solar Advantage</h2>
+
+  <div class="advantage-grid">
+    <div class="adv-card">
+      <div class="adv-num">$0.12</div>
+      <div class="adv-label">Per Watt — Thailand Landed (direct import)</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-num">0%</div>
+      <div class="adv-label">ACFTA Import Duty (China → Thailand)</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-num">55%</div>
+      <div class="adv-label">Cheaper Than US-Landed Panels</div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-num">15–17</div>
+      <div class="adv-label">Days Shipping China → Laem Chabang</div>
+    </div>
+  </div>
+</section>
+
+<!-- COST COMPARISON -->
+<section id="comparison">
+  <div class="section-tag">Price Analysis</div>
+  <h2 class="section-title">Cost Comparison: Thailand vs US</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Cost Component</th><th>Thailand Landed</th><th>US Landed (2026)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Module FOB (Tier 1 TOPCon)</td><td>$0.089–$0.094/W</td><td>$0.089–$0.094/W</td></tr>
+        <tr><td>Ocean Freight</td><td>+$0.015–$0.025/W</td><td>+$0.025–$0.040/W</td></tr>
+        <tr><td>Import Duty</td><td class="highlight">0% (ACFTA)</td><td style="color:#ff6b6b">36–800%+</td></tr>
+        <tr><td>VAT</td><td>+7% on CIF</td><td>State dependent</td></tr>
+        <tr><td><strong>All-in (direct import)</strong></td><td class="highlight">$0.12–$0.16/W</td><td style="color:#ff6b6b">$0.28–$0.35/W</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RECOMMENDED PANELS -->
+<section id="panels">
+  <div class="section-tag">Hardware</div>
+  <h2 class="section-title">Recommended Panels</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Model</th><th>Watts</th><th>Efficiency</th><th>Est. TH Price</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>JA Solar JAM72D40-600W</td><td>600W</td><td>~23%</td>
+          <td class="highlight">~$0.14/W</td>
+          <td>Tier 1; direct import</td>
+        </tr>
+        <tr>
+          <td>LONGi Hi-MO 7 615–625W</td><td>615–625W</td><td>22.8–23.1%</td>
+          <td class="highlight">~$0.14–$0.16/W</td>
+          <td>Highest watt/panel; Thai distributor available</td>
+        </tr>
+        <tr>
+          <td>Trina Vertex N 600W</td><td>600W</td><td>~22.5%</td>
+          <td class="highlight">~$0.14/W</td>
+          <td><span class="badge badge-green">Made in Thailand</span></td>
+        </tr>
+        <tr>
+          <td>Canadian Solar TOPHiKu6 580W</td><td>580W</td><td>22.5–23%</td>
+          <td class="highlight">~$0.13–$0.15/W</td>
+          <td><span class="badge badge-green">Made in Thailand</span> Si Racha, Chonburi</td>
+        </tr>
+        <tr>
+          <td>Solartron (Thai brand)</td><td>380–450W</td><td>19–21%</td>
+          <td>~$0.18–$0.25/W</td>
+          <td><span class="badge badge-blue">Local</span> UL/TIS/JIS; 35+ years</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PROCUREMENT STRATEGY -->
+<section id="procurement">
+  <div class="section-tag">Strategy</div>
+  <h2 class="section-title">Procurement Strategy by Scale</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>Option A — Small (&lt;50 kW)</h3>
+      <p style="margin-bottom:0.75rem">Buy from Thai wholesale distributors. No import paperwork, immediate stock, local warranty.</p>
+      <p class="highlight">$0.16–$0.22/W panels</p>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:4px">QES Energy (Trina) · Solaris Green Energy (LONGi)</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏭</div>
+      <h3>Option B — Medium (50–500 kW)</h3>
+      <p style="margin-bottom:0.75rem">Direct import from China via Alibaba. Form E Certificate of Origin for 0% ACFTA duty. Ship FCL via Laem Chabang (15–17 days).</p>
+      <p class="highlight">$0.12–$0.16/W all-in</p>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:4px">JA Solar · LONGi · Trina · Canadian Solar</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏗️</div>
+      <h3>Option C — Large (500 kW+)</h3>
+      <p style="margin-bottom:0.75rem">BOI application under "Data Center" category → 0% import duty on all machinery. Buy direct from Canadian Solar Thailand (Si Racha) or Trina Thailand.</p>
+      <p class="highlight">$0.10–$0.15/W with BOI exemption</p>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:4px">Canadian Solar MFG Thailand · Trina Thailand</p>
+    </div>
+  </div>
+</section>
+
+<!-- NODE SIZING -->
+<section id="sizing">
+  <div class="section-tag">Infrastructure</div>
+  <h2 class="section-title">Node Sizing Guide (24/7 Off-Grid)</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Node Setup</th><th>Daily kWh</th><th>Solar Required</th><th>Battery Required</th><th>Panel Config</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 Ethereum node (100W)</td><td>2.4 kWh</td><td>1.5–2 kW</td><td>10 kWh</td><td>4–5× 400W</td></tr>
+        <tr><td>3 Ethereum nodes (300W)</td><td>7.2 kWh</td><td>4–5 kW</td><td>20–25 kWh</td><td>10–12× 450W</td></tr>
+        <tr><td>1 Solana validator (500W)</td><td>12 kWh</td><td>7–8 kW</td><td>35–40 kWh</td><td>16× 500W</td></tr>
+        <tr><td>5-node rack (1 kW)</td><td>24 kWh</td><td>12–15 kW</td><td>60–80 kWh</td><td>28–36× 550W</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:rgba(240,160,48,0.06);border:1px solid rgba(240,160,48,0.2);border-radius:8px;font-size:0.88rem;color:var(--muted);">
+    💡 For detailed battery storage specifications and technology comparisons, see the <a href="battery.html" style="color:var(--accent2);font-weight:600;">Battery Tech deep dive →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
+      <p>Southeast Asia's green grid of decentralized finance and communication. Headquartered in Thailand.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Project</h4>
+      <a href="index.html">Home</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="index.html#waitlist" style="color:var(--accent2)">Join Waitlist →</a>
+    </div>
+    <div class="footer-links">
+      <h4>Research</h4>
+      <a href="solar.html">Solar Procurement</a>
+      <a href="battery.html">Battery Tech</a>
+    </div>
+    <div class="footer-links">
+      <h4>Community</h4>
+      <a href="https://x.com/BaseflowEnergy" target="_blank" rel="noopener">Twitter / X</a>
+      <a href="https://discord.gg/baseflow" target="_blank" rel="noopener">Discord</a>
+      <a href="https://github.com/baseflow" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Baseflow. All rights reserved. Headquarters: Thailand.</span>
+    <span>This website is for informational purposes only and does not constitute financial or investment advice.</span>
+  </div>
+</footer>
+
+</body>
+</html>

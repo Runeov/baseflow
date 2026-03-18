@@ -63,7 +63,23 @@
     .nav-links { display: flex; gap: 1.5rem; align-items: center; }
     .nav-links a { font-size: 0.82rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .nav-links a.active { color: var(--accent2); }
     .nav-back { background: rgba(232,146,13,0.08); border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px; color: var(--accent) !important; font-size: 0.8rem !important; }
+
+    /* BREADCRUMB */
+    .breadcrumb-bar {
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      padding: 8px 5%;
+      background: rgba(8,13,24,0.88);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(232,146,13,0.08);
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; letter-spacing: 0.5px;
+    }
+    .breadcrumb-bar a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb-bar a:hover { color: var(--accent); text-decoration: none; }
+    .breadcrumb-bar .sep { color: rgba(232,146,13,0.3); margin: 0 2px; }
+    .breadcrumb-bar .current { color: var(--accent2); font-weight: 600; }
 
     /* LAYOUT */
     section { position: relative; z-index: 1; padding: 90px 5%; }
@@ -75,7 +91,7 @@
     /* HERO */
     #hero {
       min-height: 62vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding-top: 130px;
+      text-align: center; padding-top: 150px;
       background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196,154,60,0.1) 0%, transparent 70%);
     }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(196,154,60,0.1); border: 1px solid rgba(196,154,60,0.25); border-radius: 999px; padding: 6px 18px; font-size: 0.75rem; letter-spacing: 2px; color: var(--purple); text-transform: uppercase; margin-bottom: 1.5rem; }
@@ -245,7 +261,8 @@
         z-index: 99;
       }
       .nav-links.open { display: flex; }
-      section { padding: 70px 5%; }
+      section { padding: 70px 5%; padding-top: 90px; }
+      .breadcrumb-bar { font-size: 0.7rem; }
       .vest-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -254,20 +271,24 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span> &nbsp;<span style="color:var(--muted);font-weight:400;font-size:0.85rem">/ Tokenomics</span></a>
+  <a href="index.html" class="nav-logo"><img src="img/logo_1200.png" alt="Baseflow Logo">Base<span>flow</span></a>
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
   <div class="nav-links">
-    <a href="index.html" class="nav-back">← Back to Overview</a>
+    <a href="index.html">Home</a>
     <a href="#snapshot">Snapshot</a>
     <a href="#allocation">Allocation</a>
     <a href="#yield">Yield</a>
-    <a href="#vebfw">veBFW</a>
-    <a href="#roi">ROI Scenarios</a>
-    <a href="#revenue">Revenue</a>
-    <a href="#comparables">Comparables</a>
-    <a href="presale.html" style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);border-radius:6px;padding:6px 14px;color:#f59e0b;font-size:0.8rem;font-weight:600;">🔥 Buy SAI →</a>
+    <a href="#roi">ROI</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="vision.html">Our Vision</a>
+    <a href="index.html#waitlist" style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);border-radius:6px;padding:6px 14px;color:#f59e0b;font-size:0.8rem;font-weight:600;">📋 Join Waitlist →</a>
   </div>
 </nav>
+<div class="breadcrumb-bar">
+  <a href="index.html">🏠 Home</a>
+  <span class="sep">›</span>
+  <span class="current">Tokenomics</span>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -870,11 +891,11 @@
     </div>
     <div class="footer-links">
       <h4>Project</h4>
-      <a href="index.html">Project Overview</a>
-      <a href="index.html#pillars">Core Pillars</a>
-      <a href="index.html#solar">Solar Research</a>
-      <a href="index.html#roadmap">Roadmap</a>
-      <a href="presale.html" style="color:var(--accent2)">SAI Presale →</a>
+      <a href="index.html">Home</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="solar.html">Solar Procurement</a>
+      <a href="battery.html">Battery Tech</a>
+      <a href="index.html#waitlist" style="color:var(--accent2)">Join Waitlist →</a>
     </div>
   </div>
   <div class="footer-bottom">
